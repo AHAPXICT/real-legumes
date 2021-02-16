@@ -1,4 +1,4 @@
-import db_connection_config
+import os
 
 
 class BaseConfig:
@@ -12,8 +12,7 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     TESTING = False
 
-    connection = f"mysql+pymysql://{db_connection_config.dbuser}:{db_connection_config.dbpass}" \
-                 f"@{db_connection_config.dbhost}/{db_connection_config.dbname}"
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEVELOPMENT_DATABASE_URI')
 
 
 class TestingConfig(BaseConfig):
