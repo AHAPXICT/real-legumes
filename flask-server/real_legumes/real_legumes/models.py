@@ -3,8 +3,7 @@ from sqlalchemy.sql import func
 from real_legumes import db
 
 
-class Products(db.Model):
-    # TODO: Add relationship.
+class Product(db.Model):
 
     """Product model."""
 
@@ -21,9 +20,10 @@ class Products(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
 
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
 
-class Categories(db.Model):
-    # TODO: Add relationship.
+
+class Category(db.Model):
 
     """Category model."""
 
@@ -35,8 +35,10 @@ class Categories(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
 
+    products = db.relationship('Product', backref='category', lazy=True)
 
-class Ingredients(db.Model):
+
+class Ingredient(db.Model):
     # TODO: Add relationship.
 
     """Ingredient model."""
@@ -50,7 +52,7 @@ class Ingredients(db.Model):
                            onupdate=func.now())
 
 
-class Images(db.Model):
+class Image(db.Model):
     # TODO: Add relationship.
 
     """Image model."""
