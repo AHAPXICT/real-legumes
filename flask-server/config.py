@@ -3,6 +3,7 @@ import os
 
 class BaseConfig:
     """Base config class."""
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
