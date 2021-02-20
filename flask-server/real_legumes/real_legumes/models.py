@@ -23,23 +23,6 @@ class Product(db.Model):
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
     images = db.relationship('Image', secondary='product_images', backref='products')
 
-    def __init__(self,
-                 name: str,
-                 price: int,
-                 calories: int,
-                 description: str,
-                 count: int,
-                 weight: int,
-                 category_id: int):
-
-        self.name = name
-        self.price = price
-        self.calories = calories
-        self.description = description
-        self.count = count
-        self.weight = weight
-        self.category_id = category_id
-
     def __repr__(self):
         return f"<Product {self.id}: {self.name}>"
 
@@ -57,9 +40,6 @@ class Category(db.Model):
 
     products = db.relationship('Product', backref='category', lazy=True)
 
-    def __init__(self, name: str):
-        self.name = name
-
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
 
@@ -74,9 +54,6 @@ class Ingredient(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
-
-    def __init__(self, name: str):
-        self.name = name
 
     def __repr__(self):
         return f"<Ingredient {self.id}: {self.name}>"
