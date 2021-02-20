@@ -24,10 +24,16 @@ class Product(db.Model):
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
     images = db.relationship('Image', secondary='product_images', backref='products')
 
+    @validates('name')
+    def validate_name(self, key, value):
+        if Product.query.filter(Product.name == value).first():
+            raise AssertionError('Product name already exist.')
+
     @validates('price', 'calories', 'count', 'weight')
     def validate_integer_fields(self, key, value):
         if value < 0:
             raise AssertionError(f'Field {key} cannot be negative.')
+        return value
 
     @validates('created_at')
     def validate_created_at(self, key, value):
