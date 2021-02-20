@@ -28,6 +28,7 @@ class Product(db.Model):
     def validate_name(self, key, value):
         if Product.query.filter(Product.name == value).first():
             raise AssertionError('Product name already exist.')
+        return value
 
     @validates('price', 'calories', 'count', 'weight')
     def validate_integer_fields(self, key, value):
@@ -62,6 +63,12 @@ class Category(db.Model):
 
     products = db.relationship('Product', backref='category', lazy=True)
 
+    @validates('name')
+    def validate_name(self, key, value):
+        if Category.query.filter(Category.name == value).first():
+            raise AssertionError('Category name already exist.')
+        return value
+
     @validates('created_at')
     def validate_created_at(self, key, value):
         if self.created_at or value:
@@ -86,6 +93,12 @@ class Ingredient(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
+
+    @validates('name')
+    def validate_name(self, key, value):
+        if Ingredient.query.filter(Ingredient.name == value).first():
+            raise AssertionError('Ingredient name already exist.')
+        return value
 
     @validates('created_at')
     def validate_created_at(self, key, value):
@@ -117,6 +130,12 @@ class Image(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
+
+    @validates('image_url')
+    def validate_image_url(self, key, value):
+        if Image.query.filter(Image.image_url == value).first():
+            raise AssertionError('Image url already exist.')
+        return value
 
     @validates('created_at')
     def validate_created_at(self, key, value):
