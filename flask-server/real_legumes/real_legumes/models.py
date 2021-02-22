@@ -4,7 +4,23 @@ from sqlalchemy.orm import validates
 from real_legumes import db
 
 
-class Product(db.Model):
+class TimestampMixin(object):
+    created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
+    updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
+                           onupdate=func.now())
+
+    @validates('created_at')
+    def validate_created_at(self, key, value):
+        if self.created_at or value:
+            raise AssertionError('Created_at cannot be modified.')
+
+    @validates('updated_at')
+    def validate_updated_at(self, key, value):
+        if self.created_at or value:
+            raise AssertionError('Updated_at cannot be modified.')
+
+
+class Product(TimestampMixin, db.Model):
     """Product model."""
 
     __tablename__ = 'products'
@@ -16,9 +32,6 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     count = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
-                           onupdate=func.now())
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
 
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
@@ -36,30 +49,17 @@ class Product(db.Model):
             raise AssertionError(f'Field {key} cannot be negative.')
         return value
 
-    @validates('created_at')
-    def validate_created_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Created_at cannot be modified.')
-
-    @validates('updated_at')
-    def validate_updated_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Updated_at cannot be modified.')
-
     def __repr__(self):
         return f"<Product {self.id}: {self.name}>"
 
 
-class Category(db.Model):
+class Category(TimestampMixin, db.Model):
     """Category model."""
 
     __tablename__ = 'categories'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
-                           onupdate=func.now())
 
     products = db.relationship('Product', backref='category', lazy=True)
 
@@ -69,46 +69,23 @@ class Category(db.Model):
             raise AssertionError('Category name already exist.')
         return value
 
-    @validates('created_at')
-    def validate_created_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Created_at cannot be modified.')
-
-    @validates('updated_at')
-    def validate_updated_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Updated_at cannot be modified.')
-
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
 
 
-class Ingredient(db.Model):
+class Ingredient(TimestampMixin, db.Model):
     """Ingredient model."""
 
     __tablename__ = 'ingredients'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
-                           onupdate=func.now())
 
     @validates('name')
     def validate_name(self, key, value):
         if Ingredient.query.filter(Ingredient.name == value).first():
             raise AssertionError('Ingredient name already exist.')
         return value
-
-    @validates('created_at')
-    def validate_created_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Created_at cannot be modified.')
-
-    @validates('updated_at')
-    def validate_updated_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Updated_at cannot be modified.')
 
     def __repr__(self):
         return f"<Ingredient {self.id}: {self.name}>"
@@ -120,32 +97,19 @@ product_ingredients = db.Table('product_ingredients',
                                )
 
 
-class Image(db.Model):
+class Image(TimestampMixin, db.Model):
     """Image model."""
 
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String(255), unique=True, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
-                           onupdate=func.now())
 
     @validates('image_url')
     def validate_image_url(self, key, value):
         if Image.query.filter(Image.image_url == value).first():
             raise AssertionError('Image url already exist.')
         return value
-
-    @validates('created_at')
-    def validate_created_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Created_at cannot be modified.')
-
-    @validates('updated_at')
-    def validate_updated_at(self, key, value):
-        if self.created_at or value:
-            raise AssertionError('Updated_at cannot be modified.')
 
     def __repr__(self):
         return f"<Image {self.id}: {self.image_url}"
