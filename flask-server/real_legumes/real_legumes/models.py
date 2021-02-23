@@ -5,6 +5,8 @@ from real_legumes import db
 
 
 class TimestampMixin(object):
+    """Mixin for fields created_at and updated_at with validation."""
+
     created_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False,
                            onupdate=func.now())
