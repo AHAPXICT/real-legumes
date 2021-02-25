@@ -24,7 +24,7 @@ h6 {
 
 .container {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1400px;
 
     margin: 0 auto;
 }
@@ -32,17 +32,46 @@ h6 {
 /* Intro */
 
 .intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     width: 100%;
     height: 100vh;
+    padding-top: 83px;
 
     background: url('../index/images/intro.jpg') center no-repeat;
     background-size: cover;
+}
+
+.intro__title {
+    color: #fff;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 65px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    line-height: 1;
+    padding-bottom: 20px;
+}
+
+.intro__subtitle {
+    color: #fff;
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+    opacity: 0.8;
+}
+
+.intro__inner {
+    width: 100%;
+    max-width: 700px;
 }
 
 /* Header */
 
 .header {
     position: absolute;
+    height: 83px;
     top: 0;
     left: 0;
     right: 0;
@@ -72,6 +101,7 @@ h6 {
 /* Nav */
 
 .nav {
+    display: flex;
     font-size: 30px;
     text-transform: uppercase;
 }
@@ -79,13 +109,17 @@ h6 {
 .nav__link {
     display: inline-block;
     position: relative;
-    margin: 0 15px;
+    margin-left: 30px;
 
     color: #fff;
     text-decoration: none;
     font-family: 'Amatic SC', cursive;
 
     transition: text-shadow 0.2s linear;
+}
+
+.nav__link:first-child {
+    margin-left: 0;
 }
 
 .nav__link:after {
