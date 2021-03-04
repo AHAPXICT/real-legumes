@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;1,700&display=swap');
+
+body {
+    margin: 0;
+    background-color: rgb(236, 236, 236);
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+/* Container */
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+}
+
+/* Header */
+
+.header {
+    position: absolute;
+    height: 83px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: black;
+    width: 100%;
+
+    opacity: 0.8;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.header__logo {
+    color: #fff;
+    font-family: 'Lobster', cursive;
+
+    font-size: 50px;
+
+    padding: 10px 0px;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+/* Nav */
+
+.nav {
+    display: flex;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.nav__link {
+    display: inline-block;
+    position: relative;
+    margin-left: 30px;
+
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Amatic SC', cursive;
+
+    transition: text-shadow 0.2s linear;
+}
+
+.nav__link:first-child {
+    margin-left: 0;
+}
+
+.nav__link:after {
+    content: '';
+    opacity: 0;
+    width: 100%;
+    height: 3px;
+
+    background-color: #fff;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    z-index: 1;
+
+    transition: opacity 0.2s linear;
+}
+
+.nav__link:hover {
+    text-shadow: 0 0 1.2px #fff, 0 0 1.2px #fff;
+}
+
+.nav__link:hover:after {
+    opacity: 1;
+}
+
+.nav__active {
+    text-shadow: 0 0 0.9px #fff, 0 0 0.9px #fff;
+}
+
+/* Section */
+
+.team {
+    /* height: 160vh; */
+
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.team__title {
+    padding-top: 150px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 65px;
+}
+
+.team__subtitle {
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+}
+
+.team__section {
+    display: flex;
+    justify-content: space-around;
+    /* background-color: #000; */
+    margin-top: 60px;
+}
+
+.team__block {
+    width: 30%;
+    height: 750px;
+    /* background-color: #fff; */
+}
+
+.team__container {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.team__descr_block {
+    border: solid 1px;
+    border-color: #000;
+}
+
+.team__descr {
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
+}
+
+.team__img {
+    width: 100%;
+    
+}
+
+.team__name {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
+
+.team__social_block {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.team__logo {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* footer */
+
+.footer {
+
+    width: 100%;
+    height: 300px;
+
+    background: url('../index/images/footer_background.jpg') center no-repeat;
+    background-size: cover;
+}
+
+.footer__black {
+    background-color: #000;
+    z-index: 3;
+    opacity: 0.8;
+}
+
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 300px;
+    /* background-color: #fff; */
+    z-index: 3;
+}
+
+.footer__section {
+    width: 25%;
+    height: 300px;
+
+    /* background-color: blue; */
+    padding: 40px;
+}
+
+.footer__title {
+    color: #fff;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    opacity: 0.8;
+}
+
+.footer__info {
+    color: #fff;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+}
+
+.footer__social {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+
+.footer__contact_block {
+    display: flex;
+    justify-content: left;
+
+    width: 100%;
+}
+
+.footer__open_hours_block {
+    width: 100%;
+}
+
+.footer__time {
+    margin-top: -20px;
+    opacity: 0.7;
+}
+
+.footer__logo {
+    width: 17px;
+    height: 17px;
+    
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15px;
+}
+
+.large_logo {
+    width: 23px;
+    height: 23px;
+    margin-left: 15px;
+}
