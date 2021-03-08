@@ -23,7 +23,7 @@ class TimestampMixin(object):
 
 
 class Product(TimestampMixin, db.Model):
-    """Product model."""
+    """Product"""
 
     __tablename__ = 'products'
 
