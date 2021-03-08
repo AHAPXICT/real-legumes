@@ -1,41 +1,42 @@
 from flask_restful import Resource, marshal_with, reqparse
 from flask import abort
 
-from ..models import Category as c
-from .Serializers import categoryFields
+from ..models import Ingredient as i
+from .Serializers import ingredientFields
 from real_legumes import db
 
 
 parser = reqparse.RequestParser()
-parser.add_argument('name', type=str, help="Unique name for category.", required=True)
+parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
 args = parser.parse_args()
 
 
-class CategoryList(Resource):
+class IngredientList(Resource):
 
-    @marshal_with(categoryFields)
-    def get(self):
-        categories = c.query.all()
-        return categories
+    @staticmethod
+    @marshal_with(ingredientFields)
+    def get():
+        ingredients = i.query.all()
+        return ingredients
 
     @staticmethod
     def post():
         try:
-            category = c(name=args['name'])
-            db.session.add(category)
+            ingredient = i(name=args['name'])
+            db.session.add(ingredient)
             db.session.commit()
             db.session.close()
         except AssertionError:
-            return "Category name already exist.", 500
+            return "Ingredient name already exist.", 500
         except Exception:
             return "Backend exception.", 500
         else:
             return 'Done.', 201
 
 
-class Category(Resource):
+class Ingredient(Resource):
 
-    @marshal_with(categoryFields)
+    @marshal_with(ingredientFields)
     def get(self, category_name):
         category = c.query.filter_by(name=category_name).first()
         if category:
