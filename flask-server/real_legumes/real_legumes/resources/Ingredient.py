@@ -6,49 +6,45 @@ from .Serializers import ingredientFields
 from real_legumes import db
 
 
-parser = reqparse.RequestParser()
-parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
-args = parser.parse_args()
-
-
 class IngredientList(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
 
-    @staticmethod
     @marshal_with(ingredientFields)
-    def get():
+    def get(self):
         ingredients = i.query.all()
         return ingredients
 
-    @staticmethod
-    def post():
+    def post(self):
+        args = self.parser.parse_args()
         try:
             ingredient = i(name=args['name'])
-            db.session.add(ingredient)
-            db.session.commit()
-            db.session.close()
+            ingredient.save_to_db()
         except AssertionError:
-            return "Ingredient name already exist.", 500
+            return {'message': "Ingredient name already exist."}, 500
         except Exception:
-            return "Backend exception.", 500
+            return {'message': "Backend exception."}, 500
         else:
-            return 'Done.', 201
+            return {'message': 'Done.'}, 201
 
 
 class Ingredient(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
 
     @marshal_with(ingredientFields)
-    def get(self, category_name):
-        category = c.query.filter_by(name=category_name).first()
-        if category:
-            return category, 200
-        abort(404, description="Category not found.")
+    def get(self, ingredient_name):
+        ingredient = i.query.filter_by(name=ingredient_name).first()
+        if ingredient:
+            return ingredient, 200
+        abort(404, description="Ingredient not found.")
 
-    @staticmethod
-    def put(category_name):
-        category = c.query.filter_by(name=category_name).first()
-        if category:
+    def put(self, ingredient_name):
+        ingredient = i.query.filter_by(name=ingredient_name).first()
+        if ingredient:
             try:
-                category.name = args['name']
+                args = self.parser.parse_args()
+                ingredient.name = args['name']
                 db.session.commit()
                 db.session.close()
             except Exception:

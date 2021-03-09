@@ -9,3 +9,6 @@ api = Api(api_v1)
 
 api.add_resource(CategoryList, '/categories')
 api.add_resource(Category, '/category/<category_name>')
+
+# api.add_resource(CategoryList, '/categories')
+# api.add_resource(Category, '/category/<category_name>')

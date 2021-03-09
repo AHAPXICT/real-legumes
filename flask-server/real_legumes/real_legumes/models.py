@@ -22,7 +22,18 @@ class TimestampMixin(object):
             raise AssertionError('Updated_at cannot be modified.')
 
 
-class Product(TimestampMixin, db.Model):
+class BaseModel(TimestampMixin):
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
+class Product(BaseModel, db.Model):
     """Product"""
 
     __tablename__ = 'products'
@@ -55,7 +66,7 @@ class Product(TimestampMixin, db.Model):
         return f"<Product {self.id}: {self.name}>"
 
 
-class Category(TimestampMixin, db.Model):
+class Category(BaseModel, db.Model):
     """Category model."""
 
     __tablename__ = 'categories'
@@ -71,19 +82,11 @@ class Category(TimestampMixin, db.Model):
             raise AssertionError('Category name already exist.')
         return value
 
-    def save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
-
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
 
 
-class Ingredient(TimestampMixin, db.Model):
+class Ingredient(BaseModel, db.Model):
     """Ingredient model."""
 
     __tablename__ = 'ingredients'
@@ -107,7 +110,7 @@ product_ingredients = db.Table('product_ingredients',
                                )
 
 
-class Image(TimestampMixin, db.Model):
+class Image(BaseModel, db.Model):
     """Image model."""
 
     __tablename__ = 'images'

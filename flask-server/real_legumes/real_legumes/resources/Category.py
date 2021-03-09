@@ -43,7 +43,8 @@ class Category(Resource):
         category = c.query.filter_by(name=category_name).first()
         if category:
             try:
-                category.name = self.args['name']
+                args = self.parser.parse_args()
+                category.name = args['name']
                 db.session.commit()
                 db.session.close()
             except Exception:
