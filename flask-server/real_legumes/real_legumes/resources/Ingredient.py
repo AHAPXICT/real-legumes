@@ -48,21 +48,19 @@ class Ingredient(Resource):
                 db.session.commit()
                 db.session.close()
             except Exception:
-                return "Backend exception.", 500
+                return {'message': "Backend exception."}, 500
             else:
-                return 'Updated.', 200
+                return {'message': "Updated."}, 200
         abort(404, description="Category not found.")
 
     @staticmethod
-    def delete(category_name):
-        category = c.query.filter_by(name=category_name).first()
-        if category:
+    def delete(ingredient_name):
+        ingredient = i.query.filter_by(name=ingredient_name).first()
+        if ingredient:
             try:
-                db.session.delete(category)
-                db.session.commit()
-                db.session.close()
+                ingredient.delete_from_db()
             except Exception:
-                return "Backend exception.", 500
+                return {'message': "Backend exception."}, 500
             else:
-                return 'Deleted.', 200
+                return {'message': 'Deleted.'}, 200
         abort(404, description="Category not found.")
