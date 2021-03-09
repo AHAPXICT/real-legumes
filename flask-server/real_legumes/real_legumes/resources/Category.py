@@ -6,34 +6,31 @@ from .Serializers import categoryFields
 from real_legumes import db
 
 
-parser = reqparse.RequestParser()
-parser.add_argument('name', type=str, help="Unique name for category.", required=True)
-args = parser.parse_args()
-
-
 class CategoryList(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('name', type=str, help="Unique name for category.", required=True)
 
     @marshal_with(categoryFields)
     def get(self):
         categories = c.query.all()
         return categories
 
-    @staticmethod
-    def post():
+    def post(self):
         try:
+            args = self.parser.parse_args()
             category = c(name=args['name'])
-            db.session.add(category)
-            db.session.commit()
-            db.session.close()
+            category.save_to_db()
         except AssertionError:
-            return "Category name already exist.", 500
+            return {'message': "Category name already exist."}, 500
         except Exception:
-            return "Backend exception.", 500
+            return {'message': "Backend exception."}, 500
         else:
-            return 'Done.', 201
+            return {'message': 'Done.'}, 201
 
 
 class Category(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('name', type=str, help="Unique name for category.", required=True)
 
     @marshal_with(categoryFields)
     def get(self, category_name):
@@ -42,18 +39,17 @@ class Category(Resource):
             return category, 200
         abort(404, description="Category not found.")
 
-    @staticmethod
-    def put(category_name):
+    def put(self, category_name):
         category = c.query.filter_by(name=category_name).first()
         if category:
             try:
-                category.name = args['name']
+                category.name = self.args['name']
                 db.session.commit()
                 db.session.close()
             except Exception:
-                return "Backend exception.", 500
+                return {'message': "Backend exception."}, 500
             else:
-                return 'Updated.', 200
+                return {'message': 'Updated.'}, 200
         abort(404, description="Category not found.")
 
     @staticmethod
@@ -61,11 +57,9 @@ class Category(Resource):
         category = c.query.filter_by(name=category_name).first()
         if category:
             try:
-                db.session.delete(category)
-                db.session.commit()
-                db.session.close()
+                category.delete_from_db()
             except Exception:
-                return "Backend exception.", 500
+                return {'message': "Backend exception."}, 500
             else:
-                return 'Deleted.', 200
+                return {'message': 'Deleted.'}, 200
         abort(404, description="Category not found.")

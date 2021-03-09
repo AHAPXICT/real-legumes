@@ -71,6 +71,14 @@ class Category(TimestampMixin, db.Model):
             raise AssertionError('Category name already exist.')
         return value
 
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
 
