@@ -85,6 +85,9 @@ class Category(BaseModel, db.Model):
     def __repr__(self):
         return f"<Category {self.id}: {self.name}>"
 
+    def __str__(self):
+        return self.name
+
 
 class Ingredient(BaseModel, db.Model):
     """Ingredient model."""
@@ -102,6 +105,9 @@ class Ingredient(BaseModel, db.Model):
 
     def __repr__(self):
         return f"<Ingredient {self.id}: {self.name}>"
+
+    def __str__(self):
+        return self.name
 
 
 product_ingredients = db.Table('product_ingredients',
@@ -125,7 +131,10 @@ class Image(BaseModel, db.Model):
         return value
 
     def __repr__(self):
-        return f"<Image {self.id}: {self.image_url}"
+        return f"<Image {self.id}: {self.image_url}>"
+
+    def __str__(self):
+        return self.image_url
 
 
 product_images = db.Table('product_images',

@@ -8,6 +8,8 @@ productFields = {
     'description': fields.String,
     'count': fields.Integer,
     'weight': fields.Integer,
+    'category': fields.String,
+    'images': fields.List(fields.String),
 }
 
 categoryFields = {
