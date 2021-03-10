@@ -6,9 +6,14 @@ from .Serializers import imageFields
 from real_legumes import db
 
 
-class ImageList(Resource):
+def add_parser():
     parser = reqparse.RequestParser()
     parser.add_argument('image_url', type=str, help="Unique image_url for image.", required=True)
+    return parser
+
+
+class ImageList(Resource):
+    parser = add_parser()
 
     @marshal_with(imageFields)
     def get(self):
@@ -29,8 +34,7 @@ class ImageList(Resource):
 
 
 class Image(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('image_url', type=str, help="Unique image_url for image.", required=True)
+    parser = add_parser()
 
     @marshal_with(imageFields)
     def get(self, image_url):

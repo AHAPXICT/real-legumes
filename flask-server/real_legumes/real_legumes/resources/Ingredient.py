@@ -6,9 +6,14 @@ from .Serializers import ingredientFields
 from real_legumes import db
 
 
-class IngredientList(Resource):
+def add_parser():
     parser = reqparse.RequestParser()
     parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
+    return parser
+
+
+class IngredientList(Resource):
+    parser = add_parser()
 
     @marshal_with(ingredientFields)
     def get(self):
@@ -29,8 +34,7 @@ class IngredientList(Resource):
 
 
 class Ingredient(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
+    parser = add_parser()
 
     @marshal_with(ingredientFields)
     def get(self, ingredient_name):
