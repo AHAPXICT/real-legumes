@@ -1,6 +1,15 @@
 from flask_restful import fields
 
 
+productFields = {
+    'name': fields.String,
+    'price': fields.Integer,
+    'calories': fields.Integer,
+    'description': fields.String,
+    'count': fields.Integer,
+    'weight': fields.Integer,
+}
+
 categoryFields = {
     'name': fields.String,
     'created_at': fields.String,
@@ -9,6 +18,12 @@ categoryFields = {
 
 ingredientFields = {
     'name': fields.String,
+    'created_at': fields.String,
+    'updated_at': fields.String,
+}
+
+imageFields = {
+    'image_url': fields.String,
     'created_at': fields.String,
     'updated_at': fields.String,
 }
