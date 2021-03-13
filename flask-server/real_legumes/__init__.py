@@ -17,10 +17,14 @@ def register_blueprints(app):
 
 
 def register_docs(docs):
-    from .real_legumes.resources.Category import CategoryList, Category
+    from .real_legumes.resources.category import CategoryList, Category
+    from .real_legumes.resources.image import ImageList, Image
 
     docs.register(CategoryList, blueprint="api_v1")
     docs.register(Category, blueprint="api_v1")
+
+    docs.register(ImageList, blueprint="api_v1")
+    docs.register(Image, blueprint="api_v1")
 
 
 def create_app(config_name: str):

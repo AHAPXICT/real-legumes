@@ -2,7 +2,7 @@ from flask_restful import Resource, marshal_with, reqparse
 from flask import abort
 
 from ..models import Ingredient as i
-from .Serializers import ingredientFields
+from .schemas import ingredientFields
 from real_legumes import db
 
 

@@ -1,29 +1,26 @@
-from flask_restful import Resource, marshal_with, reqparse
+from flask_restful import Resource
 from flask import abort
+from flask_apispec.views import MethodResource
+from flask_apispec import marshal_with, doc, use_kwargs
 
 from ..models import Image as i
-from .Serializers import imageFields
+from .schemas import ImageRequestSchema, ImageResponseSchema
 from real_legumes import db
 
 
-def add_parser():
-    parser = reqparse.RequestParser()
-    parser.add_argument('image_url', type=str, help="Unique image_url for image.", required=True)
-    return parser
+class ImageList(MethodResource, Resource):
 
-
-class ImageList(Resource):
-    parser = add_parser()
-
-    @marshal_with(imageFields)
+    @doc(description="Images list.", tags=['Image'])
+    @marshal_with(ImageResponseSchema(many=True))
     def get(self):
         images = i.query.all()
         return images
 
-    def post(self):
+    @doc(description="Add mew image.", tags=['Image'])
+    @use_kwargs(ImageRequestSchema, location=('json'))
+    def post(self, **kwargs):
         try:
-            args = self.parser.parse_args()
-            image = i(image_url=args['image_url'])
+            image = i(image_url=kwargs['image_url'])
             image.save_to_db()
         except AssertionError:
             return {'message': "Image_url already exist."}, 500
@@ -33,22 +30,23 @@ class ImageList(Resource):
             return {'message': 'Done.'}, 201
 
 
-class Image(Resource):
-    parser = add_parser()
+class Image(MethodResource, Resource):
 
-    @marshal_with(imageFields)
+    @doc(description="Get image by url.", tags=['Image'])
+    @marshal_with(ImageResponseSchema)
     def get(self, image_url):
         image = i.query.filter_by(image_url=image_url).first()
         if image:
             return image, 200
         abort(404, description="Image not found.")
 
-    def put(self, image_url):
+    @doc(description="Update image.", tags=['Image'])
+    @use_kwargs(ImageRequestSchema, location=('json'))
+    def put(self, image_url, **kwargs):
         image = i.query.filter_by(image_url=image_url).first()
         if image:
             try:
-                args = self.parser.parse_args()
-                image.image_url = args['image_url']
+                image.image_url = kwargs['image_url']
                 db.session.commit()
                 db.session.close()
             except Exception:
@@ -57,8 +55,8 @@ class Image(Resource):
                 return {'message': 'Updated.'}, 200
         abort(404, description="Category not found.")
 
-    @staticmethod
-    def delete(image_url):
+    @doc(description="Delete image.", tags=['Image'])
+    def delete(self, image_url):
         image = i.query.filter_by(image_url=image_url).first()
         if image:
             try:
@@ -66,5 +64,5 @@ class Image(Resource):
             except Exception:
                 return {'message': "Backend exception."}, 500
             else:
-                return {'message': 'Deleted.'}, 200
+                return None, 204
         abort(404, description="Image not found.")
