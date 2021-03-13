@@ -41,16 +41,3 @@ class ImageResponseSchema(Schema):
 
 class ImageRequestSchema(Schema):
     image_url = fields.String(required=True, allow_none=False)
-
-
-ingredientFields = {
-    'name': fields.String,
-    'created_at': fields.String,
-    'updated_at': fields.String,
-}
-
-imageFields = {
-    'image_url': fields.String,
-    'created_at': fields.String,
-    'updated_at': fields.String,
-}

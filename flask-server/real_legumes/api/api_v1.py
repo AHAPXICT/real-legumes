@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restful import Api
 
 from ..real_legumes.resources.category import CategoryList, Category
-from ..real_legumes.resources.Ingredient import IngredientList, Ingredient
+from ..real_legumes.resources.ingredient import IngredientList, Ingredient
 from ..real_legumes.resources.image import Image, ImageList
 from ..real_legumes.resources.Product import Product, ProductList
 
