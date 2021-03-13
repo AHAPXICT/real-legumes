@@ -2,3 +2,4 @@ venv/
 .idea
 migrations/
 ../.idea/
+__pycache__/
