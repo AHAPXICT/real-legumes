@@ -4,7 +4,7 @@ from flask_restful import Api
 from ..real_legumes.resources.category import CategoryList, Category
 from ..real_legumes.resources.ingredient import IngredientList, Ingredient
 from ..real_legumes.resources.image import Image, ImageList
-from ..real_legumes.resources.Product import Product, ProductList
+from ..real_legumes.resources.product import Product, ProductList
 
 
 api_v1 = Blueprint('api_v1', __name__)

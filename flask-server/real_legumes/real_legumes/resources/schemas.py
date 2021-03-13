@@ -1,16 +1,25 @@
 from marshmallow import Schema, fields
 
 
-productFields = {
-    'name': fields.String,
-    'price': fields.Integer,
-    'calories': fields.Integer,
-    'description': fields.String,
-    'count': fields.Integer,
-    'weight': fields.Integer,
-    'category': fields.String,
-    'images': fields.List(fields.String),
-}
+class ProductBaseSchema:
+    name = fields.String(required=True)
+    price = fields.Integer(required=True)
+    calories = fields.Integer(required=True)
+    description = fields.String(default='')
+    count = fields.Integer(required=True)
+    weight = fields.Integer(required=True)
+    category = fields.String(required=True)
+    images = fields.List(fields.String(), required=True)
+    ingredients = fields.List(fields.String(), required=True)
+
+
+class ProductResponseSchema(Schema, ProductBaseSchema):
+    created_at = fields.String()
+    updated_at = fields.String()
+
+
+class ProductRequestSchema(Schema, ProductBaseSchema):
+    pass
 
 
 class CategoryResponseSchema(Schema):
