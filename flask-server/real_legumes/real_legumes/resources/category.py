@@ -1,29 +1,26 @@
-from flask_restful import Resource, marshal_with, reqparse
+from flask_restful import Resource
+from flask_apispec.views import MethodResource
 from flask import abort
+from flask_apispec import marshal_with, doc, use_kwargs
 
 from ..models import Category as c
-from .Serializers import categoryFields
+from .schemas import CategoryResponseSchema, CategoryRequestSchema
 from real_legumes import db
 
 
-def add_parser():
-    parser = reqparse.RequestParser()
-    parser.add_argument('name', type=str, help="Unique name for category.", required=True)
-    return parser
+class CategoryList(MethodResource, Resource):
 
-
-class CategoryList(Resource):
-    parser = add_parser()
-
-    @marshal_with(categoryFields)
+    @doc(description="Category list.", tags=['Category'])
+    @marshal_with(CategoryResponseSchema(many=True))
     def get(self):
         categories = c.query.all()
         return categories
 
-    def post(self):
+    @doc(description="Add new category.", tags=['Category'])
+    @use_kwargs(CategoryRequestSchema, location=('json'))
+    def post(self, **kwargs):
         try:
-            args = self.parser.parse_args()
-            category = c(name=args['name'])
+            category = c(name=kwargs['name'])
             category.save_to_db()
         except AssertionError:
             return {'message': "Category name already exist."}, 500
@@ -33,22 +30,23 @@ class CategoryList(Resource):
             return {'message': 'Done.'}, 201
 
 
-class Category(Resource):
-    parser = add_parser()
+class Category(MethodResource, Resource):
 
-    @marshal_with(categoryFields)
+    @doc(description="Get category by name.", tags=['Category'])
+    @marshal_with(CategoryResponseSchema)
     def get(self, category_name):
         category = c.query.filter_by(name=category_name).first()
         if category:
             return category, 200
         abort(404, description="Category not found.")
 
-    def put(self, category_name):
+    @doc(description="Update category.", tags=['Category'])
+    @use_kwargs(CategoryRequestSchema, location=('json'))
+    def put(self, category_name, **kwargs):
         category = c.query.filter_by(name=category_name).first()
         if category:
             try:
-                args = self.parser.parse_args()
-                category.name = args['name']
+                category.name = kwargs['name']
                 db.session.commit()
                 db.session.close()
             except Exception:
@@ -57,8 +55,8 @@ class Category(Resource):
                 return {'message': 'Updated.'}, 200
         abort(404, description="Category not found.")
 
-    @staticmethod
-    def delete(category_name):
+    @doc(description="Delete category.", tags=['Category'])
+    def delete(self, category_name):
         category = c.query.filter_by(name=category_name).first()
         if category:
             try:
@@ -66,5 +64,5 @@ class Category(Resource):
             except Exception:
                 return {'message': "Backend exception."}, 500
             else:
-                return {'message': 'Deleted.'}, 200
+                return None, 204
         abort(404, description="Category not found.")

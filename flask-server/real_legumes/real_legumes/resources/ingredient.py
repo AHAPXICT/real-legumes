@@ -1,29 +1,27 @@
-from flask_restful import Resource, marshal_with, reqparse
+from flask_restful import Resource
+from flask_apispec.views import MethodResource
 from flask import abort
+from flask_apispec import marshal_with, doc, use_kwargs
 
 from ..models import Ingredient as i
-from .Serializers import ingredientFields
+from .schemas import IngredientRequestSchema, IngredientResponseSchema
 from real_legumes import db
 
 
-def add_parser():
-    parser = reqparse.RequestParser()
-    parser.add_argument('name', type=str, help="Unique name for Ingredient.", required=True)
-    return parser
+class IngredientList(MethodResource, Resource):
 
-
-class IngredientList(Resource):
-    parser = add_parser()
-
-    @marshal_with(ingredientFields)
+    @doc(description="Ingredient list.", tags=['Ingredient'])
+    @marshal_with(IngredientResponseSchema(many=True))
     def get(self):
         ingredients = i.query.all()
+        print(ingredients)
         return ingredients
 
-    def post(self):
-        args = self.parser.parse_args()
+    @doc(description="Add new category.", tags=['Ingredient'])
+    @use_kwargs(IngredientRequestSchema, location=('json'))
+    def post(self, **kwargs):
         try:
-            ingredient = i(name=args['name'])
+            ingredient = i(name=kwargs['name'])
             ingredient.save_to_db()
         except AssertionError:
             return {'message': "Ingredient name already exist."}, 500
@@ -33,22 +31,23 @@ class IngredientList(Resource):
             return {'message': 'Done.'}, 201
 
 
-class Ingredient(Resource):
-    parser = add_parser()
+class Ingredient(MethodResource, Resource):
 
-    @marshal_with(ingredientFields)
+    @doc(description="Get ingredient by name.", tags=['Ingredient'])
+    @marshal_with(IngredientResponseSchema)
     def get(self, ingredient_name):
         ingredient = i.query.filter_by(name=ingredient_name).first()
         if ingredient:
             return ingredient, 200
         abort(404, description="Ingredient not found.")
 
-    def put(self, ingredient_name):
+    @doc(description="Update ingredient.", tags=['Ingredient'])
+    @use_kwargs(IngredientRequestSchema, location=('json'))
+    def put(self, ingredient_name, **kwargs):
         ingredient = i.query.filter_by(name=ingredient_name).first()
         if ingredient:
             try:
-                args = self.parser.parse_args()
-                ingredient.name = args['name']
+                ingredient.name = kwargs['name']
                 db.session.commit()
                 db.session.close()
             except Exception:
@@ -57,8 +56,8 @@ class Ingredient(Resource):
                 return {'message': "Updated."}, 200
         abort(404, description="Category not found.")
 
-    @staticmethod
-    def delete(ingredient_name):
+    @doc(description="Delete ingredient.", tags=['Ingredient'])
+    def delete(self, ingredient_name):
         ingredient = i.query.filter_by(name=ingredient_name).first()
         if ingredient:
             try:
@@ -66,5 +65,5 @@ class Ingredient(Resource):
             except Exception:
                 return {'message': "Backend exception."}, 500
             else:
-                return {'message': 'Deleted.'}, 200
+                return None, 204
         abort(404, description="Category not found.")
