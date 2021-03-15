@@ -46,6 +46,7 @@ class Product(BaseModel, db.Model):
     count = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    is_special = db.Column(db.Boolean, default=False, nullable=False)
 
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
     images = db.relationship('Image', secondary='product_images', backref='products')
@@ -74,7 +75,7 @@ class Category(BaseModel, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
 
-    products = db.relationship('Product', backref='category', lazy=True)
+    products = db.relationship('Product', backref='category', cascade="all, delete", lazy=True)
 
     @validates('name')
     def validate_name(self, key, value):
