@@ -1,0 +1,12 @@
+.team__social_block {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.team__logo {
+    margin-left: 15px;
+    margin-right: 15px;
+}

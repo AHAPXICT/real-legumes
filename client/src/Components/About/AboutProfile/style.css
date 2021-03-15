@@ -1,0 +1,29 @@
+.team__block {
+    width: 30%;
+    height: 750px;
+}
+
+.team__img {
+    width: 100%;
+}
+
+.team__descr_block {
+    border: solid 1px;
+    border-color: #000;
+}
+
+.team__container {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.team__descr {
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
+}
+
+.team__name {
+    padding-top: 10px;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
