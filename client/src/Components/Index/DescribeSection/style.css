@@ -1,0 +1,40 @@
+.section {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+.section__inner {
+    display: flex;
+}
+
+.section__block {
+    width: 50%;
+
+    margin: 15px;
+    margin-right: 0;
+
+}
+
+.section__title {
+    color: black;
+    font-family: 'Lobster', cursive;
+    font-size: 35px;
+    opacity: 0.8;
+}
+
+.section__text {
+    color: black;
+    font-family: 'Lobster Two', cursive;
+    font-size: 25px;
+}
+
+.section__image {
+
+    height: 400px;
+
+    background: url("../../../static/images/index/section_img.jpg");
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 9px;
+}
