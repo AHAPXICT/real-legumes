@@ -1,0 +1,22 @@
+.team {
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.team__title {
+    padding-top: 150px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 65px;
+}
+
+.team__subtitle {
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+}
+
+.team__section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
