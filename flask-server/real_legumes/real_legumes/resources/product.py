@@ -58,7 +58,8 @@ class ProductList(MethodResource, Resource):
                         weight=kwargs['weight'],
                         category=category,
                         images=images,
-                        ingredients=ingredients
+                        ingredients=ingredients,
+                        is_special=kwargs['is_special']
                         )
             product.save_to_db()
         except AssertionError:
