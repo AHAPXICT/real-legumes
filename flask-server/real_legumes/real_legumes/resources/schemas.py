@@ -11,6 +11,7 @@ class ProductBaseSchema:
     category = fields.String(required=True)
     images = fields.List(fields.String(), required=True)
     ingredients = fields.List(fields.String(), required=True)
+    is_special = fields.Boolean(default=False)
 
 
 class ProductResponseSchema(Schema, ProductBaseSchema):
