@@ -1,30 +1,37 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import { NavLink } from "react-router-dom";
 
-import './style.css'
+import "./style.css";
 
-const NavItem = ({text, active, className, ...props}) => {
-    const classNames = classnames(
-        'nav__link',
-        {
-            'nav__active': Boolean(active)
-        },
-        className
-    )
+const NavItem = ({ path, text, className, ...props }) => {
+    const classNames = classnames("nav__link", className);
 
+    {
+        console.log(`active ${text}`);
+    }
     return (
-        <a className={classNames} {...props} href="#">{text}</a>
-    )
-}
+        <NavLink
+            exact
+            to={path}
+            className={classNames}
+            activeClassName="nav__active"
+            {...props}
+        >
+            {text}
+        </NavLink>
+    );
+};
 
 NavItem.defaultProps = {
-    active: false
-}
+    path: "/",
+    text: "",
+};
 
 NavItem.propTypes = {
     text: PropTypes.string,
-    active: PropTypes.bool
-}
+    path: PropTypes.string,
+};
 
-export default NavItem
+export default NavItem;
