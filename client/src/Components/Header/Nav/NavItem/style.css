@@ -1,4 +1,6 @@
 .nav__link {
+    position: relative;
+    margin-left: 30px;
     display: inline-block;
 
     color: #fff;
@@ -6,11 +8,6 @@
     font-family: 'Amatic SC', cursive;
 
     transition: text-shadow 0.2s linear;
-}
-
-.link_position {
-    position: relative;
-    margin-left: 30px;
 }
 
 .link_position:first-child {

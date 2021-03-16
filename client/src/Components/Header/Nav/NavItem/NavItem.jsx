@@ -6,29 +6,21 @@ import { NavLink } from "react-router-dom";
 import "./style.css";
 
 const NavItem = ({ path, text, className, ...props }) => {
-    const classNames = classnames(
-        "nav__link",
-        // {
-        //     nav__active: Boolean(active),
-        // },
-        className
-    );
+    const classNames = classnames("nav__link", className);
 
     {
         console.log(`active ${text}`);
     }
     return (
-        <div className="link_position">
-            <NavLink
-                exact
-                to={path}
-                className={classNames}
-                activeClassName="nav__active"
-                {...props}
-            >
-                {text}
-            </NavLink>
-        </div>
+        <NavLink
+            exact
+            to={path}
+            className={classNames}
+            activeClassName="nav__active"
+            {...props}
+        >
+            {text}
+        </NavLink>
     );
 };
 
