@@ -5,14 +5,20 @@ import SpecialMenu from "./SpecialMenu/SpecialMenu";
 
 import "./style.css";
 
-const Index = () => {
-    return (
-        <>
-            <Intro />
-            <DescribeSection />
-            <SpecialMenu />
-        </>
-    );
-};
+class Index extends React.Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
+    render() {
+        return (
+            <>
+                <Intro />
+                <DescribeSection />
+                <SpecialMenu />
+            </>
+        );
+    }
+}
 
 export default Index;
