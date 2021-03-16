@@ -12,8 +12,8 @@ import Slider from "./Components/Slider/Slider";
 function App() {
     return (
         <div className="App">
-            <Header />
             <BrowserRouter>
+                <Header />
                 <Route exact path="/">
                     <Index />
                 </Route>
@@ -22,8 +22,8 @@ function App() {
                 </Route>
                 {/* 
                   <Slider /> */}
+                <Footer />
             </BrowserRouter>
-            <Footer />
         </div>
     );
 }

@@ -1,7 +1,5 @@
 .nav__link {
     display: inline-block;
-    position: relative;
-    margin-left: 30px;
 
     color: #fff;
     text-decoration: none;
@@ -10,7 +8,12 @@
     transition: text-shadow 0.2s linear;
 }
 
-.nav__link:first-child {
+.link_position {
+    position: relative;
+    margin-left: 30px;
+}
+
+.link_position:first-child {
     margin-left: 0;
 }
 
@@ -42,3 +45,4 @@
 .nav__active {
     text-shadow: 0 0 0.9px #fff, 0 0 0.9px #fff;
 }
+

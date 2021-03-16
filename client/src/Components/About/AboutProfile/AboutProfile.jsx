@@ -10,11 +10,11 @@ import "./style.css";
 const AboutProfile = ({ profile_image }) => {
     return (
         <div class="team__block">
-            <img class="team__img" src={profile_image} alt="" />
-            <div class="team__descr_block">
-                <div class="team__container">
-                    <h3 class="team__name">Roman Kalitovskyy</h3>
-                    <p class="team__descr">
+            <img className="team__img" src={profile_image} alt="" />
+            <div className="team__descr_block">
+                <div className="team__container">
+                    <h3 className="team__name">Roman Kalitovskyy</h3>
+                    <p className="team__descr">
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Tenetur minima autem accusantium rem! Ut,
                         architecto recusandae, laudantium exercitationem
