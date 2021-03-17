@@ -1,10 +1,11 @@
-from flask_restful import Resource
+from flask_restful import Resource, request
 from flask_apispec.views import MethodResource
 from flask import abort
 from flask_apispec import marshal_with, doc, use_kwargs
+import math
 
 from ..models import Product as p, Category, Image, Ingredient
-from .schemas import ProductResponseSchema, ProductRequestSchema
+from .schemas import ProductResponseSchema, ProductRequestSchema, ProductListSchema
 from real_legumes import db
 
 
@@ -18,13 +19,47 @@ def find_images(images_urls):
     return images
 
 
-class ProductList(MethodResource, Resource):
+class SpecialProducts(MethodResource, Resource):
 
-    @doc(description="Product list.", tags=['Product'])
+    @doc(description="Special product list.", tags=['Product'])
     @marshal_with(ProductResponseSchema(many=True))
     def get(self):
-        products = p.query.all()
+        products = p.query.filter_by(is_special=True)
         return products
+
+
+class ProductList(MethodResource, Resource):
+
+    @doc(description="Product list. Params: "
+                     "\n page (optional): page number. "
+                     "\n count (optional): count products on page.", tags=['Product'])
+    @marshal_with(ProductListSchema)
+    def get(self):
+
+        args = request.args.to_dict()
+        page = 0
+        count = 3
+
+        if 'page' in args:
+            try:
+                page = int(args['page'])
+            except ValueError:
+                return {'message': "Params: page must be integer."}, 500
+
+        if 'count' in args:
+            try:
+                count = int(args['count'])
+            except ValueError:
+                return {'message': "Params: count must be integer."}, 500
+
+        products = p.query.all()[page*count:page*count+count]
+        response = {
+            'count': len(p.query.all()),
+            'pages': math.ceil(len(p.query.all()) / count),
+            'products': products
+        }
+
+        return response
 
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))

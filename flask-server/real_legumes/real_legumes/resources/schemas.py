@@ -19,6 +19,12 @@ class ProductResponseSchema(Schema, ProductBaseSchema):
     updated_at = fields.String()
 
 
+class ProductListSchema(Schema):
+    count = fields.Integer()
+    pages = fields.Integer()
+    products = fields.List(fields.Nested(ProductResponseSchema))
+
+
 class ProductRequestSchema(Schema, ProductBaseSchema):
     pass
 

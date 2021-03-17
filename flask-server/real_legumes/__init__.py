@@ -20,7 +20,7 @@ def register_docs(docs):
     from .real_legumes.resources.category import CategoryList, Category
     from .real_legumes.resources.image import ImageList, Image
     from .real_legumes.resources.ingredient import IngredientList, Ingredient
-    from .real_legumes.resources.product import ProductList, Product
+    from .real_legumes.resources.product import ProductList, Product, SpecialProducts
 
     docs.register(CategoryList, blueprint="api_v1")
     docs.register(Category, blueprint="api_v1")
@@ -33,6 +33,7 @@ def register_docs(docs):
 
     docs.register(ProductList, blueprint="api_v1")
     docs.register(Product, blueprint="api_v1")
+    docs.register(SpecialProducts, blueprint="api_v1")
 
 
 def create_app(config_name: str):
