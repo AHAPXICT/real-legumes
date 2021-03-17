@@ -35,16 +35,25 @@ class ProductList(MethodResource, Resource):
     def get(self):
 
         args = request.args.to_dict()
-        try:
-            page = int(args['page'])
-            count = int(args['count'])
-        except ValueError:
-            return {'message': "Params: page and count must be integer."}, 500
+        page = 0
+        count = 3
+
+        if 'page' in args:
+            try:
+                page = int(args['page'])
+            except ValueError:
+                return {'message': "Params: page must be integer."}, 500
+
+        if 'count' in args:
+            try:
+                count = int(args['count'])
+            except ValueError:
+                return {'message': "Params: count must be integer."}, 500
 
         products = p.query.all()[page*count:page*count+count]
         response = {
-            'count': len(products),
-            'pages': math.ceil(len(products) / int(count)),
+            'count': len(p.query.all()),
+            'pages': math.ceil(len(p.query.all()) / count),
             'products': products
         }
 
