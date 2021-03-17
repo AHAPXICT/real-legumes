@@ -30,7 +30,9 @@ class SpecialProducts(MethodResource, Resource):
 
 class ProductList(MethodResource, Resource):
 
-    @doc(description="Product list.", tags=['Product'])
+    @doc(description="Product list. Params: "
+                     "\n page (optional): page number. "
+                     "\n count (optional): count products on page.", tags=['Product'])
     @marshal_with(ProductListSchema)
     def get(self):
 
