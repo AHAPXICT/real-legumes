@@ -5,7 +5,7 @@ from flask_apispec import marshal_with, doc, use_kwargs
 import math
 
 from ..models import Product as p, Category, Image, Ingredient
-from .schemas import ProductResponseSchema, ProductRequestSchema
+from .schemas import ProductResponseSchema, ProductRequestSchema, ProductListSchema
 from real_legumes import db
 
 
@@ -31,15 +31,22 @@ class SpecialProducts(MethodResource, Resource):
 class ProductList(MethodResource, Resource):
 
     @doc(description="Product list.", tags=['Product'])
-    # @marshal_with(ProductResponseSchema(many=True))
+    @marshal_with(ProductListSchema)
     def get(self):
-        products = p.query.all()
-        args = request.args.to_dict()
-        page = args['page']
-        count = args['count']
-        response = {}
 
-        response['pages'] = math.ceil(len(products) / count)
+        args = request.args.to_dict()
+        try:
+            page = int(args['page'])
+            count = int(args['count'])
+        except ValueError:
+            return {'message': "Params: page and count must be integer."}, 500
+
+        products = p.query.all()[page*count:page*count+count]
+        response = {
+            'count': len(products),
+            'pages': math.ceil(len(products) / int(count)),
+            'products': products
+        }
 
         return response
 
