@@ -18,6 +18,15 @@ def find_images(images_urls):
     return images
 
 
+class SpecialProducts(MethodResource, Resource):
+
+    @doc(description="Special product list.", tags=['Product'])
+    @marshal_with(ProductResponseSchema(many=True))
+    def get(self):
+        products = p.query.filter_by(is_special=True)
+        return products
+
+
 class ProductList(MethodResource, Resource):
 
     @doc(description="Product list.", tags=['Product'])
