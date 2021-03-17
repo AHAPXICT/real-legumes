@@ -1,7 +1,8 @@
-from flask_restful import Resource
+from flask_restful import Resource, request
 from flask_apispec.views import MethodResource
 from flask import abort
 from flask_apispec import marshal_with, doc, use_kwargs
+import math
 
 from ..models import Product as p, Category, Image, Ingredient
 from .schemas import ProductResponseSchema, ProductRequestSchema
@@ -30,10 +31,17 @@ class SpecialProducts(MethodResource, Resource):
 class ProductList(MethodResource, Resource):
 
     @doc(description="Product list.", tags=['Product'])
-    @marshal_with(ProductResponseSchema(many=True))
+    # @marshal_with(ProductResponseSchema(many=True))
     def get(self):
         products = p.query.all()
-        return products
+        args = request.args.to_dict()
+        page = args['page']
+        count = args['count']
+        response = {}
+
+        response['pages'] = math.ceil(len(products) / count)
+
+        return response
 
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))

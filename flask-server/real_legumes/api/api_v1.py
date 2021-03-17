@@ -19,6 +19,6 @@ api.add_resource(Ingredient, '/ingredient/<ingredient_name>')
 api.add_resource(ImageList, '/images')
 api.add_resource(Image, '/image/<image_url>')
 
-api.add_resource(ProductList, '/products')
+api.add_resource(ProductList, '/products/')
 api.add_resource(SpecialProducts, '/products/special')
 api.add_resource(Product, '/product/<product_name>')
