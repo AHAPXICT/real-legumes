@@ -1,7 +1,7 @@
 import React from "react";
 import Intro from "./Intro/Intro";
 import DescribeSection from "./DescribeSection/DescribeSection";
-import SpecialMenu from "./SpecialMenu/SpecialMenu";
+import Slider from "./../Slider/Slider";
 
 import "./style.css";
 
@@ -15,7 +15,8 @@ class Index extends React.Component {
             <>
                 <Intro />
                 <DescribeSection />
-                <SpecialMenu />
+                {/* <SpecialMenu /> */}
+                <Slider />
             </>
         );
     }

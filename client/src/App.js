@@ -7,9 +7,6 @@ import About from "./Components/About/About";
 import Footer from "./Components/Footer/Footer";
 import PageNotFound from "./Components/PageNotFound/PageNotFound"
 
-// test slider
-import Slider from "./Components/Slider/Slider";
-
 function App() {
     return (
         <div className="App">
@@ -23,8 +20,6 @@ function App() {
                     <Route exact path="/about">
                         <About />
                     </Route>
-                    {/* 
-                    <Slider /> */}
                     <Route to='*'>
                         <PageNotFound/>
                     </Route>
