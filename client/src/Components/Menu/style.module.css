@@ -26,14 +26,18 @@
 
 /* ********************************************************* */
 
-.menu__items_row {
+.menu__container {
     display: flex;
+}
+
+.menu__items_row {
     justify-content: space-between;
+    margin-bottom: 50px;
 }
 
 .menu__item {
     width: 30%;
-    height: 400px;
+    height: 460px;
     background-color: rgb(236, 236, 236);
 }
 
@@ -47,4 +51,45 @@
     border-radius: 9px;
     width: 100%;
     height: 100%;
+}
+
+.menu__item_name {
+    font-family: "Lobster", cursive;
+}
+
+.menu__item_ingredients {
+    color: #000;
+    font-family: "Lobster", cursive;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu__item_weight {
+    font-family: "Lobster", cursive;
+}
+
+.menu__item_last_section_content {
+    justify-content: center;
+}
+
+.menu__item_price {
+    margin-right: 40px;
+    font-family: "Lobster", cursive;
+    font-size: 30px;
+}
+
+.menu__item_buy_btn {
+    margin-left: 40px;
+    font-size: 30px;
+    font-family: "Lobster", cursive;
+    background: none;
+    border: #000 solid 2px;
+    border-radius: 9px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu__item_buy_btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
