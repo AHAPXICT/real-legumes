@@ -8,9 +8,6 @@ import "./style.css";
 const NavItem = ({ path, text, className, ...props }) => {
     const classNames = classnames("nav__link", className);
 
-    {
-        console.log(`active ${text}`);
-    }
     return (
         <NavLink
             exact
