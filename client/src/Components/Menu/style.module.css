@@ -1,0 +1,34 @@
+.full_height {
+    min-height: 100vh;
+}
+
+.menu_content {
+    text-align: center;
+}
+
+.menu__first_section {
+    margin-top: 110px;
+    margin-bottom: 50px;
+}
+
+.menu_title {
+    font-family: "Amatic SC", cursive;
+    text-transform: uppercase;
+
+    font-size: 50px;
+}
+
+.menu__dropdown_section {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu__container {
+    display: flex;
+}
+
+.menu__items_row {
+    justify-content: space-between;
+    margin-bottom: 50px;
+}

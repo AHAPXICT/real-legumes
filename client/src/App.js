@@ -6,6 +6,7 @@ import Index from "./Components/Index/Index";
 import About from "./Components/About/About";
 import Footer from "./Components/Footer/Footer";
 import PageNotFound from "./Components/PageNotFound/PageNotFound"
+import Menu from './Components/Menu/Menu'
 
 function App() {
     return (
@@ -19,6 +20,9 @@ function App() {
                     </Route>
                     <Route exact path="/about">
                         <About />
+                    </Route>
+                    <Route exact path='/menu'>
+                        <Menu />
                     </Route>
                     <Route to='*'>
                         <PageNotFound/>
