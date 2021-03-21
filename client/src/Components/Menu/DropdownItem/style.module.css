@@ -36,6 +36,7 @@
     text-decoration: none;
     display: block;
     font-family: cursive;
+    background-color: rgb(236, 236, 236);
 }
 
 .dropdown_content a:hover {
