@@ -6,11 +6,11 @@ import s from "./style.module.css";
 const CategoryItem = ({ name }) => {
     return (
         <div className={s.categoryItem}>
-            {name}
-            <br />
-            <Button text="edit" mode="warning" />
-            <br />
-            <Button text="delete" mode="danger" />
+            <h1 className={s.categoryItem__name}>{name}</h1>
+            <div>
+                <Button text="edit" mode="warning" />
+                <Button text="delete" mode="danger" />
+            </div>
         </div>
     );
 };
