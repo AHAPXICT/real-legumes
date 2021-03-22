@@ -1,12 +1,13 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import "./App.css";
-import Header from "./Components/Header/Header";
-import Index from "./Components/Index/Index";
-import About from "./Components/About/About";
-import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header"
+import Index from "./Components/Index/Index"
+import About from "./Components/About/About"
+import Footer from "./Components/Footer/Footer"
 import PageNotFound from "./Components/PageNotFound/PageNotFound"
 import Menu from './Components/Menu/Menu'
+import CategoryAdminPage from './Components/CategoryAdminPage/CategoryAdminPage'
 
 function App() {
     return (
@@ -14,7 +15,6 @@ function App() {
             <BrowserRouter>
                 <Header />
                 <Switch>
-                    
                     <Route exact path="/">
                         <Index />
                     </Route>
@@ -23,6 +23,9 @@ function App() {
                     </Route>
                     <Route exact path='/menu'>
                         <Menu />
+                    </Route>
+                    <Route exact path='/categories'>
+                        <CategoryAdminPage  />
                     </Route>
                     <Route to='*'>
                         <PageNotFound/>
