@@ -2,12 +2,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_apispec.extension import FlaskApiSpec
+from flask_cors import CORS
 
 from config import config
 
 db = SQLAlchemy()
 migrate = Migrate()
 docs = FlaskApiSpec()
+cors = CORS()
 
 
 def register_blueprints(app):
@@ -47,5 +49,7 @@ def create_app(config_name: str):
 
     docs.init_app(app)
     register_docs(docs)
+
+    cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
 
     return app
