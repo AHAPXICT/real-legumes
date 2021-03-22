@@ -50,6 +50,6 @@ def create_app(config_name: str):
     docs.init_app(app)
     register_docs(docs)
 
-    cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
+    cors.init_app(app)
 
     return app

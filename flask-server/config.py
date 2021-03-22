@@ -22,10 +22,12 @@ class DevelopmentConfig(BaseConfig):
         title='Real Legumes',
         version='v1',
         plugins=[MarshmallowPlugin()],
-        openapi_version='2.0.0'
+        openapi_version='1.0.0'
     )
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
+
+    CORS_ALLOW_HEADERS = 'http://localhost:3000/'
 
 
 class TestingConfig(BaseConfig):
