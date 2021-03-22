@@ -1,0 +1,27 @@
+.button {
+    margin: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: black solid 1px;
+    background: none;
+    border-radius: 7px;
+
+    font-family: "Lobster", cursive;
+    font-size: 20px;
+}
+
+.button__primary {
+    background-color: rgb(104, 104, 255);
+}
+
+.button__danger {
+    background-color: rgb(255, 73, 73);
+}
+
+.button__warning {
+    background-color: rgb(255, 182, 73);
+}
+
+.button__secondary {
+    background-color: rgb(153, 153, 153);
+}

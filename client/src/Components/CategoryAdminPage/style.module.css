@@ -1,0 +1,14 @@
+.max_height {
+    height: 100vh;
+}
+
+.category__list {
+    margin-top: 100px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.category__button_section {
+    text-align: center;
+    padding-bottom: 20px;
+}
