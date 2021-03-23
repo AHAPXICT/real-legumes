@@ -1,8 +1,10 @@
-import { SET_CATEGORIES } from './actions'
+import { SET_CATEGORIES, INPUT_VALUE } from './actions'
 
 
 const initialState = {
-    categories: []
+    categories: [],
+    is_loading: false,
+    input_name_field: '' 
 }
 
 const categoryReducer = (state = initialState, action) => {
@@ -11,6 +13,11 @@ const categoryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories: action.payload
+            }
+        case INPUT_VALUE:
+            return {
+                ...state,
+                input_name_field: action.payload
             }
         default:
             return state;

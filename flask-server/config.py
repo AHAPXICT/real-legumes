@@ -27,6 +27,8 @@ class DevelopmentConfig(BaseConfig):
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
 
+    CORS_ALLOW_HEADERS = 'http://localhost:3000/'
+
 
 class TestingConfig(BaseConfig):
     """Testing environment specific config."""
