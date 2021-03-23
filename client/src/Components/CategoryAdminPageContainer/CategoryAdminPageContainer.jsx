@@ -11,12 +11,13 @@ class CategoryAdminPageContainer extends React.Component {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
+                const categories = data.reverse();
+                this.props.set_categories(categories);
             });
     }
 
     render() {
-        return <CategoryAdminPage />;
+        return <CategoryAdminPage categories={this.props.category_list} />;
     }
 }
 
@@ -32,6 +33,4 @@ const mapDispatch = {
 
 const connector = connect(mapState, mapDispatch);
 
-// export default CategoryAdminPageContainer;
-
-export default connector;
+export default connector(CategoryAdminPageContainer);

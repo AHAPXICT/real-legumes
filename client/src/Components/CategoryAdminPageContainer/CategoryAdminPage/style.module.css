@@ -1,11 +1,12 @@
 .max_height {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .category__list {
     margin-top: 100px;
     padding-left: 20%;
     padding-right: 20%;
+    margin-bottom: 100px;
 }
 
 .category__button_section {

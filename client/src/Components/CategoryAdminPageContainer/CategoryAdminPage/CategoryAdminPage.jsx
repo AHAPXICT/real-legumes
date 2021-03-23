@@ -4,7 +4,7 @@ import Button from "../../Button/Button";
 
 import s from "./style.module.css";
 
-const CategoryAdminPage = () => {
+const CategoryAdminPage = ({ categories }) => {
     return (
         <>
             <div className={`container ${s.max_height}`}>
@@ -13,9 +13,9 @@ const CategoryAdminPage = () => {
                         <Button text="Додати" mode="primary" />
                     </div>
 
-                    <CategoryItem name="category 1" />
-                    <CategoryItem name="category 2" />
-                    <CategoryItem name="category 3" />
+                    {categories.map((category) => (
+                        <CategoryItem name={category.name} />
+                    ))}
                 </div>
             </div>
         </>
