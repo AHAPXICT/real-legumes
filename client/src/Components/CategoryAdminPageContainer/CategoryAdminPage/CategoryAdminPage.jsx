@@ -16,6 +16,7 @@ const CategoryAdminPage = ({ categories }) => {
                         fullWidth={100}
                         btnText={"Додати"}
                         fieldText={"Категорія"}
+                        mainBtnText={"Додати"}
                     />
                     <div className={s.category__button_section}>
                         <Button text="Додати" mode="primary" />

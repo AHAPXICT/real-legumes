@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     },
     label: {
         fontFamily: "Lobster, cursive",
-        fontSize: "20px",
         color: "#000",
     },
 });
@@ -25,6 +24,7 @@ const CategoryModalDialog = ({
     fullWidth,
     btnText,
     fieldText,
+    mainBtnText,
 }) => {
     const classes = useStyles();
 
@@ -46,8 +46,9 @@ const CategoryModalDialog = ({
                 color="primary"
                 onClick={handleClickOpen}
                 classes={{ root: classes.root, label: classes.label }}
+                size="large"
             >
-                Додати
+                {mainBtnText}
             </Button>
             <Dialog
                 open={open}
@@ -68,10 +69,20 @@ const CategoryModalDialog = ({
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button
+                        onClick={handleClose}
+                        color="primary"
+                        classes={{ root: classes.root, label: classes.label }}
+                        size="large"
+                    >
                         Закрити
                     </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button
+                        onClick={handleClose}
+                        color="primary"
+                        classes={{ root: classes.root, label: classes.label }}
+                        size="large"
+                    >
                         {btnText}
                     </Button>
                 </DialogActions>
