@@ -17,6 +17,8 @@ const CategoryAdminPage = ({ categories }) => {
                         <CategoryItem
                             key={category.name}
                             name={category.name}
+                            updated_at={category.updated_at}
+                            created_at={category.created_at}
                         />
                     ))}
                 </div>
