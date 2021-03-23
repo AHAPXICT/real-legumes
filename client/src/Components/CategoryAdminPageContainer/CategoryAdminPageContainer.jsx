@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryAdminPage from "./CategoryAdminPage/CategoryAdminPage";
 import { CATEGORY_URL } from "../../urls";
-import { setCategories } from "../../Store/Categories/actions";
+import * as categoryActions from "../../Store/Categories/actions";
 import { connect } from "react-redux";
 
 class CategoryAdminPageContainer extends React.Component {
@@ -12,7 +12,7 @@ class CategoryAdminPageContainer extends React.Component {
             })
             .then((data) => {
                 const categories = data.reverse();
-                this.props.set_categories(categories);
+                this.props.setCategories(categories);
             });
     }
 
@@ -28,7 +28,7 @@ const mapState = (state) => {
 };
 
 const mapDispatch = {
-    set_categories: setCategories,
+    setCategories: categoryActions.setCategories,
 };
 
 const connector = connect(mapState, mapDispatch);

@@ -14,7 +14,10 @@ const CategoryAdminPage = ({ categories }) => {
                     </div>
 
                     {categories.map((category) => (
-                        <CategoryItem name={category.name} />
+                        <CategoryItem
+                            key={category.name}
+                            name={category.name}
+                        />
                     ))}
                 </div>
             </div>
