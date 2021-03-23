@@ -6,6 +6,18 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    root: {
+        borderColor: "#000",
+    },
+    label: {
+        fontFamily: "Lobster, cursive",
+        fontSize: "20px",
+        color: "#000",
+    },
+});
 
 const CategoryModalDialog = ({
     titleText,
@@ -14,6 +26,8 @@ const CategoryModalDialog = ({
     btnText,
     fieldText,
 }) => {
+    const classes = useStyles();
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -27,11 +41,13 @@ const CategoryModalDialog = ({
     return (
         <div>
             <Button
+                className="text__style"
                 variant="outlined"
                 color="primary"
                 onClick={handleClickOpen}
+                classes={{ root: classes.root, label: classes.label }}
             >
-                Open form dialog
+                Додати
             </Button>
             <Dialog
                 open={open}
