@@ -2,7 +2,10 @@ import { SET_CATEGORIES } from './actions'
 
 
 const initialState = {
-    categories: []
+    categories: [],
+    is_open_modal: false,
+    is_loading: false,
+    input_name_field: '' 
 }
 
 const categoryReducer = (state = initialState, action) => {
