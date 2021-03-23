@@ -5,7 +5,7 @@ import CategoryModalDialog from "../../FormModalDialog/CategoryModalDialog";
 
 import s from "./style.module.css";
 
-const CategoryAdminPage = ({ categories }) => {
+const CategoryAdminPage = ({ categories, updateInputValue, inputState }) => {
     return (
         <>
             <div className={`container ${s.max_height}`}>
@@ -17,6 +17,8 @@ const CategoryAdminPage = ({ categories }) => {
                         btnText={"Додати"}
                         fieldText={"Категорія"}
                         mainBtnText={"Додати"}
+                        updateInputValue={updateInputValue}
+                        inputState={inputState}
                     />
                     <div className={s.category__button_section}>
                         <Button text="Додати" mode="primary" />

@@ -17,18 +17,26 @@ class CategoryAdminPageContainer extends React.Component {
     }
 
     render() {
-        return <CategoryAdminPage categories={this.props.category_list} />;
+        return (
+            <CategoryAdminPage
+                categories={this.props.category_list}
+                updateInputValue={this.props.updateInputValue}
+                inputState={this.props.inputState}
+            />
+        );
     }
 }
 
 const mapState = (state) => {
     return {
         category_list: state.category.categories,
+        inputState: state.category.input_name_field,
     };
 };
 
 const mapDispatch = {
     setCategories: categoryActions.setCategories,
+    updateInputValue: categoryActions.updateInputValue,
 };
 
 const connector = connect(mapState, mapDispatch);

@@ -25,6 +25,8 @@ const CategoryModalDialog = ({
     btnText,
     fieldText,
     mainBtnText,
+    updateInputValue,
+    inputState,
 }) => {
     const classes = useStyles();
 
@@ -35,7 +37,16 @@ const CategoryModalDialog = ({
     };
 
     const handleClose = () => {
+        updateInputValue("");
         setOpen(false);
+    };
+
+    const changeInput = (event) => {
+        updateInputValue(event.target.value);
+    };
+
+    const clearInput = () => {
+        updateInputValue("");
     };
 
     return (
@@ -66,6 +77,8 @@ const CategoryModalDialog = ({
                         label={`${fieldText}`}
                         type="text"
                         fullWidth
+                        value={inputState}
+                        onChange={changeInput}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -74,6 +87,7 @@ const CategoryModalDialog = ({
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
                         size="large"
+                        onClick={clearInput}
                     >
                         Закрити
                     </Button>
