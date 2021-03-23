@@ -7,7 +7,7 @@ import About from "./Components/About/About"
 import Footer from "./Components/Footer/Footer"
 import PageNotFound from "./Components/PageNotFound/PageNotFound"
 import Menu from './Components/Menu/Menu'
-import CategoryAdminPage from './Components/CategoryAdminPage/CategoryAdminPage'
+import CategoryAdminPageContainer from './Components/CategoryAdminPageContainer/CategoryAdminPageContainer'
 
 function App() {
     return (
@@ -25,7 +25,7 @@ function App() {
                         <Menu />
                     </Route>
                     <Route exact path='/categories'>
-                        <CategoryAdminPage  />
+                        <CategoryAdminPageContainer />
                     </Route>
                     <Route to='*'>
                         <PageNotFound/>
