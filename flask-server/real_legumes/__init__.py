@@ -11,6 +11,8 @@ migrate = Migrate()
 docs = FlaskApiSpec()
 cors = CORS()
 
+from real_legumes.real_legumes.models import *
+
 
 def register_blueprints(app):
     from .api import api_v1
