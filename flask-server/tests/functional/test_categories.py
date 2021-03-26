@@ -10,6 +10,11 @@ app.app_context().push()
 
 
 def test_category_list():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/categories' page is requested (GET)
+        THEN check that the response is valid.
+    """
     with app.test_client() as test_client:
         response = test_client.get('/api/categories')
         objects = json.loads(response.get_data(as_text=True))
