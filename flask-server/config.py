@@ -8,16 +8,7 @@ class BaseConfig:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
-class DevelopmentConfig(BaseConfig):
-    """Development environment specific config."""
-
-    DEBUG = True
-    TESTING = False
-
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEVELOPMENT_DATABASE_URI')
-
-    #register swagger
+    # register swagger
     APISPEC_SPEC = APISpec(
         title='Real Legumes',
         version='v1',
@@ -27,11 +18,22 @@ class DevelopmentConfig(BaseConfig):
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
 
+
+class DevelopmentConfig(BaseConfig):
+    """Development environment specific config."""
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEVELOPMENT_DATABASE_URI')
+
+    DEBUG = True
+    TESTING = False
+
     CORS_ALLOW_HEADERS = 'http://localhost:3000/'
 
 
 class TestingConfig(BaseConfig):
     """Testing environment specific config."""
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TESTING_DATABASE_URI')
 
     TESTING = True
     DEBUG = False
