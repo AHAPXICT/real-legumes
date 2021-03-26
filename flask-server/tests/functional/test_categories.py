@@ -51,7 +51,7 @@ def test_category_post_500_name_already_exist():
         assert response_dict['message'] == 'Category name already exist.'
 
 
-def test_category_get_by_name():
+def test_category_get_by_name_200():
     with app.test_client() as test_client:
         category_name = Category.query.first().name
 
@@ -60,6 +60,13 @@ def test_category_get_by_name():
 
         assert response.status_code == 200
         assert category['name'] == category_name
+
+
+def test_category_get_by_name_404():
+    with app.test_client() as test_client:
+        response = test_client.get(f'/api/category/name that no exist'.replace(' ', '%20'))
+
+        assert response.status_code == 404
 
 
 def test_category_update():
@@ -73,8 +80,11 @@ def test_category_update():
             )
         )
 
+        response_dict = json.loads(response.get_data(as_text=True))
+
         assert response.status_code == 200
         assert Category.query.first().name == f'updated category name{last_id}'
+        assert response_dict['message'] == 'Updated.'
 
 
 def test_category_update_500_name_already_exist():
@@ -88,7 +98,6 @@ def test_category_update_500_name_already_exist():
         )
 
         response_dict = json.loads(response.get_data(as_text=True))
-        print(response_dict['message'])
 
         assert response.status_code == 500
         assert response_dict['message'] == 'Category name already exist.'
