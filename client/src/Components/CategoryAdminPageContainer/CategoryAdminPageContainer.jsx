@@ -16,12 +16,15 @@ class CategoryAdminPageContainer extends React.Component {
             });
     }
 
+    addCategory = () => {};
+
     render() {
         return (
             <CategoryAdminPage
                 categories={this.props.category_list}
                 updateInputValue={this.props.updateInputValue}
                 inputState={this.props.inputState}
+                addCategory={this.addCategory}
             />
         );
     }

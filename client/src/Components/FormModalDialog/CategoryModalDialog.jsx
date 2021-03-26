@@ -27,6 +27,7 @@ const CategoryModalDialog = ({
     mainBtnText,
     updateInputValue,
     inputState,
+    addCategory,
 }) => {
     const classes = useStyles();
 
@@ -45,8 +46,10 @@ const CategoryModalDialog = ({
         updateInputValue(event.target.value);
     };
 
-    const clearInput = () => {
+    const onSave = () => {
+        addCategory(inputState);
         updateInputValue("");
+        setOpen(false);
     };
 
     return (
@@ -91,7 +94,7 @@ const CategoryModalDialog = ({
                         Закрити
                     </Button>
                     <Button
-                        onClick={handleClose}
+                        onClick={onSave}
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
                         size="large"
