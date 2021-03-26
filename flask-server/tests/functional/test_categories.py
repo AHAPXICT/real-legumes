@@ -34,16 +34,15 @@ def test_category_post():
         assert category.name == f'{category_name + str(Category.query.order_by(desc(Category.id))[1].id)}'
 
 
-# def test_category_delete():
-#     with app.test_client() as test_client:
-#
-#         len_before_delete = len(Category.query.all())
-#         category = Category.query.first()
-#         t = 'test category13test category131'
-#
-#         response = test_client.delete(
-#             f'/api/category/{t}'.replace(' ', '%20'),
-#         )
-#
-#         assert response.status_code == 204
-#         assert len_before_delete - 1 == len(Category.query.all())
+def test_category_delete():
+    with app.test_client() as test_client:
+
+        len_before_delete = len(Category.query.all())
+        category = Category.query.first()
+
+        response = test_client.delete(
+            f'/api/category/{category.name}'.replace(' ', '%20'),
+        )
+
+        assert response.status_code == 204
+        assert len_before_delete - 1 == len(Category.query.all())
