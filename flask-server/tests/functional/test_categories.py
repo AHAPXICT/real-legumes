@@ -23,6 +23,11 @@ def test_category_list():
 
 
 def test_category_post():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/categories' page is requested (POST)
+        THEN check that the response is valid.
+    """
     with app.test_client() as test_client:
         category_name = Category.query.first().name
 
