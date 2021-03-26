@@ -1,6 +1,7 @@
 from real_legumes.real_legumes.models import Category, Ingredient, Image, Product
 from real_legumes import create_app
 
+
 app = create_app('testing')
 
 
