@@ -83,6 +83,11 @@ def test_category_get_by_name_200():
 
 
 def test_category_get_by_name_404():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (GET)
+        THEN check that a '404' status code returned.
+    """
     with app.test_client() as test_client:
         response = test_client.get(f'/api/category/name that no exist'.replace(' ', '%20'))
 
