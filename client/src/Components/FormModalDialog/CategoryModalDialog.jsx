@@ -83,11 +83,10 @@ const CategoryModalDialog = ({
                 </DialogContent>
                 <DialogActions>
                     <Button
-                        onClick={handleClose}
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
                         size="large"
-                        onClick={clearInput}
+                        onClick={handleClose}
                     >
                         Закрити
                     </Button>
