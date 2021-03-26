@@ -65,15 +65,16 @@ def test_category_get_by_name():
 def test_category_update():
     with app.test_client() as test_client:
         category_name = Category.query.first().name
+        last_id = Category.query.order_by(desc(Category.id)).first().id
         response = test_client.put(
             f'/api/category/{category_name}',
             json=dict(
-                name='updated category name'
+                name=f'updated category name{last_id}'
             )
         )
 
         assert response.status_code == 200
-        assert Category.query.first().name == 'updated category name'
+        assert Category.query.first().name == f'updated category name{last_id}'
 
 
 def test_category_update_500_name_already_exist():
