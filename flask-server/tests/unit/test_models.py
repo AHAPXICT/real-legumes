@@ -5,6 +5,11 @@ app = create_app('development')
 
 
 def test_new_category():
+    """
+        GIVEN a Category model
+        WHEN a new Category is created
+        THEN check the name are defined correctly.
+    """
     with app.app_context():
         category = Category(name='category')
 
@@ -12,6 +17,11 @@ def test_new_category():
 
 
 def test_new_ingredient():
+    """
+        GIVEN a Ingredient model
+        WHEN a new Ingredient is created
+        THEN check the name are defined correctly.
+    """
     with app.app_context():
         ingredient = Ingredient(name='ingredient')
 
@@ -19,6 +29,11 @@ def test_new_ingredient():
 
 
 def test_new_image():
+    """
+        GIVEN a Image model
+        WHEN a new Image is created
+        THEN check the image_url are defined correctly.
+    """
     with app.app_context():
         image = Image(image_url='image_url')
 
@@ -26,12 +41,18 @@ def test_new_image():
 
 
 def test_new_product():
+    """
+        GIVEN a Product model
+        WHEN a new Product is created
+        THEN check the name, price, calories, description, count,
+         weight, category name, is_special, ingredients, images are defined correctly.
+    """
     with app.app_context():
         category = Category(name='category')
         ingredient = Ingredient(name='ingredient')
         image = Image(image_url='image_url')
 
-        product =Product(
+        product = Product(
             name='product',
             price=1,
             calories=2,
