@@ -158,6 +158,11 @@ def test_category_delete_200():
 
 
 def test_category_delete_404():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (DELETE)
+        THEN check that a '404' status code returned.
+    """
     with app.test_client() as test_client:
         response = test_client.delete(
             f'/api/category/name that no exist'.replace(' ', '%20'),
