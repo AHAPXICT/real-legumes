@@ -6,6 +6,7 @@ from real_legumes.real_legumes.models import Category
 
 
 app = create_app('testing')
+app.app_context().push()
 
 
 def test_category_list():
@@ -18,18 +19,31 @@ def test_category_list():
 
 def test_category_post():
     with app.test_client() as test_client:
+        category_name = Category.query.first().name
+
         response = test_client.post(
             '/api/categories',
             json=dict(
-                name='test category'
+                name=f'{category_name + str(Category.query.order_by(desc(Category.id)).first().id)}'
             )
         )
 
         category = Category.query.order_by(desc(Category.id)).first()
 
         assert response.status_code == 201
-        assert category.name == 'test category'
+        assert category.name == f'{category_name + str(Category.query.order_by(desc(Category.id))[1].id)}'
 
 
-# def test_category_detele():
+# def test_category_delete():
 #     with app.test_client() as test_client:
+#
+#         len_before_delete = len(Category.query.all())
+#         category = Category.query.first()
+#         t = 'test category13test category131'
+#
+#         response = test_client.delete(
+#             f'/api/category/{t}'.replace(' ', '%20'),
+#         )
+#
+#         assert response.status_code == 204
+#         assert len_before_delete - 1 == len(Category.query.all())
