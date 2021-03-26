@@ -34,6 +34,17 @@ def test_category_post():
         assert category.name == f'{category_name + str(Category.query.order_by(desc(Category.id))[1].id)}'
 
 
+def test_category_get_by_name():
+    with app.test_client() as test_client:
+        category_name = Category.query.first().name
+
+        response = test_client.get(f'/api/category/{category_name}')
+        category = json.loads(response.get_data(as_text=True))
+
+        assert response.status_code == 200
+        assert category['name'] == category_name
+
+
 def test_category_delete():
     with app.test_client() as test_client:
 
