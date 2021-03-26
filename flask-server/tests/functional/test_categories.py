@@ -45,6 +45,20 @@ def test_category_get_by_name():
         assert category['name'] == category_name
 
 
+def test_category_update():
+    with app.test_client() as test_client:
+        category_name = Category.query.first().name
+        response = test_client.put(
+            f'/api/category/{category_name}',
+            json=dict(
+                name='updated category name'
+            )
+        )
+
+        assert response.status_code == 200
+        assert Category.query.first().name == 'updated category name'
+
+
 def test_category_delete():
     with app.test_client() as test_client:
 
