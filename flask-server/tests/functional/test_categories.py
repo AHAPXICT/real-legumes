@@ -139,6 +139,11 @@ def test_category_update_500_name_already_exist():
 
 
 def test_category_delete_200():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (DELETE)
+        THEN check that the response is valid.
+    """
     with app.test_client() as test_client:
 
         len_before_delete = len(Category.query.all())
