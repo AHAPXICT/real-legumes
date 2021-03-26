@@ -45,6 +45,11 @@ def test_category_post():
 
 
 def test_category_post_500_name_already_exist():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/categories' page is requested (POST)
+        THEN check that a '500' status code returned with right message.
+    """
     with app.test_client() as test_client:
         category_name = Category.query.first().name
 
