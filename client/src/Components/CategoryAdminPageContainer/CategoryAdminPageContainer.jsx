@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 
 class CategoryAdminPageContainer extends React.Component {
     componentDidMount() {
+        this.fetchCategories();
+    }
+
+    fetchCategories = () => {
         fetch(CATEGORY_URL)
             .then((response) => {
                 return response.json();
@@ -14,9 +18,25 @@ class CategoryAdminPageContainer extends React.Component {
                 const categories = data.reverse();
                 this.props.setCategories(categories);
             });
-    }
+    };
 
-    addCategory = () => {};
+    addCategory = (name) => {
+        const newCategory = {
+            name: name,
+        };
+
+        fetch(CATEGORY_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newCategory),
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchCategories();
+            }
+        });
+    };
 
     render() {
         return (
