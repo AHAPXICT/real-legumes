@@ -94,7 +94,12 @@ def test_category_get_by_name_404():
         assert response.status_code == 404
 
 
-def test_category_update():
+def test_category_update_200():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (PUT)
+        THEN check that the response is valid.
+    """
     with app.test_client() as test_client:
         category_name = Category.query.first().name
         last_id = Category.query.order_by(desc(Category.id)).first().id
