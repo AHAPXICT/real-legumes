@@ -76,6 +76,23 @@ def test_category_update():
         assert Category.query.first().name == 'updated category name'
 
 
+def test_category_update_500_name_already_exist():
+    with app.test_client() as test_client:
+        category_name = Category.query.first().name
+        response = test_client.put(
+            f'/api/category/{category_name}',
+            json=dict(
+                name=f'{category_name}'
+            )
+        )
+
+        response_dict = json.loads(response.get_data(as_text=True))
+        print(response_dict['message'])
+
+        assert response.status_code == 500
+        assert response_dict['message'] == 'Category name already exist.'
+
+
 def test_category_delete():
     with app.test_client() as test_client:
 

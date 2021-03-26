@@ -49,6 +49,8 @@ class Category(MethodResource, Resource):
                 category.name = kwargs['name']
                 db.session.commit()
                 db.session.close()
+            except AssertionError:
+                return {'message': "Category name already exist."}, 500
             except Exception:
                 return {'message': "Backend exception."}, 500
             else:
