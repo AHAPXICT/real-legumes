@@ -8,8 +8,6 @@ class BaseConfig:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEVELOPMENT_DATABASE_URI')
-
     # register swagger
     APISPEC_SPEC = APISpec(
         title='Real Legumes',
@@ -24,6 +22,8 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     """Development environment specific config."""
 
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEVELOPMENT_DATABASE_URI')
+
     DEBUG = True
     TESTING = False
 
@@ -32,6 +32,8 @@ class DevelopmentConfig(BaseConfig):
 
 class TestingConfig(BaseConfig):
     """Testing environment specific config."""
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TESTING_DATABASE_URI')
 
     TESTING = True
     DEBUG = False
