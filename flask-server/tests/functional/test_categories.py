@@ -94,7 +94,7 @@ def test_category_update_500_name_already_exist():
         assert response_dict['message'] == 'Category name already exist.'
 
 
-def test_category_delete():
+def test_category_delete_200():
     with app.test_client() as test_client:
 
         len_before_delete = len(Category.query.all())
@@ -106,3 +106,12 @@ def test_category_delete():
 
         assert response.status_code == 204
         assert len_before_delete - 1 == len(Category.query.all())
+
+
+def test_category_delete_404():
+    with app.test_client() as test_client:
+        response = test_client.delete(
+            f'/api/category/name that no exist'.replace(' ', '%20'),
+        )
+
+        assert response.status_code == 404
