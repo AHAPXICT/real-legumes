@@ -118,6 +118,11 @@ def test_category_update_200():
 
 
 def test_category_update_500_name_already_exist():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (PUT)
+        THEN check that a '500' status code returned with right message.
+    """
     with app.test_client() as test_client:
         category_name = Category.query.first().name
         response = test_client.put(
