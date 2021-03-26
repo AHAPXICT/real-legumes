@@ -34,6 +34,23 @@ def test_category_post():
         assert category.name == f'{category_name + str(Category.query.order_by(desc(Category.id))[1].id)}'
 
 
+def test_category_post_500_name_already_exist():
+    with app.test_client() as test_client:
+        category_name = Category.query.first().name
+
+        response = test_client.post(
+            '/api/categories',
+            json=dict(
+                name=f'{category_name}'
+            )
+        )
+        response_dict = json.loads(response.get_data(as_text=True))
+        print(response_dict['message'])
+
+        assert response.status_code == 500
+        assert response_dict['message'] == 'Category name already exist.'
+
+
 def test_category_get_by_name():
     with app.test_client() as test_client:
         category_name = Category.query.first().name
