@@ -67,6 +67,11 @@ def test_category_post_500_name_already_exist():
 
 
 def test_category_get_by_name_200():
+    """
+        GIVEN a Flask application configured for testing
+        WHEN the '/api/category/<category_name>' page is requested (GET)
+        THEN check that the response is valid.
+    """
     with app.test_client() as test_client:
         category_name = Category.query.first().name
 
