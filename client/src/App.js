@@ -7,7 +7,8 @@ import About from "./Components/About/About"
 import Footer from "./Components/Footer/Footer"
 import PageNotFound from "./Components/PageNotFound/PageNotFound"
 import Menu from './Components/Menu/Menu'
-import CategoryAdminPageContainer from './Components/CategoryAdminPageContainer/CategoryAdminPageContainer'
+import CategoryAdminPageContainer from './Components/AdminPages/CategoryAdminPageContainer/CategoryAdminPageContainer'
+import IngredientAdminPageContainer from './Components/AdminPages/IngredientAdminPageContainer/IngredientAdminPageContainer'
 import store from './Store/store'
 
 
@@ -29,6 +30,9 @@ function App() {
                         </Route>
                         <Route exact path='/categories'>
                             <CategoryAdminPageContainer />
+                        </Route>
+                        <Route exact path='/ingredients'>
+                            <IngredientAdminPageContainer />
                         </Route>
                         <Route to='*'>
                             <PageNotFound/>
