@@ -1,10 +1,10 @@
 export const SET_INGREDIENTS = 'INGREDIENT/SET_INGREDIENTS'
 export const CHANGE_INPUT_VALUE = 'INGREDIENT/CHANGE_INPUT_VALUE'
 
-export const setIngredients = (name) => {
+export const setIngredients = (ingredients) => {
     return {
         type: SET_INGREDIENTS,
-        payload: name
+        payload: ingredients
     }
 }
 
