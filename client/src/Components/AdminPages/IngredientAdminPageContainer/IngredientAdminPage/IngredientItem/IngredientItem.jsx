@@ -4,7 +4,15 @@ import AlertModalDialog from "../../../../AlertModalDialog/AlertModalDialog";
 
 import s from "./style.module.css";
 
-const IngredientItem = ({ name, updated_at, created_at, deleteIngredient }) => {
+const IngredientItem = ({
+    name,
+    updated_at,
+    created_at,
+    deleteIngredient,
+    updateIngredient,
+    updateInputValue,
+    inputState,
+}) => {
     const onDelete = () => {
         deleteIngredient(name);
     };
@@ -15,20 +23,20 @@ const IngredientItem = ({ name, updated_at, created_at, deleteIngredient }) => {
             <p className={s.ingredientItem__time_p}>Створено: {created_at}</p>
             <p className={s.ingredientItem__time_p}>Оновлено: {updated_at}</p>
             <div className={s.ingredientItem__btns}>
-                {/* <div className={s.ingredientItem__btn_position}>
+                <div className={s.ingredientItem__btn_position}>
                     <CategoryModalDialog
-                        titleText={"Оновити категорію"}
-                        helpText={"Введіть назвку категорії."}
+                        titleText={"Оновити інгредієнт"}
+                        helpText={"Введіть назву інгредієнтa."}
                         fullWidth={100}
                         btnText={"Оновити"}
-                        fieldText={"Категорія"}
+                        fieldText={"Iнгредієнт"}
                         mainBtnText={"Оновити"}
                         updateInputValue={updateInputValue}
                         inputState={inputState}
-                        buttonOk={updateCategory}
+                        buttonOk={updateIngredient}
                         initInputState={name}
                     />
-                </div> */}
+                </div>
                 <div className={s.ingredientItem__btn_position}>
                     <AlertModalDialog
                         mainButtonText="Видалити"

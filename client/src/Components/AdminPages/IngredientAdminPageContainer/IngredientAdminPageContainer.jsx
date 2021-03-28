@@ -55,6 +55,29 @@ class IngredientAdminPageContainer extends React.Component {
         });
     };
 
+    updateIngredient = (new_name, old_name) => {
+        const newIngredient = {
+            name: new_name,
+        };
+
+        fetch(`${INGREDIENT_URL}/${old_name}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newIngredient),
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchIngredients();
+            } else if (response.status === 500) {
+                return response.json().then((json) => {
+                    const { message } = json;
+                    alert(message);
+                });
+            }
+        });
+    };
+
     render() {
         return (
             <IngredientAdminPage
@@ -63,6 +86,7 @@ class IngredientAdminPageContainer extends React.Component {
                 updateInputValue={this.props.updateInputValue}
                 addIngredient={this.addIngredient}
                 deleteIngredient={this.deleteIngredient}
+                updateIngredient={this.updateIngredient}
             />
         );
     }
