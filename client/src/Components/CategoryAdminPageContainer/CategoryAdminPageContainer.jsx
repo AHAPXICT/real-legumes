@@ -34,6 +34,11 @@ class CategoryAdminPageContainer extends React.Component {
         }).then((response) => {
             if (response.ok) {
                 this.fetchCategories();
+            } else if (response.status === 500) {
+                return response.json().then((json) => {
+                    const { message } = json;
+                    alert(message);
+                });
             }
         });
     };
@@ -62,6 +67,11 @@ class CategoryAdminPageContainer extends React.Component {
         }).then((response) => {
             if (response.ok) {
                 this.fetchCategories();
+            } else if (response.status === 500) {
+                return response.json().then((json) => {
+                    const { message } = json;
+                    alert(message);
+                });
             }
         });
     };
