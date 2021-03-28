@@ -17,19 +17,18 @@ const CategoryAdminPage = ({
         <>
             <div className={`container ${s.max_height}`}>
                 <div className={s.category__list}>
-                    <CategoryModalDialog
-                        titleText={"Додати категорію"}
-                        helpText={"Введіть назвку категорії."}
-                        fullWidth={100}
-                        btnText={"Додати"}
-                        fieldText={"Категорія"}
-                        mainBtnText={"Додати"}
-                        updateInputValue={updateInputValue}
-                        inputState={inputState}
-                        buttonOk={addCategory}
-                    />
-                    <div className={s.category__button_section}>
-                        <Button text="Додати" mode="primary" />
+                    <div className={s.category__add_btn}>
+                        <CategoryModalDialog
+                            titleText={"Додати категорію"}
+                            helpText={"Введіть назвку категорії."}
+                            fullWidth={100}
+                            btnText={"Додати"}
+                            fieldText={"Категорія"}
+                            mainBtnText={"Додати"}
+                            updateInputValue={updateInputValue}
+                            inputState={inputState}
+                            buttonOk={addCategory}
+                        />
                     </div>
 
                     {categories.map((category) => (
