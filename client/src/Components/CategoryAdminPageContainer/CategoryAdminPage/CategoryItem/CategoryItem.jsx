@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../../../Button/Button";
 import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
+import AlertModalDialog from "../../../AlertModalDialog/AlertModalDialog";
 
 import s from "./style.module.css";
 
@@ -35,7 +36,14 @@ const CategoryItem = ({
                     buttonOk={updateCategory}
                     initInputState={name}
                 />
-                <Button onClick={onDelete} text="Видалити" mode="danger" />
+                <AlertModalDialog
+                    mainButtonText="Видалити"
+                    titleText="Видалити категорію?"
+                    helpText="Ви дійсно хочете видалити категорію і всі продукти, які зв'язані з нею?"
+                    cancelButtonText="Закрити"
+                    submitButtonText="Видалити"
+                    submitButtonAction={onDelete}
+                />
             </div>
         </div>
     );
