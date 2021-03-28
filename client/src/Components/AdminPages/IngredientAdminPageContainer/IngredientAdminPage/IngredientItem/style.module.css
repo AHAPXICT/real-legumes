@@ -1,0 +1,24 @@
+.ingredientItem {
+    text-align: center;
+    border: black solid 1px;
+    margin-bottom: 20px;
+}
+
+.ingredientItem__name {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Lobster", cursive;
+}
+
+.ingredientItem__time_p {
+    font-family: "Lobster", cursive;
+}
+
+.ingredientItem__btns {
+    display: flex;
+    justify-content: center;
+}
+
+.ingredientItem__btn_position {
+    padding: 10px;
+}

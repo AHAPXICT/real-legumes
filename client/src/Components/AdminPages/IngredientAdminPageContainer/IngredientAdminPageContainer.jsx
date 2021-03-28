@@ -2,9 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import * as ingredientActions from "../../../Store/Ingredients/actions";
 import { INGREDIENT_URL, INGREDIENTS_URL } from "../../../urls";
+import IngredientAdminPage from "./IngredientAdminPage/IngredientAdminPage";
 
 class IngredientAdminPageContainer extends React.Component {
     componentDidMount() {
+        this.fetchIngredients();
+    }
+
+    fetchIngredients = () => {
         fetch(INGREDIENTS_URL)
             .then((response) => {
                 if (response.ok) {
@@ -15,10 +20,10 @@ class IngredientAdminPageContainer extends React.Component {
                 const ingredients = data.reverse();
                 this.props.setIngredients(ingredients);
             });
-    }
+    };
 
     render() {
-        return <div>ingredients</div>;
+        return <IngredientAdminPage ingredients={this.props.ingredient_list} />;
     }
 }
 

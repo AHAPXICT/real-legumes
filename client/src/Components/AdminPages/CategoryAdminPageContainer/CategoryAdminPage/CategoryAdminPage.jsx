@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
-import Button from "../../../Button/Button";
 import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
 
 import s from "./style.module.css";

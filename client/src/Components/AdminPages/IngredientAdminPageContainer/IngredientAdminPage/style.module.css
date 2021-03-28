@@ -1,0 +1,20 @@
+.max_height {
+    min-height: 100vh;
+}
+
+.ingredient__list {
+    margin-top: 140px;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-bottom: 100px;
+}
+
+.ingredient__button_section {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.ingredient__add_btn {
+    text-align: center;
+    margin-bottom: 40px;
+}
