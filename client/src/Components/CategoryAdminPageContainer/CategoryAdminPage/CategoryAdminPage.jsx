@@ -5,23 +5,30 @@ import CategoryModalDialog from "../../FormModalDialog/CategoryModalDialog";
 
 import s from "./style.module.css";
 
-const CategoryAdminPage = ({ categories, updateInputValue, inputState }) => {
+const CategoryAdminPage = ({
+    categories,
+    updateInputValue,
+    inputState,
+    addCategory,
+    deleteCategory,
+    updateCategory,
+}) => {
     return (
         <>
             <div className={`container ${s.max_height}`}>
                 <div className={s.category__list}>
-                    <CategoryModalDialog
-                        titleText={"Додати категорію"}
-                        helpText={"Введіть назвку категорії."}
-                        fullWidth={100}
-                        btnText={"Додати"}
-                        fieldText={"Категорія"}
-                        mainBtnText={"Додати"}
-                        updateInputValue={updateInputValue}
-                        inputState={inputState}
-                    />
-                    <div className={s.category__button_section}>
-                        <Button text="Додати" mode="primary" />
+                    <div className={s.category__add_btn}>
+                        <CategoryModalDialog
+                            titleText={"Додати категорію"}
+                            helpText={"Введіть назвку категорії."}
+                            fullWidth={100}
+                            btnText={"Додати"}
+                            fieldText={"Категорія"}
+                            mainBtnText={"Додати"}
+                            updateInputValue={updateInputValue}
+                            inputState={inputState}
+                            buttonOk={addCategory}
+                        />
                     </div>
 
                     {categories.map((category) => (
@@ -30,6 +37,10 @@ const CategoryAdminPage = ({ categories, updateInputValue, inputState }) => {
                             name={category.name}
                             updated_at={category.updated_at}
                             created_at={category.created_at}
+                            deleteCategory={deleteCategory}
+                            updateCategory={updateCategory}
+                            updateInputValue={updateInputValue}
+                            inputState={inputState}
                         />
                     ))}
                 </div>

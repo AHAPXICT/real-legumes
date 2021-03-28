@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -8,90 +7,70 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useStyles from "./style";
 
-const CategoryModalDialog = ({
+const AlertDialog = ({
     titleText,
     helpText,
-    fullWidth,
-    btnText,
-    fieldText,
-    mainBtnText,
-    updateInputValue,
-    inputState,
-    buttonOk,
-    initInputState,
+    cancelButtonText,
+    submitButtonText,
+    submitButtonAction,
+    mainButtonText,
 }) => {
     const classes = useStyles();
-
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        updateInputValue(initInputState);
         setOpen(true);
     };
 
     const handleClose = () => {
-        updateInputValue("");
         setOpen(false);
     };
 
-    const changeInput = (event) => {
-        updateInputValue(event.target.value);
-    };
-
-    const onButtonOk = () => {
-        buttonOk(inputState, initInputState);
-        updateInputValue("");
-        setOpen(false);
+    const onSubmit = () => {
+        submitButtonAction();
+        handleClose();
     };
 
     return (
         <div>
             <Button
-                className="text__style"
                 variant="outlined"
                 color="primary"
                 onClick={handleClickOpen}
                 classes={{ root: classes.root, label: classes.label }}
                 size="large"
             >
-                {mainBtnText}
+                {mainButtonText}
             </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="form-dialog-title"
-                fullWidth={fullWidth}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="form-dialog-title">{titleText}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{titleText}</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>{helpText}</DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label={`${fieldText}`}
-                        type="text"
-                        fullWidth
-                        value={inputState}
-                        onChange={changeInput}
-                    />
+                    <DialogContentText id="alert-dialog-description">
+                        {helpText}
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button
+                        onClick={handleClose}
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
                         size="large"
-                        onClick={handleClose}
                     >
-                        Закрити
+                        {cancelButtonText}
                     </Button>
                     <Button
-                        onClick={onButtonOk}
+                        onClick={onSubmit}
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
+                        autoFocus
                         size="large"
                     >
-                        {btnText}
+                        {submitButtonText}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -99,4 +78,4 @@ const CategoryModalDialog = ({
     );
 };
 
-export default CategoryModalDialog;
+export default AlertDialog;

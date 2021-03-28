@@ -14,6 +14,13 @@ cors = CORS()
 from real_legumes.real_legumes.models import *
 
 
+def _access_control(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
+
+
 def register_blueprints(app):
     from .api import api_v1
 
@@ -53,5 +60,6 @@ def create_app(config_name: str):
     register_docs(docs)
 
     cors.init_app(app)
+    app.after_request(_access_control)
 
     return app
