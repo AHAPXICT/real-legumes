@@ -25,7 +25,7 @@ const CategoryAdminPage = ({
                         mainBtnText={"Додати"}
                         updateInputValue={updateInputValue}
                         inputState={inputState}
-                        addCategory={addCategory}
+                        buttonOk={addCategory}
                     />
                     <div className={s.category__button_section}>
                         <Button text="Додати" mode="primary" />
