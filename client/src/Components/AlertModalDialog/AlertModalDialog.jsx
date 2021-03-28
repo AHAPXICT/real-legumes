@@ -5,6 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import useStyles from "./style";
 
 const AlertDialog = ({
     titleText,
@@ -14,6 +15,7 @@ const AlertDialog = ({
     submitButtonAction,
     mainButtonText,
 }) => {
+    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -35,6 +37,7 @@ const AlertDialog = ({
                 variant="outlined"
                 color="primary"
                 onClick={handleClickOpen}
+                classes={{ root: classes.root, label: classes.label }}
             >
                 {mainButtonText}
             </Button>
@@ -51,10 +54,19 @@ const AlertDialog = ({
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button
+                        onClick={handleClose}
+                        color="primary"
+                        classes={{ root: classes.root, label: classes.label }}
+                    >
                         {cancelButtonText}
                     </Button>
-                    <Button onClick={onSubmit} color="primary" autoFocus>
+                    <Button
+                        onClick={onSubmit}
+                        color="primary"
+                        classes={{ root: classes.root, label: classes.label }}
+                        autoFocus
+                    >
                         {submitButtonText}
                     </Button>
                 </DialogActions>
