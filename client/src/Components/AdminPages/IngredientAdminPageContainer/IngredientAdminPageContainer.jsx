@@ -22,12 +22,36 @@ class IngredientAdminPageContainer extends React.Component {
             });
     };
 
+    addIngredient = (name) => {
+        const newIngredient = {
+            name: name,
+        };
+
+        fetch(INGREDIENTS_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newIngredient),
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchIngredients();
+            } else if (response.status === 500) {
+                return response.json().then((json) => {
+                    const { message } = json;
+                    alert(message);
+                });
+            }
+        });
+    };
+
     render() {
         return (
             <IngredientAdminPage
                 ingredients={this.props.ingredient_list}
                 inputState={this.props.inputState}
                 updateInputValue={this.props.updateInputValue}
+                addIngredient={this.addIngredient}
             />
         );
     }
