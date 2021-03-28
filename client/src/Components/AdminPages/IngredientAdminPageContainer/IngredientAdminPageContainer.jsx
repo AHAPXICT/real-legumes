@@ -23,7 +23,13 @@ class IngredientAdminPageContainer extends React.Component {
     };
 
     render() {
-        return <IngredientAdminPage ingredients={this.props.ingredient_list} />;
+        return (
+            <IngredientAdminPage
+                ingredients={this.props.ingredient_list}
+                inputState={this.props.inputState}
+                updateInputValue={this.props.updateInputValue}
+            />
+        );
     }
 }
 
