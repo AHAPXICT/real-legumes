@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
-import AlertModalDialog from "../../../AlertModalDialog/AlertModalDialog";
+import CategoryModalDialog from "../../../../FormModalDialog/CategoryModalDialog";
+import AlertModalDialog from "../../../../AlertModalDialog/AlertModalDialog";
 
 import s from "./style.module.css";
 

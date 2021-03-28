@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryAdminPage from "./CategoryAdminPage/CategoryAdminPage";
-import { CATEGORY_URL, CATEGORIES_URL } from "../../urls";
-import * as categoryActions from "../../Store/Categories/actions";
+import { CATEGORY_URL, CATEGORIES_URL } from "../../../urls";
+import * as categoryActions from "../../../Store/Categories/actions";
 import { connect } from "react-redux";
 
 class CategoryAdminPageContainer extends React.Component {
