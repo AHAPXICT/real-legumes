@@ -13,3 +13,12 @@
 .categoryItem__time_p {
     font-family: "Lobster", cursive;
 }
+
+.categoryItem__btns {
+    display: flex;
+    justify-content: center;
+}
+
+.categoryItem__btn_position {
+    padding: 10px;
+}

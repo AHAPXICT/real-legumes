@@ -38,6 +38,7 @@ const AlertDialog = ({
                 color="primary"
                 onClick={handleClickOpen}
                 classes={{ root: classes.root, label: classes.label }}
+                size="large"
             >
                 {mainButtonText}
             </Button>
@@ -58,6 +59,7 @@ const AlertDialog = ({
                         onClick={handleClose}
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
+                        size="large"
                     >
                         {cancelButtonText}
                     </Button>
@@ -66,6 +68,7 @@ const AlertDialog = ({
                         color="primary"
                         classes={{ root: classes.root, label: classes.label }}
                         autoFocus
+                        size="large"
                     >
                         {submitButtonText}
                     </Button>
