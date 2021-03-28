@@ -3,7 +3,11 @@ import Button from "../../../Button/Button";
 
 import s from "./style.module.css";
 
-const CategoryItem = ({ name, updated_at, created_at }) => {
+const CategoryItem = ({ name, updated_at, created_at, deleteCategory }) => {
+    const onDelete = () => {
+        deleteCategory(name);
+    };
+
     return (
         <div className={s.categoryItem}>
             <h1 className={s.categoryItem__name}>{name}</h1>
@@ -11,7 +15,7 @@ const CategoryItem = ({ name, updated_at, created_at }) => {
             <p className={s.categoryItem__time_p}>Оновлено: {updated_at}</p>
             <div>
                 <Button text="Редагувати" mode="warning" />
-                <Button text="Видалити" mode="danger" />
+                <Button onClick={onDelete} text="Видалити" mode="danger" />
             </div>
         </div>
     );

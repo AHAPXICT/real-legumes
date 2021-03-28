@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryAdminPage from "./CategoryAdminPage/CategoryAdminPage";
-import { CATEGORY_URL } from "../../urls";
+import { CATEGORY_URL, CATEGORIES_URL } from "../../urls";
 import * as categoryActions from "../../Store/Categories/actions";
 import { connect } from "react-redux";
 
@@ -10,7 +10,7 @@ class CategoryAdminPageContainer extends React.Component {
     }
 
     fetchCategories = () => {
-        fetch(CATEGORY_URL)
+        fetch(CATEGORIES_URL)
             .then((response) => {
                 return response.json();
             })
@@ -25,12 +25,22 @@ class CategoryAdminPageContainer extends React.Component {
             name: name,
         };
 
-        fetch(CATEGORY_URL, {
+        fetch(CATEGORIES_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(newCategory),
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchCategories();
+            }
+        });
+    };
+
+    deleteCategory = (name) => {
+        fetch(`${CATEGORY_URL}/${name}`, {
+            method: "DELETE",
         }).then((response) => {
             if (response.ok) {
                 this.fetchCategories();
@@ -45,6 +55,7 @@ class CategoryAdminPageContainer extends React.Component {
                 updateInputValue={this.props.updateInputValue}
                 inputState={this.props.inputState}
                 addCategory={this.addCategory}
+                deleteCategory={this.deleteCategory}
             />
         );
     }
