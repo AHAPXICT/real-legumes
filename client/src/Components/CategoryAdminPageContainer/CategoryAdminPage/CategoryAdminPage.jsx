@@ -11,6 +11,7 @@ const CategoryAdminPage = ({
     inputState,
     addCategory,
     deleteCategory,
+    updateCategory,
 }) => {
     return (
         <>
@@ -38,6 +39,9 @@ const CategoryAdminPage = ({
                             updated_at={category.updated_at}
                             created_at={category.created_at}
                             deleteCategory={deleteCategory}
+                            updateCategory={updateCategory}
+                            updateInputValue={updateInputValue}
+                            inputState={inputState}
                         />
                     ))}
                 </div>

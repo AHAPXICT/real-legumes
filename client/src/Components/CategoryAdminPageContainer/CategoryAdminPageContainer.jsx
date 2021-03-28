@@ -20,7 +20,7 @@ class CategoryAdminPageContainer extends React.Component {
             });
     };
 
-    addCategory = (name) => {
+    addCategory = (name, ...props) => {
         const newCategory = {
             name: name,
         };
@@ -48,6 +48,24 @@ class CategoryAdminPageContainer extends React.Component {
         });
     };
 
+    updateCategory = (new_name, old_name) => {
+        const newCategory = {
+            name: new_name,
+        };
+
+        fetch(`${CATEGORY_URL}/${old_name}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newCategory),
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchCategories();
+            }
+        });
+    };
+
     render() {
         return (
             <CategoryAdminPage
@@ -56,6 +74,7 @@ class CategoryAdminPageContainer extends React.Component {
                 inputState={this.props.inputState}
                 addCategory={this.addCategory}
                 deleteCategory={this.deleteCategory}
+                updateCategory={this.updateCategory}
             />
         );
     }

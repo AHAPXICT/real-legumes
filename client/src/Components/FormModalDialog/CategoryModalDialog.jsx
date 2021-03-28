@@ -18,12 +18,14 @@ const CategoryModalDialog = ({
     updateInputValue,
     inputState,
     buttonOk,
+    initInputState,
 }) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
+        updateInputValue(initInputState);
         setOpen(true);
     };
 
@@ -37,7 +39,7 @@ const CategoryModalDialog = ({
     };
 
     const onButtonOk = () => {
-        buttonOk(inputState);
+        buttonOk(inputState, initInputState);
         updateInputValue("");
         setOpen(false);
     };

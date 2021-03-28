@@ -1,9 +1,18 @@
 import React from "react";
 import Button from "../../../Button/Button";
+import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
 
 import s from "./style.module.css";
 
-const CategoryItem = ({ name, updated_at, created_at, deleteCategory }) => {
+const CategoryItem = ({
+    name,
+    updated_at,
+    created_at,
+    deleteCategory,
+    updateCategory,
+    updateInputValue,
+    inputState,
+}) => {
     const onDelete = () => {
         deleteCategory(name);
     };
@@ -14,7 +23,18 @@ const CategoryItem = ({ name, updated_at, created_at, deleteCategory }) => {
             <p className={s.categoryItem__time_p}>Створено: {created_at}</p>
             <p className={s.categoryItem__time_p}>Оновлено: {updated_at}</p>
             <div>
-                <Button text="Редагувати" mode="warning" />
+                <CategoryModalDialog
+                    titleText={"Оновити категорію"}
+                    helpText={"Введіть назвку категорії."}
+                    fullWidth={100}
+                    btnText={"Оновити"}
+                    fieldText={"Категорія"}
+                    mainBtnText={"Оновити"}
+                    updateInputValue={updateInputValue}
+                    inputState={inputState}
+                    buttonOk={updateCategory}
+                    initInputState={name}
+                />
                 <Button onClick={onDelete} text="Видалити" mode="danger" />
             </div>
         </div>
