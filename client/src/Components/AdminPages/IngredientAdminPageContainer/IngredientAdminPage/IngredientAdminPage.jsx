@@ -9,6 +9,7 @@ const IngredientAdminPage = ({
     updateInputValue,
     inputState,
     addIngredient,
+    deleteIngredient,
 }) => {
     return (
         <>
@@ -34,6 +35,7 @@ const IngredientAdminPage = ({
                             name={ingredient.name}
                             updated_at={ingredient.updated_at}
                             created_at={ingredient.created_at}
+                            deleteIngredient={deleteIngredient}
                         />
                     ))}
                 </div>

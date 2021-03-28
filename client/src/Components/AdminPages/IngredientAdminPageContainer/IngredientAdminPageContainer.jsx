@@ -45,6 +45,16 @@ class IngredientAdminPageContainer extends React.Component {
         });
     };
 
+    deleteIngredient = (name) => {
+        fetch(`${INGREDIENT_URL}/${name}`, {
+            method: "DELETE",
+        }).then((response) => {
+            if (response.ok) {
+                this.fetchIngredients();
+            }
+        });
+    };
+
     render() {
         return (
             <IngredientAdminPage
@@ -52,6 +62,7 @@ class IngredientAdminPageContainer extends React.Component {
                 inputState={this.props.inputState}
                 updateInputValue={this.props.updateInputValue}
                 addIngredient={this.addIngredient}
+                deleteIngredient={this.deleteIngredient}
             />
         );
     }

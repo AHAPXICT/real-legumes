@@ -4,7 +4,11 @@ import AlertModalDialog from "../../../../AlertModalDialog/AlertModalDialog";
 
 import s from "./style.module.css";
 
-const IngredientItem = ({ name, updated_at, created_at }) => {
+const IngredientItem = ({ name, updated_at, created_at, deleteIngredient }) => {
+    const onDelete = () => {
+        deleteIngredient(name);
+    };
+
     return (
         <div className={s.ingredientItem}>
             <h1 className={s.ingredientItem__name}>{name}</h1>
@@ -24,17 +28,16 @@ const IngredientItem = ({ name, updated_at, created_at }) => {
                         buttonOk={updateCategory}
                         initInputState={name}
                     />
-                </div>
+                </div> */}
                 <div className={s.ingredientItem__btn_position}>
                     <AlertModalDialog
                         mainButtonText="Видалити"
-                        titleText="Видалити категорію?"
-                        helpText="Ви дійсно хочете видалити категорію і всі продукти, які зв'язані з нею?"
+                        titleText="Видалити інгредієнт?"
                         cancelButtonText="Закрити"
                         submitButtonText="Видалити"
                         submitButtonAction={onDelete}
                     />
-                </div> */}
+                </div>
             </div>
         </div>
     );
