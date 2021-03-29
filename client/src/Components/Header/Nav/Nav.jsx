@@ -2,11 +2,11 @@ import React from "react";
 import NavItem from "./NavItem/NavItem";
 import PropTypes from "prop-types";
 
-import "./style.css";
+import s from "./style.module.css";
 
 const Nav = ({ is_authenticated }) => {
     return (
-        <nav className="nav">
+        <nav className={s.nav}>
             <NavItem path="/" text="Головна" />
 
             <NavItem path="/menu" text="Меню" />
