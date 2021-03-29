@@ -18,12 +18,12 @@
 }
 
 .team__descr {
-    font-family: 'Amatic SC', cursive;
+    font-family: "Amatic SC", cursive;
     font-size: 25px;
 }
 
 .team__name {
     padding-top: 10px;
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
     font-size: 30px;
 }
