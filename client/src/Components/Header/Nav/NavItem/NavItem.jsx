@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { NavLink } from "react-router-dom";
 
-import "./style.css";
+import s from "./style.module.css";
 
 const NavItem = ({ path, text, className, ...props }) => {
-    const classNames = classnames("nav__link", className);
+    const classNames = classnames(s.nav__link, className);
 
     return (
         <NavLink
             exact
             to={path}
             className={classNames}
-            activeClassName="nav__active"
+            activeClassName={s.nav__active}
             {...props}
         >
             {text}
