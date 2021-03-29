@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./style.css";
+import s from "./style.module.css";
 
 class PageNotFound extends React.Component {
     componentDidMount() {
@@ -9,8 +9,8 @@ class PageNotFound extends React.Component {
 
     render() {
         return (
-            <div className="white_background">
-                <div class="main">
+            <div className={s.white_background}>
+                <div className={s.main}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -20,7 +20,7 @@ class PageNotFound extends React.Component {
                     >
                         <defs>
                             <path
-                                class="fundo"
+                                className={s.fundo}
                                 id="prefix__a"
                                 d="M5.063 128.67c-2.513 15.192 5.633 31.093 17.898 38.941 5.99 3.832 13.34 6.528 16.471 13.254 4.868 10.452-3.879 22.437-13.113 28.515-9.236 6.078-20.5 10.9-24.704 21.683-2.771 7.108-1.685 15.387 1.058 22.507 10.06 26.112 39.393 37.547 65.479 36.15 26.086-1.396 50.827-12.407 76.416-18.075 87.873-19.465 180.005 24.717 267.728 4.47 13.65-3.151 27.4-8.081 37.943-17.99 11.883-11.167 18.632-28.016 19.65-45.023.97-16.225-4.34-34.495-17.744-41.806-7.834-4.273-17.196-4.1-25.7-1.774-5.43 1.483-10.767 3.808-16.369 3.848-5.601.038-11.763-3-13.386-8.808-1.707-6.107 2.182-12.41 6.642-16.577 9.072-8.474 21.203-12.707 29.441-22.126 7.927-9.063 11.264-22.574 8.574-34.716-2.692-12.141-11.326-22.538-22.188-26.715-27.683-10.645-57.844 18.377-86.152 9.873-2.101-.63-4.312-1.605-5.418-3.641-1.08-1.988-.834-4.51-.214-6.716 3.468-12.348 16.939-20.21 17.528-33.102.32-7.008-3.504-13.564-8.325-18.251-33.126-32.2-81.125 6.102-114.9 18.194-55.542 19.884-112.157 36.49-167.849 55.963-20.81 7.275-44.91 18.606-48.766 41.922z"
                             />
@@ -42,8 +42,8 @@ class PageNotFound extends React.Component {
                                     d="M-14.199 211.2H481.36V301.2H-14.199z"
                                     mask="url(#prefix__b)"
                                 />
-                                <g class="paes">
-                                    <g class="pao-baixo">
+                                <g className={s.paes}>
+                                    <g className={s.pao_baixo}>
                                         <path
                                             fill="#FBB965"
                                             d="M2.79 131.737s-2.073 3.155-2.479 6.868c-.406 3.713-.747 9.666 1.24 13.372 1.985 3.707 12.69 20.8 65.175 21.02 53.15.225 69.188-15.685 70.59-18.977 2.605-6.118 1.838-21.327.06-22.283-1.777-.956-44.044-3.204-72.446-4.057-28.402-.854-49.872-1.968-62.14 4.057"
@@ -60,7 +60,7 @@ class PageNotFound extends React.Component {
                                             transform="translate(161 68)"
                                         />
                                     </g>
-                                    <g class="pao-cima">
+                                    <g className={s.pao_cima}>
                                         <path
                                             fill="#FBB868"
                                             d="M71.37 0C49.008.035-2.43.631 1.18 51.16c0 0-.018 10.84 62.825 10.84 62.844 0 72.591-9.633 73.721-11.173C142.284 44.623 147.583-.117 71.37 0"
@@ -90,7 +90,7 @@ class PageNotFound extends React.Component {
                                     stroke="#979797"
                                     stroke-linecap="round"
                                     stroke-width="1.8"
-                                    class="left-sparks"
+                                    className={s.left_sparks}
                                 >
                                     <path
                                         d="M23.684 5.789L30 1.158"
@@ -110,7 +110,7 @@ class PageNotFound extends React.Component {
                                     stroke="#979797"
                                     stroke-linecap="round"
                                     stroke-width="1.8"
-                                    class="right-sparks"
+                                    className={s.right_sparks}
                                 >
                                     <path
                                         d="M23.684 5.789L30 1.158"
@@ -127,7 +127,7 @@ class PageNotFound extends React.Component {
                                 </g>
                                 <path
                                     fill="#4B4B62"
-                                    class="path"
+                                    className={s.path}
                                     fill-rule="nonzero"
                                     stroke="#4B4B62"
                                     stroke-width="2"
