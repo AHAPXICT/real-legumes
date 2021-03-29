@@ -124,6 +124,7 @@ class Image(BaseModel, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String(255), unique=True, nullable=False)
+    is_title = db.Column(db.Boolean, default=False, nullable=False)
 
     @validates('image_url')
     def validate_image_url(self, key, value):
