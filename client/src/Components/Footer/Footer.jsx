@@ -8,89 +8,97 @@ import street_logo from "../../static/images/logo/street-view.png";
 import phone_logo from "../../static/images/logo/phone.png";
 import mail_logo from "../../static/images/logo/mail.png";
 
-import "./style.css";
+import s from "./style.module.css";
 
 const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="footer__black">
+        <footer className={s.footer}>
+            <div className={s.footer__black}>
                 <div className="container">
-                    <div className="footer__inner">
-                        <div className="footer__section">
-                            <h3 className="footer__title">Про нас</h3>
-                            <p className="footer__info">
+                    <div className={s.footer__inner}>
+                        <div className={s.footer__section}>
+                            <h3 className={s.footer__title}>Про нас</h3>
+                            <p className={s.footer__info}>
                                 Lorem ipsum dolor sit amet consectetur,
                                 adipisicing elit. Cumque, modi!
                             </p>
-                            <div className="footer__social">
+                            <div className={s.footer__social}>
                                 <img
                                     src={facebook_24_logo}
-                                    className="footer__logo large_logo"
+                                    className={`${s.footer__logo} ${s.large_logo}`}
                                     alt=""
                                 />
                                 <img
                                     src={instagram_24_logo}
-                                    className="footer__logo large_logo"
+                                    className={`${s.footer__logo} ${s.large_logo}`}
                                     alt=""
                                 />
                                 <img
                                     src={twitter_24_logo}
-                                    className="footer__logo large_logo"
+                                    className={`${s.footer__logo} ${s.large_logo}`}
                                     alt=""
                                 />
                                 <img
                                     src={pinterest_24_logo}
-                                    className="footer__logo large_logo"
+                                    className={`${s.footer__logo} ${s.large_logo}`}
                                     alt=""
                                 />
                             </div>
                         </div>
-                        <div className="footer__section">
-                            <h3 className="footer__title">Зв'яжіться з нами</h3>
-                            <div className="footer__contact_block">
+                        <div className={s.footer__section}>
+                            <h3 className={s.footer__title}>
+                                Зв'яжіться з нами
+                            </h3>
+                            <div className={s.footer__contact_block}>
                                 <img
                                     src={street_logo}
-                                    className="footer__logo"
+                                    className={s.footer__logo}
                                     alt=""
                                 />
-                                <p className="footer__info">
+                                <p className={s.footer__info}>
                                     6 E Esplanade, St Albans VIC 3021, Australia
                                 </p>
                             </div>
-                            <div className="footer__contact_block">
+                            <div className={s.footer__contact_block}>
                                 <img
                                     src={phone_logo}
-                                    className="footer__logo"
+                                    className={s.footer__logo}
                                     alt=""
                                 />
-                                <p className="footer__info">+91 80005 89080</p>
+                                <p className={s.footer__info}>
+                                    +91 80005 89080
+                                </p>
                             </div>
-                            <div className="footer__contact_block">
+                            <div className={s.footer__contact_block}>
                                 <img
                                     src={mail_logo}
-                                    className="footer__logo"
+                                    className={s.footer__logo}
                                     alt=""
                                 />
-                                <p className="footer__info">
+                                <p className={s.footer__info}>
                                     support@domain.com
                                 </p>
                             </div>
                         </div>
-                        <div className="footer__section">
-                            <h3 className="footer__title">Години роботи</h3>
-                            <div className="footer__open_hours_block">
-                                <p className="footer__info">
+                        <div className={s.footer__section}>
+                            <h3 className={s.footer__title}>Години роботи</h3>
+                            <div className={s.footer__open_hours_block}>
+                                <p className={s.footer__info}>
                                     Monday - Thursday
                                 </p>
-                                <p className="footer__info footer__time">
+                                <p
+                                    className={`${s.footer__info} ${s.footer__time}`}
+                                >
                                     11:00 AM - 9:00 PM
                                 </p>
                             </div>
-                            <div className="footer__open_hours_block">
-                                <p className="footer__info">
+                            <div className={s.footer__open_hours_block}>
+                                <p className={s.footer__info}>
                                     Friday - Saturday
                                 </p>
-                                <p className="footer__info footer__time">
+                                <p
+                                    className={`${s.footer__info} ${s.footer__time}`}
+                                >
                                     11:00 AM - 5:00 PM
                                 </p>
                             </div>
