@@ -14,12 +14,12 @@
 .sticky {
     position: fixed;
     top: 0;
-    width: 100%
+    width: 100%;
 }
 
 .header__logo {
     color: #fff;
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
 
     font-size: 50px;
 
