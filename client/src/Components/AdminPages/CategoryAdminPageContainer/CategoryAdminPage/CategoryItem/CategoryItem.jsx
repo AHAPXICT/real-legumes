@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryModalDialog from "../../../../FormModalDialog/CategoryModalDialog";
+import OneFieldModalDialog from "../../../../FormModalDialog/OneFieldModalDialog";
 import AlertModalDialog from "../../../../AlertModalDialog/AlertModalDialog";
 
 import s from "./style.module.css";
@@ -24,7 +24,7 @@ const CategoryItem = ({
             <p className={s.categoryItem__time_p}>Оновлено: {updated_at}</p>
             <div className={s.categoryItem__btns}>
                 <div className={s.categoryItem__btn_position}>
-                    <CategoryModalDialog
+                    <OneFieldModalDialog
                         titleText={"Оновити категорію"}
                         helpText={"Введіть назвку категорії."}
                         fullWidth={100}

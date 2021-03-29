@@ -8,7 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useStyles from "./style";
 
-const CategoryModalDialog = ({
+const OneFieldModalDialog = ({
     titleText,
     helpText,
     fullWidth,
@@ -99,4 +99,4 @@ const CategoryModalDialog = ({
     );
 };
 
-export default CategoryModalDialog;
+export default OneFieldModalDialog;

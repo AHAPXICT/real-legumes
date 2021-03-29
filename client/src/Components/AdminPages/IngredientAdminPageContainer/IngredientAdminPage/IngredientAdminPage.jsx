@@ -1,6 +1,6 @@
 import React from "react";
 import IngredientItem from "./IngredientItem/IngredientItem";
-import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
+import OneFieldModalDialog from "../../../FormModalDialog/OneFieldModalDialog";
 
 import s from "./style.module.css";
 
@@ -17,7 +17,7 @@ const IngredientAdminPage = ({
             <div className={`container ${s.max_height}`}>
                 <div className={s.ingredient__list}>
                     <div className={s.ingredient__add_btn}>
-                        <CategoryModalDialog
+                        <OneFieldModalDialog
                             titleText={"Додати інгредієнт"}
                             helpText={"Введіть назвку інгредієнту."}
                             fullWidth={100}

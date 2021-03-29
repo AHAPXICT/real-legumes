@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
-import CategoryModalDialog from "../../../FormModalDialog/CategoryModalDialog";
+import OneFieldModalDialog from "../../../FormModalDialog/OneFieldModalDialog";
 
 import s from "./style.module.css";
 
@@ -17,7 +17,7 @@ const CategoryAdminPage = ({
             <div className={`container ${s.max_height}`}>
                 <div className={s.category__list}>
                     <div className={s.category__add_btn}>
-                        <CategoryModalDialog
+                        <OneFieldModalDialog
                             titleText={"Додати категорію"}
                             helpText={"Введіть назвку категорії."}
                             fullWidth={100}
