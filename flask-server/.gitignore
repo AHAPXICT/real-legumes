@@ -3,3 +3,4 @@ venv/
 migrations/
 ../.idea/
 __pycache__/
+.pytest_cache
