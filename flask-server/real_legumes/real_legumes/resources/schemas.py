@@ -9,8 +9,7 @@ class ProductBaseSchema:
     count = fields.Integer(required=True)
     weight = fields.Integer(required=True)
     category = fields.String(required=True)
-    # images = fields.List(fields., required=True)
-    image = fields.Raw()
+    images = fields.List(fields.String(), required=True)
     ingredients = fields.List(fields.String(), required=True)
     is_special = fields.Boolean(default=False)
 

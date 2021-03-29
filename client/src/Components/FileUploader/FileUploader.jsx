@@ -9,27 +9,12 @@ const FileUploader = () => {
     const [file64, setFile64] = useState();
 
     const handleFiles = (files) => {
-        // console.log(files.base64);
         var new_file = files.base64;
         setFile64(new_file);
-        console.log(file64);
-    };
-
-    const getBase64 = (file) => {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {
-            var result = reader.result;
-
-            return "la la";
-        };
+        console.log(new_file.length);
     };
 
     const upload = () => {
-        // var newObject = getBase64(fileObject);
-
-        // console.log(newObject);
-
         const p = {
             name: "test name",
             price: 1,
@@ -38,12 +23,12 @@ const FileUploader = () => {
             count: 3,
             weight: 4,
             category: "category",
-            image: file64,
+            images: [file64],
             ingredients: ["i1", "i2"],
             is_special: false,
         };
 
-        // console.log("JSON:", JSON.stringify(p));
+        console.log("JSON:", JSON.stringify(p));
 
         // debugger;
 
@@ -93,6 +78,7 @@ const FileUploader = () => {
                     <button>Upload</button>
                 </ReactFileReader>
                 <button onClick={handleSubmission}>Submit</button>
+                <img src={file64} alt="" />
             </div>
         </div>
     );

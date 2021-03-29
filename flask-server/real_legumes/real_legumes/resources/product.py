@@ -1,3 +1,5 @@
+import os
+
 from flask_restful import Resource, request
 from flask_apispec.views import MethodResource
 from flask import abort
@@ -70,11 +72,26 @@ class ProductList(MethodResource, Resource):
             # if not category:
             #     return {'message': "Category not found."}, 404
 
-            my_str = kwargs['image']
-            my_str = my_str.replace('data:image/jpeg;base64', '')
-            print(my_str[0:20])
-            with open("imageToSave.jpg", "wb") as fh:
-                fh.write(base64.decodebytes(str.encode(my_str)))
+            save_path = '/static/product_images/'
+            file_name = 'test.txt'
+            my_str = kwargs['images'][0]
+            absolute_path = os.path.abspath("static/product_images")
+            print(p)
+            try:
+                f = open(absolute_path + r'\test.txt', 'w+')
+                f.write(my_str)
+                f.close()
+            except Exception:
+                return {'message': "Backend exception."}, 500
+            # print(os.path.join(save_path, file_name))
+
+            # print(my_str[0:20])
+            # with open("imageToSave.jpg", "wb") as fh:
+            #     fh.write(base64.decodebytes(str.encode(my_str)))
+
+            # img = Image(is_title=False, image_data_base64=str.encode(my_str))
+            # db.session.commit()
+            # img.save_to_db()
 
             # images = []
             # for image_url in kwargs['images']:
