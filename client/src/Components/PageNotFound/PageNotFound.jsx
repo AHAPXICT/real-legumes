@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import s from "./style.module.css";
 
 const PageNotFound = () => {
-    const useEffect = () => {
+    useEffect(() => {
         window.scrollTo(0, 0);
-    };
+    });
 
     return (
         <div className={s.white_background}>
