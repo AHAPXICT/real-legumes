@@ -49,7 +49,7 @@ class Product(BaseModel, db.Model):
     is_special = db.Column(db.Boolean, default=False, nullable=False)
 
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
-    images = db.relationship('Image', secondary='product_images', backref='products')
+    images = db.relationship('Image', backref='image', cascade="all, delete", lazy=True)
 
     @validates('name')
     def validate_name(self, key, value):
@@ -125,6 +125,7 @@ class Image(BaseModel, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String(255), unique=True, nullable=False)
     is_title = db.Column(db.Boolean, default=False, nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
 
     @validates('image_url')
     def validate_image_url(self, key, value):
@@ -137,9 +138,3 @@ class Image(BaseModel, db.Model):
 
     def __str__(self):
         return self.image_url
-
-
-product_images = db.Table('product_images',
-                          db.Column('product_id', db.Integer, db.ForeignKey('products.id')),
-                          db.Column('image_id', db.Integer, db.ForeignKey('images.id'))
-                          )
