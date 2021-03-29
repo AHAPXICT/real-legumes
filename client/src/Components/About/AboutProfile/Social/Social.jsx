@@ -1,12 +1,12 @@
 import React from "react";
 
-import "./style.css";
+import s from "./style.module.css";
 
 const Social = ({ images }) => {
     return (
-        <div className="team__social_block">
+        <div className={s.team__social_block}>
             {images.map((image) => (
-                <img className="team__logo" src={image} alt="" />
+                <img className={s.team__logo} src={image} alt="" />
             ))}
         </div>
     );
