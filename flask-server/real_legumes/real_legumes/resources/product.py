@@ -67,58 +67,55 @@ class ProductList(MethodResource, Resource):
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))
     def post(self, **kwargs):
+        ingredients = []
+        for ingredient in kwargs['ingredients']:
+            ingredient = Ingredient.query.filter_by(name=ingredient).first()
+            if not ingredient:
+                return {'message': "Ingredient not found."}, 404
+            ingredients.append(ingredient)
+
+        category = Category.query.filter_by(name=kwargs['category']).first()
+        if not category:
+            return {'message': "Category not found."}, 404
+
         try:
-            # category = Category.query.filter_by(name=kwargs['category']).first()
-            # if not category:
-            #     return {'message': "Category not found."}, 404
+            product = p(name=kwargs['name'],
+                        price=kwargs['price'],
+                        calories=kwargs['calories'],
+                        description=kwargs['description'],
+                        count=kwargs['count'],
+                        weight=kwargs['weight'],
+                        category=category,
+                        ingredients=ingredients,
+                        is_special=kwargs['is_special']
+                        )
+            product.save_to_db()
 
-            my_str = kwargs['images'][0]
             absolute_path = os.path.abspath("static/product_images")
-            print(p)
+            images = []
             try:
-                f = open(absolute_path + r'\test.txt', 'w+')
-                f.write(my_str)
-                f.close()
+                i = 0
+                print(kwargs['images'])
+                for img in kwargs['images']:
+                    path = absolute_path + rf'\{kwargs["name"]}_{i}_img_jpg.txt'
+                    f = open(path, 'w+')
+                    f.write(img['img_data'])
+                    f.close()
+                    try:
+                        image = Image(
+                            is_title=img['is_title'],
+                            image_url=path,
+                            product_id=product.id
+                        )
+                        image.save_to_db()
+                    except Exception:
+                        return {'message': "img db exception."}, 500
+                    images.append(image)
+                    i += 1
             except Exception:
-                return {'message': "Backend exception."}, 500
-            # print(os.path.join(save_path, file_name))
+                return {'message': "img exception."}, 500
 
-            # print(my_str[0:20])
-            # with open("imageToSave.jpg", "wb") as fh:
-            #     fh.write(base64.decodebytes(str.encode(my_str)))
 
-            # img = Image(is_title=False, image_data_base64=str.encode(my_str))
-            # db.session.commit()
-            # img.save_to_db()
-
-            # images = []
-            # for image_url in kwargs['images']:
-            #     image = Image.query.filter_by(image_url=image_url).first()
-            #     if not image:
-            #         return {'message': "Image not found."}, 404
-            #     images.append(image)
-            #
-            # print('test')
-            #
-            # ingredients = []
-            # for ingredient in kwargs['ingredients']:
-            #     ingredient = Ingredient.query.filter_by(name=ingredient).first()
-            #     if not ingredient:
-            #         return {'message': "Ingredient not found."}, 404
-            #     ingredients.append(ingredient)
-            #
-            # product = p(name=kwargs['name'],
-            #             price=kwargs['price'],
-            #             calories=kwargs['calories'],
-            #             description=kwargs['description'],
-            #             count=kwargs['count'],
-            #             weight=kwargs['weight'],
-            #             category=category,
-            #             images=images,
-            #             ingredients=ingredients,
-            #             is_special=kwargs['is_special']
-            #             )
-            # product.save_to_db()
         except AssertionError:
             return {'message': "Product name already exist."}, 500
         except Exception:
