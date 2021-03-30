@@ -2,7 +2,12 @@ from marshmallow import Schema, fields
 
 
 class ImageRequestSchema(Schema):
-    img_data = fields.String(required=True, allow_none=False)
+    img_data = fields.Raw(required=True, allow_none=False)
+    is_title = fields.Boolean(required=True)
+
+
+class ImageResponseSchema(Schema):
+    image_data = fields.String(required=True, allow_none=False)
     is_title = fields.Boolean(required=True)
 
 
@@ -22,6 +27,7 @@ class ProductBaseSchema:
 class ProductResponseSchema(Schema, ProductBaseSchema):
     created_at = fields.String()
     updated_at = fields.String()
+    images = fields.List(fields.Nested(ImageResponseSchema))
 
 
 class ProductListSchema(Schema):
@@ -52,9 +58,3 @@ class IngredientResponseSchema(Schema):
 
 class IngredientRequestSchema(Schema):
     name = fields.String(required=True, allow_none=False)
-
-
-class ImageResponseSchema(Schema):
-    image_url = fields.String()
-    created_at = fields.String()
-    updated_at = fields.String()

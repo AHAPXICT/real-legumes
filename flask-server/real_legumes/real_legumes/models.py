@@ -123,18 +123,22 @@ class Image(BaseModel, db.Model):
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
-    image_data = db.Column(db.LargeBinary(length=(2**32)-1))
+    _image_data = db.Column(db.LargeBinary(length=(2**32)-1), name='image_data')
     is_title = db.Column(db.Boolean, default=False, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
 
-    @validates('image_url')
-    def validate_image_url(self, key, value):
-        if Image.query.filter(Image.image_url == value).first():
-            raise AssertionError('Image url already exist.')
-        return value
+    @property
+    def image_data(self):
+        return self._image_data.decode("utf-8")
+
+    # @validates('image_url')
+    # def validate_image_url(self, key, value):
+    #     if Image.query.filter(Image.image_url == value).first():
+    #         raise AssertionError('Image url already exist.')
+    #     return value
 
     def __repr__(self):
-        return f"<Image {self.id}: {self.image_url}>"
+        return f"<Image {self.id}: {self.image_data}>"
 
-    def __str__(self):
-        return self.image_url
+    # def __str__(self):
+    #     return self.image_url
