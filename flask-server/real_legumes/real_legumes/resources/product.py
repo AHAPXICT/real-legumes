@@ -121,7 +121,6 @@ class ProductList(MethodResource, Resource):
 
             images = []
             try:
-                print(kwargs['images'])
                 for img in kwargs['images']:
                     try:
                         image = Image(

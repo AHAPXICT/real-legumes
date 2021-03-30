@@ -1,6 +1,7 @@
 import React from "react";
 import DropdownItem from "./DropdownItem/DropdownItem";
 import ProductItem from "./ProductItem/ProductItem";
+import ProductModalDialog from "../FormModalDialog/ProductModalDialog";
 
 import s from "./style.module.css";
 
@@ -15,6 +16,17 @@ const Menu = () => {
             >
                 <div className={s.menu__first_section}>
                     <h1 className={s.menu_title}>Наше меню</h1>
+                    <ProductModalDialog
+                        titleText="Додати новий продукт"
+                        helpText="Щоб додати, заповніть всі поля."
+                        fullWidth={100}
+                        nameHelpText="Назва продукту"
+                        descriptionHelpText="Опис продукту"
+                        is_specialHelpText="Чи особливий"
+                        priceHelpText="Ціна в грн"
+                        weightHelpText="Вага в грамах"
+                        countHelpText="Кількість на складі"
+                    />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />
                         <DropdownItem text="Ціни" />
