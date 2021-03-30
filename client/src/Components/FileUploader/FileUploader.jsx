@@ -11,7 +11,7 @@ const FileUploader = () => {
     const handleFiles = (files) => {
         var new_file = files.base64;
         setFile64(new_file);
-        console.log(new_file.length);
+        console.log(new_file);
     };
 
     const upload = () => {

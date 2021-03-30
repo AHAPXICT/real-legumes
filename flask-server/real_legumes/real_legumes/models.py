@@ -123,7 +123,7 @@ class Image(BaseModel, db.Model):
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
-    image_url = db.Column(db.String(255), unique=True, nullable=False)
+    image_data = db.Column(db.LargeBinary(length=(2**32)-1))
     is_title = db.Column(db.Boolean, default=False, nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
 

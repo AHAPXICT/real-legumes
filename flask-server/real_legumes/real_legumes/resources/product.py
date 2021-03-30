@@ -67,6 +67,34 @@ class ProductList(MethodResource, Resource):
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))
     def post(self, **kwargs):
+
+        # product = p(name='name',
+        #             price=2,
+        #             calories=2,
+        #             description='description',
+        #             count=2,
+        #             weight=1,
+        #             category_id=1,
+        #             is_special=True
+        #             )
+        # product.save_to_db()
+
+        # try:
+        #     img = kwargs['images'][0]
+        #
+        #
+        #     image = Image(
+        #         is_title=img['is_title'],
+        #         image_data=img['img_data'].encode('utf-8'),
+        #         product_id=1
+        #     )
+        #     image.save_to_db()
+        #     print(image.image_data[0:20])
+        #     return 'done', 200
+        # except Exception:
+        #
+        #     return 'done', 500
+
         ingredients = []
         for ingredient in kwargs['ingredients']:
             ingredient = Ingredient.query.filter_by(name=ingredient).first()
@@ -91,31 +119,22 @@ class ProductList(MethodResource, Resource):
                         )
             product.save_to_db()
 
-            absolute_path = os.path.abspath("static/product_images")
             images = []
             try:
-                i = 0
                 print(kwargs['images'])
                 for img in kwargs['images']:
-                    path = absolute_path + rf'\{kwargs["name"]}_{i}_img_jpg.txt'
-                    f = open(path, 'w+')
-                    f.write(img['img_data'])
-                    f.close()
                     try:
                         image = Image(
                             is_title=img['is_title'],
-                            image_url=path,
+                            image_data=img['img_data'].encode('utf-8'),
                             product_id=product.id
                         )
                         image.save_to_db()
                     except Exception:
                         return {'message': "img db exception."}, 500
                     images.append(image)
-                    i += 1
             except Exception:
                 return {'message': "img exception."}, 500
-
-
         except AssertionError:
             return {'message': "Product name already exist."}, 500
         except Exception:
