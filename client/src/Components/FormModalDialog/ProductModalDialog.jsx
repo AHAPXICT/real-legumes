@@ -25,6 +25,13 @@ const ProductModalDialog = ({
     updateInputDescriptionValue,
     inputPriceState,
     updateInputPriceValue,
+    inputCaloriesState,
+    updateInputCaloriesValue,
+    inputCountState,
+    updateInputCountValue,
+    inputWeigthState,
+    updateInputWeigthValue,
+    caliriesHelpText,
 }) => {
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = React.useState(false);
@@ -41,6 +48,18 @@ const ProductModalDialog = ({
         updateInputPriceValue(Number(event.target.value));
     };
 
+    const changeCaloriesInput = (event) => {
+        updateInputCaloriesValue(Number(event.target.value));
+    };
+
+    const changeCountInput = (event) => {
+        updateInputCountValue(Number(event.target.value));
+    };
+
+    const changeWeigthInput = (event) => {
+        updateInputWeigthValue(Number(event.target.value));
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -48,7 +67,10 @@ const ProductModalDialog = ({
     const handleClose = () => {
         updateInputNameValue("");
         updateInputDescriptionValue("");
-        updateInputPriceValue("");
+        updateInputPriceValue(0);
+        updateInputCaloriesValue(0);
+        updateInputCountValue(0);
+        updateInputWeigthValue(0);
         setOpen(false);
     };
 
@@ -93,10 +115,12 @@ const ProductModalDialog = ({
                     />
                     <TextField
                         margin="dense"
-                        id="name"
+                        id="count"
                         label={countHelpText}
                         type="number"
                         fullWidth
+                        value={inputCountState}
+                        onChange={changeCountInput}
                     />
                     <TextField
                         margin="dense"
@@ -109,10 +133,21 @@ const ProductModalDialog = ({
                     />
                     <TextField
                         margin="dense"
-                        id="name"
+                        id="weight"
                         label={weightHelpText}
                         type="number"
                         fullWidth
+                        value={inputWeigthState}
+                        onChange={changeWeigthInput}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="caliroes"
+                        label={caliriesHelpText}
+                        type="number"
+                        fullWidth
+                        value={inputCaloriesState}
+                        onChange={changeCaloriesInput}
                     />
                     <br />
                     <br />

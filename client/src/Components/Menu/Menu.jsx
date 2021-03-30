@@ -16,6 +16,12 @@ const Menu = ({
     inputDescriptionState,
     inputPriceState,
     updateInputPriceValue,
+    inputCaloriesState,
+    updateInputCaloriesValue,
+    inputCountState,
+    updateInputCountValue,
+    inputWeigthState,
+    updateInputWeigthValue,
 }) => {
     return (
         <div className="container">
@@ -34,6 +40,7 @@ const Menu = ({
                         priceHelpText="Ціна в грн"
                         weightHelpText="Вага в грамах"
                         countHelpText="Кількість на складі"
+                        caliriesHelpText="Кількість калорій"
                         inputNameState={inputNameState}
                         updateInputNameValue={updateInputNameValue}
                         updateInputDescriptionValue={
@@ -42,6 +49,12 @@ const Menu = ({
                         inputDescriptionState={inputDescriptionState}
                         inputPriceState={inputPriceState}
                         updateInputPriceValue={updateInputPriceValue}
+                        inputCaloriesState={inputCaloriesState}
+                        updateInputCaloriesValue={updateInputCaloriesValue}
+                        inputCountState={inputCountState}
+                        updateInputCountValue={updateInputCountValue}
+                        inputWeigthState={inputWeigthState}
+                        updateInputWeigthValue={updateInputWeigthValue}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />

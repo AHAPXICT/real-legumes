@@ -32,6 +32,12 @@ class MenuContainer extends React.Component {
                 }
                 inputPriceState={this.props.inputPriceState}
                 updateInputPriceValue={this.props.updateInputPriceValue}
+                inputCaloriesState={this.props.inputCaloriesState}
+                updateInputCaloriesValue={this.props.updateInputCaloriesValue}
+                inputCountState={this.props.inputCountState}
+                updateInputCountValue={this.props.updateInputCountValue}
+                inputWeigthState={this.props.inputWeigthState}
+                updateInputWeigthValue={this.props.updateInputWeigthValue}
             />
         );
     }
@@ -43,6 +49,9 @@ const mapState = (state) => {
         inputNameState: state.product.input_name_field,
         inputDescriptionState: state.product.input_description_field,
         inputPriceState: state.product.input_price_field,
+        inputCaloriesState: state.product.input_calories_field,
+        inputCountState: state.product.input_count_field,
+        inputWeigthState: state.product.input_weight_field,
     };
 };
 
@@ -51,6 +60,9 @@ const mapDispatch = {
     updateInputNameValue: productActions.updateInputNameValue,
     updateInputDescriptionValue: productActions.updateInputDescriptionValue,
     updateInputPriceValue: productActions.updateInputPriceValue,
+    updateInputCaloriesValue: productActions.updateInputCaloriesValue,
+    updateInputCountValue: productActions.updateInputCountValue,
+    updateInputWeigthValue: productActions.updateInputWeigthValue,
 };
 
 const connector = connect(mapState, mapDispatch);
