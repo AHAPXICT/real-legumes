@@ -1,5 +1,3 @@
-import os
-
 from flask_restful import Resource, request
 from flask_apispec.views import MethodResource
 from flask import abort

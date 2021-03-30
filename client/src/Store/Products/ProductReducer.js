@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, CHANGE_INPUT_NAME_VALUE } from './actions'
+import { SET_PRODUCTS, CHANGE_INPUT_NAME_VALUE, CHANGE_INPUT_DESCRIPTION_VALUE } from './actions'
 
 const initState = {
     products: [],
@@ -12,7 +12,7 @@ const initState = {
     product_images: [],
     product_ingredients: [],
     product_is_special: false,
-    input_weight_field: '',
+    input_weight_field: 0,
 }
 
 const productReducer = (state = initState, action) => {
@@ -26,6 +26,11 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state,
                 input_name_field: action.payload
+            }
+        case CHANGE_INPUT_DESCRIPTION_VALUE:
+            return {
+                ...state,
+                input_description_field: action.payload
             }
         default:
             return state;
