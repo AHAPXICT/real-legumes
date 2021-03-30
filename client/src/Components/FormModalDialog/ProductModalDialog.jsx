@@ -6,11 +6,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import CheckIcon from "@material-ui/icons/Check";
+import ToggleButton from "@material-ui/lab/ToggleButton";
 
 const ProductModalDialog = ({
     titleText,
@@ -26,12 +23,7 @@ const ProductModalDialog = ({
     updateInputNameValue,
 }) => {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("no");
-
-    const handleChange = (event) => {
-        updateInputNameValue(inputNameState);
-        setValue(event.target.value);
-    };
+    const [selected, setSelected] = React.useState(false);
 
     const changeNameInput = (event) => {
         updateInputNameValue(event.target.value);
@@ -79,6 +71,7 @@ const ProductModalDialog = ({
                         margin="dense"
                         id="name"
                         label={descriptionHelpText}
+                        value={inputNameState}
                         type="text"
                         fullWidth
                     />
@@ -105,28 +98,16 @@ const ProductModalDialog = ({
                     />
                     <br />
                     <br />
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                            {is_specialHelpText}
-                        </FormLabel>
-                        <RadioGroup
-                            aria-label="gender"
-                            name="gender1"
-                            value={value}
-                            onChange={handleChange}
-                        >
-                            <FormControlLabel
-                                value="no"
-                                control={<Radio />}
-                                label="Ні"
-                            />
-                            <FormControlLabel
-                                value="yes"
-                                control={<Radio />}
-                                label="Tак"
-                            />
-                        </RadioGroup>
-                    </FormControl>
+                    <p>{is_specialHelpText}: </p>
+                    <ToggleButton
+                        value="check"
+                        selected={selected}
+                        onChange={() => {
+                            setSelected(!selected);
+                        }}
+                    >
+                        <CheckIcon />
+                    </ToggleButton>
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
