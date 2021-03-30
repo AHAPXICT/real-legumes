@@ -21,6 +21,8 @@ const ProductModalDialog = ({
     weightHelpText,
     inputNameState,
     updateInputNameValue,
+    inputDescriptionState,
+    updateInputDescriptionValue,
 }) => {
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = React.useState(false);
@@ -29,12 +31,17 @@ const ProductModalDialog = ({
         updateInputNameValue(event.target.value);
     };
 
+    const changeDescriptionInput = (event) => {
+        updateInputDescriptionValue(event.target.value);
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         updateInputNameValue("");
+        updateInputDescriptionValue("");
         setOpen(false);
     };
 
@@ -65,15 +72,17 @@ const ProductModalDialog = ({
                         label={nameHelpText}
                         type="text"
                         fullWidth
+                        value={inputNameState}
                         onChange={changeNameInput}
                     />
                     <TextField
                         margin="dense"
-                        id="name"
+                        id="description"
                         label={descriptionHelpText}
-                        value={inputNameState}
+                        value={inputDescriptionState}
                         type="text"
                         fullWidth
+                        onChange={changeDescriptionInput}
                     />
                     <TextField
                         margin="dense"

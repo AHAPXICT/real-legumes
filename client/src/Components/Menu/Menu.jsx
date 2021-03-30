@@ -8,7 +8,13 @@ import s from "./style.module.css";
 const img_url =
     "https://images-gmi-pmc.edge-generalmills.com/df109202-f5dd-45a1-99b4-f10939afd509.jpg";
 
-const Menu = ({ products, inputNameState, updateInputNameValue }) => {
+const Menu = ({
+    products,
+    inputNameState,
+    updateInputNameValue,
+    updateInputDescriptionValue,
+    inputDescriptionState,
+}) => {
     return (
         <div className="container">
             <div
@@ -28,6 +34,10 @@ const Menu = ({ products, inputNameState, updateInputNameValue }) => {
                         countHelpText="Кількість на складі"
                         inputNameState={inputNameState}
                         updateInputNameValue={updateInputNameValue}
+                        updateInputDescriptionValue={
+                            updateInputDescriptionValue
+                        }
+                        inputDescriptionState={inputDescriptionState}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />
