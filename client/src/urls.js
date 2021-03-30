@@ -5,3 +5,5 @@ export const CATEGORY_URL = `${BASE_URL}/category`
 
 export const INGREDIENTS_URL = `${BASE_URL}/ingredients`
 export const INGREDIENT_URL = `${BASE_URL}/ingredient`
+
+export const PRODUCTS_URL = `${BASE_URL}/products`
