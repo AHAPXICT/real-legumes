@@ -1,4 +1,11 @@
-import { SET_PRODUCTS, CHANGE_INPUT_NAME_VALUE, CHANGE_INPUT_DESCRIPTION_VALUE, CHANGE_INPUT_PRICE_VALUE } from './actions'
+import { SET_PRODUCTS,
+    CHANGE_INPUT_NAME_VALUE, 
+    CHANGE_INPUT_DESCRIPTION_VALUE, 
+    CHANGE_INPUT_PRICE_VALUE, 
+    CHANGE_INPUT_CALORIES_VALUE,
+    CHANGE_INPUT_COUNT_VALUE,
+    CHANGE_INPUT_WEIGHT_VALUE
+} from './actions'
 
 const initState = {
     products: [],
@@ -36,6 +43,21 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state,
                 input_price_field: action.payload
+            }
+        case CHANGE_INPUT_CALORIES_VALUE:
+            return {
+                ...state,
+                input_calories_field: action.payload
+            }
+        case CHANGE_INPUT_COUNT_VALUE:
+            return {
+                ...state,
+                input_count_field: action.payload
+            }
+        case CHANGE_INPUT_WEIGHT_VALUE:
+            return {
+                ...state,
+                input_weight_field: action.payload
             }
         default:
             return state;
