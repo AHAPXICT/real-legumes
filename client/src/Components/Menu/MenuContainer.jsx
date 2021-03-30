@@ -30,6 +30,8 @@ class MenuContainer extends React.Component {
                 updateInputDescriptionValue={
                     this.props.updateInputDescriptionValue
                 }
+                inputPriceState={this.props.inputPriceState}
+                updateInputPriceValue={this.props.updateInputPriceValue}
             />
         );
     }
@@ -40,6 +42,7 @@ const mapState = (state) => {
         product_list: state.product.products,
         inputNameState: state.product.input_name_field,
         inputDescriptionState: state.product.input_description_field,
+        inputPriceState: state.product.input_price_field,
     };
 };
 
@@ -47,6 +50,7 @@ const mapDispatch = {
     setProducts: productActions.setProducts,
     updateInputNameValue: productActions.updateInputNameValue,
     updateInputDescriptionValue: productActions.updateInputDescriptionValue,
+    updateInputPriceValue: productActions.updateInputPriceValue,
 };
 
 const connector = connect(mapState, mapDispatch);

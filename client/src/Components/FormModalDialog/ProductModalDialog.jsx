@@ -23,6 +23,8 @@ const ProductModalDialog = ({
     updateInputNameValue,
     inputDescriptionState,
     updateInputDescriptionValue,
+    inputPriceState,
+    updateInputPriceValue,
 }) => {
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = React.useState(false);
@@ -35,6 +37,10 @@ const ProductModalDialog = ({
         updateInputDescriptionValue(event.target.value);
     };
 
+    const changePriceInput = (event) => {
+        updateInputPriceValue(Number(event.target.value));
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -42,6 +48,7 @@ const ProductModalDialog = ({
     const handleClose = () => {
         updateInputNameValue("");
         updateInputDescriptionValue("");
+        updateInputPriceValue("");
         setOpen(false);
     };
 
@@ -93,10 +100,12 @@ const ProductModalDialog = ({
                     />
                     <TextField
                         margin="dense"
-                        id="name"
+                        id="price"
                         label={priceHelpText}
                         type="number"
+                        value={inputPriceState}
                         fullWidth
+                        onChange={changePriceInput}
                     />
                     <TextField
                         margin="dense"

@@ -14,6 +14,8 @@ const Menu = ({
     updateInputNameValue,
     updateInputDescriptionValue,
     inputDescriptionState,
+    inputPriceState,
+    updateInputPriceValue,
 }) => {
     return (
         <div className="container">
@@ -38,6 +40,8 @@ const Menu = ({
                             updateInputDescriptionValue
                         }
                         inputDescriptionState={inputDescriptionState}
+                        inputPriceState={inputPriceState}
+                        updateInputPriceValue={updateInputPriceValue}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />
