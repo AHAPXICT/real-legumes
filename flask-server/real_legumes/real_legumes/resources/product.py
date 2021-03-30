@@ -72,8 +72,6 @@ class ProductList(MethodResource, Resource):
             # if not category:
             #     return {'message': "Category not found."}, 404
 
-            save_path = '/static/product_images/'
-            file_name = 'test.txt'
             my_str = kwargs['images'][0]
             absolute_path = os.path.abspath("static/product_images")
             print(p)
