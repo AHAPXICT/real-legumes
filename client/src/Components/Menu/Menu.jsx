@@ -8,7 +8,7 @@ import s from "./style.module.css";
 const img_url =
     "https://images-gmi-pmc.edge-generalmills.com/df109202-f5dd-45a1-99b4-f10939afd509.jpg";
 
-const Menu = ({ products }) => {
+const Menu = ({ products, inputNameState, updateInputNameValue }) => {
     return (
         <div className="container">
             <div
@@ -26,6 +26,8 @@ const Menu = ({ products }) => {
                         priceHelpText="Ціна в грн"
                         weightHelpText="Вага в грамах"
                         countHelpText="Кількість на складі"
+                        inputNameState={inputNameState}
+                        updateInputNameValue={updateInputNameValue}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />
@@ -36,15 +38,9 @@ const Menu = ({ products }) => {
                     {products.map((product) => (
                         <ProductItem
                             name={product.name}
-                            ingredients={[
-                                "ingredient 1",
-                                "ingredient 2",
-                                "ingredient 3",
-                                "ingredient 4",
-                                "ingredient 5",
-                            ]}
-                            weight={400}
-                            price={230}
+                            ingredients={product.ingredients}
+                            weight={product.weight}
+                            price={product.price}
                             img_url={product.images[0].image_data}
                             // img_url={img_url}
                         />

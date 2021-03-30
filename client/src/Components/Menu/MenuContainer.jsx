@@ -21,18 +21,26 @@ class MenuContainer extends React.Component {
     };
 
     render() {
-        return <Menu products={this.props.product_list} />;
+        return (
+            <Menu
+                products={this.props.product_list}
+                inputNameState={this.props.inputNameState}
+                updateInputNameValue={this.props.updateInputNameValue}
+            />
+        );
     }
 }
 
 const mapState = (state) => {
     return {
         product_list: state.product.products,
+        inputNameState: state.product.input_name_field,
     };
 };
 
 const mapDispatch = {
     setProducts: productActions.setProducts,
+    updateInputNameValue: productActions.updateInputNameValue,
 };
 
 const connector = connect(mapState, mapDispatch);

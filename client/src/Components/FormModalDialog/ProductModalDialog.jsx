@@ -22,12 +22,19 @@ const ProductModalDialog = ({
     is_specialHelpText,
     priceHelpText,
     weightHelpText,
+    inputNameState,
+    updateInputNameValue,
 }) => {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState("no");
 
     const handleChange = (event) => {
+        updateInputNameValue(inputNameState);
         setValue(event.target.value);
+    };
+
+    const changeNameInput = (event) => {
+        updateInputNameValue(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -35,6 +42,7 @@ const ProductModalDialog = ({
     };
 
     const handleClose = () => {
+        updateInputNameValue("");
         setOpen(false);
     };
 
@@ -65,9 +73,9 @@ const ProductModalDialog = ({
                         label={nameHelpText}
                         type="text"
                         fullWidth
+                        onChange={changeNameInput}
                     />
                     <TextField
-                        autoFocus
                         margin="dense"
                         id="name"
                         label={descriptionHelpText}
@@ -75,7 +83,6 @@ const ProductModalDialog = ({
                         fullWidth
                     />
                     <TextField
-                        autoFocus
                         margin="dense"
                         id="name"
                         label={countHelpText}
@@ -83,7 +90,6 @@ const ProductModalDialog = ({
                         fullWidth
                     />
                     <TextField
-                        autoFocus
                         margin="dense"
                         id="name"
                         label={priceHelpText}
@@ -91,7 +97,6 @@ const ProductModalDialog = ({
                         fullWidth
                     />
                     <TextField
-                        autoFocus
                         margin="dense"
                         id="name"
                         label={weightHelpText}
