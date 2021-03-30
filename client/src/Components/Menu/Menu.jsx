@@ -52,7 +52,7 @@ const Menu = ({
                             weight={product.weight}
                             price={product.price}
                             img_url={product.images[0].image_data}
-                            // img_url={img_url}
+                            img_url={img_url}
                         />
                     ))}
                 </div>

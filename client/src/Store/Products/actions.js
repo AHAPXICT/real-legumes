@@ -1,7 +1,7 @@
 export const SET_PRODUCTS = 'PRODUCT/SET_PRODUCTS'
 export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE'
 export const CHANGE_INPUT_DESCRIPTION_VALUE = 'PRODUCT/CHANGE_INPUT_DESCRIPTION_VALUE'
-// export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE'
+export const CHANGE_INPUT_PRICE_VALUE = 'PRODUCT/CHANGE_INPUT_PRICE_VALUE'
 // export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE'
 // export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE'
 
@@ -22,6 +22,13 @@ export const updateInputNameValue = (text) => {
 export const updateInputDescriptionValue = (text) => {
     return {
         type: CHANGE_INPUT_DESCRIPTION_VALUE,
+        payload: text
+    }
+}
+
+export const updateInputPriceValue = (text) => {
+    return {
+        type: CHANGE_INPUT_PRICE_VALUE,
         payload: text
     }
 }

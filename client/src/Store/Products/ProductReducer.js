@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, CHANGE_INPUT_NAME_VALUE, CHANGE_INPUT_DESCRIPTION_VALUE } from './actions'
+import { SET_PRODUCTS, CHANGE_INPUT_NAME_VALUE, CHANGE_INPUT_DESCRIPTION_VALUE, CHANGE_INPUT_PRICE_VALUE } from './actions'
 
 const initState = {
     products: [],
@@ -31,6 +31,11 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state,
                 input_description_field: action.payload
+            }
+        case CHANGE_INPUT_PRICE_VALUE:
+            return {
+                ...state,
+                input_price_field: action.payload
             }
         default:
             return state;
