@@ -8,6 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import CheckIcon from "@material-ui/icons/Check";
 import ToggleButton from "@material-ui/lab/ToggleButton";
+import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
 
 const ProductModalDialog = ({
     titleText,
@@ -36,7 +37,13 @@ const ProductModalDialog = ({
     updateIsSpecialValue,
 }) => {
     const [open, setOpen] = React.useState(false);
-    const [selected, setSelected] = React.useState(false);
+
+    const options = [
+        "Категорія 1",
+        "Категорія 2",
+        "Категорія 3",
+        "Категорія 4",
+    ];
 
     const changeNameInput = (event) => {
         updateInputNameValue(event.target.value);
@@ -168,6 +175,7 @@ const ProductModalDialog = ({
                     >
                         <CheckIcon />
                     </ToggleButton>
+                    <CategoryDropdownMenu />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
