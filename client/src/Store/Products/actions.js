@@ -5,6 +5,7 @@ export const CHANGE_INPUT_PRICE_VALUE = 'PRODUCT/CHANGE_INPUT_PRICE_VALUE'
 export const CHANGE_INPUT_CALORIES_VALUE = 'PRODUCT/CHANGE_INPUT_CALORIES_VALUE'
 export const CHANGE_INPUT_COUNT_VALUE = 'PRODUCT/CHANGE_INPUT_COUNT_VALUE'
 export const CHANGE_INPUT_WEIGHT_VALUE = 'PRODUCT/CHANGE_INPUT_WEIGHT_VALUE'
+export const CHANGE_IS_SPECIAL_VALUE = 'PRODUCT/CHANGE_IS_SPECIAL_VALUE'
 
 export const setProducts = (products) => {
     return {
@@ -52,5 +53,12 @@ export const updateInputPriceValue = (price) => {
     return {
         type: CHANGE_INPUT_PRICE_VALUE,
         payload: price
+    }
+}
+
+export const updateIsSpecialValue = (is_spesial) => {
+    return {
+        type: CHANGE_IS_SPECIAL_VALUE,
+        payload: is_spesial
     }
 }
