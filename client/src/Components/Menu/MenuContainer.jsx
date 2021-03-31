@@ -1,12 +1,14 @@
 import React from "react";
-import { PRODUCTS_URL } from "../../urls";
+import {PRODUCTS_URL, CATEGORIES_URL} from "../../urls";
 import Menu from "./Menu";
 import * as productActions from "../../Store/Products/actions";
-import { connect } from "react-redux";
+import * as categoryActions from "../../Store/Categories/actions";
+import {connect} from "react-redux";
 
 class MenuContainer extends React.Component {
     componentDidMount() {
         this.fetchProducts();
+        this.fetchCategories();
     }
 
     fetchProducts = () => {
@@ -17,6 +19,17 @@ class MenuContainer extends React.Component {
             .then((data) => {
                 const product_list = data.products.reverse();
                 this.props.setProducts(product_list);
+            });
+    };
+
+    fetchCategories = () => {
+        fetch(CATEGORIES_URL)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                const categories = data.reverse();
+                this.props.setCategories(categories);
             });
     };
 
@@ -40,6 +53,7 @@ class MenuContainer extends React.Component {
                 updateInputWeigthValue={this.props.updateInputWeigthValue}
                 isSpecialState={this.props.isSpecialState}
                 updateIsSpecialValue={this.props.updateIsSpecialValue}
+                setCategories={this.props.setCategories}
             />
         );
     }
@@ -48,6 +62,7 @@ class MenuContainer extends React.Component {
 const mapState = (state) => {
     return {
         product_list: state.product.products,
+        category_list: state.category.categories,
         inputNameState: state.product.input_name_field,
         inputDescriptionState: state.product.input_description_field,
         inputPriceState: state.product.input_price_field,
@@ -67,6 +82,7 @@ const mapDispatch = {
     updateInputCountValue: productActions.updateInputCountValue,
     updateInputWeigthValue: productActions.updateInputWeigthValue,
     updateIsSpecialValue: productActions.updateIsSpecialValue,
+    setCategories: categoryActions.setCategories,
 };
 
 const connector = connect(mapState, mapDispatch);

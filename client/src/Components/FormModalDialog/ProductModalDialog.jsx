@@ -35,6 +35,7 @@ const ProductModalDialog = ({
     caliriesHelpText,
     isSpecialState,
     updateIsSpecialValue,
+    categories
 }) => {
     const [open, setOpen] = React.useState(false);
 
@@ -175,7 +176,7 @@ const ProductModalDialog = ({
                     >
                         <CheckIcon />
                     </ToggleButton>
-                    <CategoryDropdownMenu />
+                    <CategoryDropdownMenu categories={categories} />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>

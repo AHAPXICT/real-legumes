@@ -12,17 +12,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const options = [
-    "Show some love to Material-UI",
-    "Show all notification content",
-    "Hide sensitive notification content",
-    "Hide all notification content",
-];
+const options = ["Категорія 1", "Категорія 2", "Категорія 3", "Категорія 4"];
 
-export default function CategoryDropdownMenu() {
+const CategoryDropdownMenu = ({ categories, }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const handleClickListItem = (event) => {
         setAnchorEl(event.currentTarget);
@@ -44,11 +39,11 @@ export default function CategoryDropdownMenu() {
                     button
                     aria-haspopup="true"
                     aria-controls="lock-menu"
-                    aria-label="when device is locked"
+                    aria-label="select category"
                     onClick={handleClickListItem}
                 >
                     <ListItemText
-                        primary="When device is locked"
+                        primary="Виберіть категорію"
                         secondary={options[selectedIndex]}
                     />
                 </ListItem>
@@ -73,3 +68,5 @@ export default function CategoryDropdownMenu() {
         </div>
     );
 }
+
+export default CategoryDropdownMenu
