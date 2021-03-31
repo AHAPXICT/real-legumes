@@ -32,6 +32,8 @@ const ProductModalDialog = ({
     inputWeigthState,
     updateInputWeigthValue,
     caliriesHelpText,
+    isSpecialState,
+    updateIsSpecialValue,
 }) => {
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = React.useState(false);
@@ -60,6 +62,10 @@ const ProductModalDialog = ({
         updateInputWeigthValue(Number(event.target.value));
     };
 
+    const changeIsSpecialInput = (value) => {
+        updateIsSpecialValue(value);
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -71,6 +77,7 @@ const ProductModalDialog = ({
         updateInputCaloriesValue(0);
         updateInputCountValue(0);
         updateInputWeigthValue(0);
+        updateIsSpecialValue(false);
         setOpen(false);
     };
 
@@ -154,9 +161,9 @@ const ProductModalDialog = ({
                     <p>{is_specialHelpText}: </p>
                     <ToggleButton
                         value="check"
-                        selected={selected}
+                        selected={isSpecialState}
                         onChange={() => {
-                            setSelected(!selected);
+                            changeIsSpecialInput(!isSpecialState);
                         }}
                     >
                         <CheckIcon />

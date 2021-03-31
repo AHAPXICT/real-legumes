@@ -22,6 +22,8 @@ const Menu = ({
     updateInputCountValue,
     inputWeigthState,
     updateInputWeigthValue,
+    isSpecialState,
+    updateIsSpecialValue,
 }) => {
     return (
         <div className="container">
@@ -55,6 +57,8 @@ const Menu = ({
                         updateInputCountValue={updateInputCountValue}
                         inputWeigthState={inputWeigthState}
                         updateInputWeigthValue={updateInputWeigthValue}
+                        isSpecialState={isSpecialState}
+                        updateIsSpecialValue={updateIsSpecialValue}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />

@@ -38,6 +38,8 @@ class MenuContainer extends React.Component {
                 updateInputCountValue={this.props.updateInputCountValue}
                 inputWeigthState={this.props.inputWeigthState}
                 updateInputWeigthValue={this.props.updateInputWeigthValue}
+                isSpecialState={this.props.isSpecialState}
+                updateIsSpecialValue={this.props.updateIsSpecialValue}
             />
         );
     }
@@ -52,6 +54,7 @@ const mapState = (state) => {
         inputCaloriesState: state.product.input_calories_field,
         inputCountState: state.product.input_count_field,
         inputWeigthState: state.product.input_weight_field,
+        isSpecialState: state.product.product_is_special,
     };
 };
 
@@ -63,6 +66,7 @@ const mapDispatch = {
     updateInputCaloriesValue: productActions.updateInputCaloriesValue,
     updateInputCountValue: productActions.updateInputCountValue,
     updateInputWeigthValue: productActions.updateInputWeigthValue,
+    updateIsSpecialValue: productActions.updateIsSpecialValue,
 };
 
 const connector = connect(mapState, mapDispatch);
