@@ -11,40 +11,35 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
 
 const ProductModalDialog = ({
-    titleText,
-    helpText,
-    fullWidth,
-    nameHelpText,
-    countHelpText,
-    descriptionHelpText,
-    is_specialHelpText,
-    priceHelpText,
-    weightHelpText,
-    inputNameState,
-    updateInputNameValue,
-    inputDescriptionState,
-    updateInputDescriptionValue,
-    inputPriceState,
-    updateInputPriceValue,
-    inputCaloriesState,
-    updateInputCaloriesValue,
-    inputCountState,
-    updateInputCountValue,
-    inputWeigthState,
-    updateInputWeigthValue,
-    caliriesHelpText,
-    isSpecialState,
-    updateIsSpecialValue,
-    categories
-}) => {
+                                titleText,
+                                helpText,
+                                fullWidth,
+                                nameHelpText,
+                                countHelpText,
+                                descriptionHelpText,
+                                is_specialHelpText,
+                                priceHelpText,
+                                weightHelpText,
+                                inputNameState,
+                                updateInputNameValue,
+                                inputDescriptionState,
+                                updateInputDescriptionValue,
+                                inputPriceState,
+                                updateInputPriceValue,
+                                inputCaloriesState,
+                                updateInputCaloriesValue,
+                                inputCountState,
+                                updateInputCountValue,
+                                inputWeigthState,
+                                updateInputWeigthValue,
+                                caliriesHelpText,
+                                isSpecialState,
+                                updateIsSpecialValue,
+                                categories,
+                                inputCategoryState,
+                                updateCategoryValue
+                            }) => {
     const [open, setOpen] = React.useState(false);
-
-    const options = [
-        "Категорія 1",
-        "Категорія 2",
-        "Категорія 3",
-        "Категорія 4",
-    ];
 
     const changeNameInput = (event) => {
         updateInputNameValue(event.target.value);
@@ -86,6 +81,7 @@ const ProductModalDialog = ({
         updateInputCountValue(0);
         updateInputWeigthValue(0);
         updateIsSpecialValue(false);
+        updateCategoryValue('');
         setOpen(false);
     };
 
@@ -164,8 +160,8 @@ const ProductModalDialog = ({
                         value={inputCaloriesState}
                         onChange={changeCaloriesInput}
                     />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <p>{is_specialHelpText}: </p>
                     <ToggleButton
                         value="check"
@@ -174,9 +170,13 @@ const ProductModalDialog = ({
                             changeIsSpecialInput(!isSpecialState);
                         }}
                     >
-                        <CheckIcon />
+                        <CheckIcon/>
                     </ToggleButton>
-                    <CategoryDropdownMenu categories={categories} />
+                    <CategoryDropdownMenu
+                        categories={categories}
+                        inputCategoryState={inputCategoryState}
+                        updateCategoryValue={updateCategoryValue}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>

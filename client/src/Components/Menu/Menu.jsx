@@ -25,7 +25,8 @@ const Menu = ({
     isSpecialState,
     updateIsSpecialValue,
     categories,
-    setCategories
+    inputCategoryState,
+    updateCategoryValue
 }) => {
     return (
         <div className="container">
@@ -62,6 +63,8 @@ const Menu = ({
                         isSpecialState={isSpecialState}
                         updateIsSpecialValue={updateIsSpecialValue}
                         categories={categories}
+                        inputCategoryState={inputCategoryState}
+                        updateCategoryValue={updateCategoryValue}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />

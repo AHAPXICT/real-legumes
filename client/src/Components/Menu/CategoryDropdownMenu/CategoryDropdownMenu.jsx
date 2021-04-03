@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -12,12 +12,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const options = ["Категорія 1", "Категорія 2", "Категорія 3", "Категорія 4"];
+const CategoryDropdownMenu = ({
+                                  categories,
+                                  inputCategoryState,
+                                  updateCategoryValue
+                              }) => {
+    const options = categories.map(category => category.name)
 
-const CategoryDropdownMenu = ({ categories, }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+
 
     const handleClickListItem = (event) => {
         setAnchorEl(event.currentTarget);
@@ -25,6 +30,7 @@ const CategoryDropdownMenu = ({ categories, }) => {
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
+        updateCategoryValue(categories[index])
         setAnchorEl(null);
     };
 
@@ -44,7 +50,7 @@ const CategoryDropdownMenu = ({ categories, }) => {
                 >
                     <ListItemText
                         primary="Виберіть категорію"
-                        secondary={options[selectedIndex]}
+                        secondary={inputCategoryState.name}
                     />
                 </ListItem>
             </List>
