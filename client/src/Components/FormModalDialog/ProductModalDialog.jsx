@@ -10,6 +10,18 @@ import CheckIcon from "@material-ui/icons/Check";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
 import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList"
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import {IconButton} from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 const ProductModalDialog = ({
                                 titleText,
@@ -41,6 +53,9 @@ const ProductModalDialog = ({
                                 updateCategoryValue
                             }) => {
     const [open, setOpen] = React.useState(false);
+    const [openIngredientList, setOpenIngredientList] = React.useState(false)
+
+    const classes = useStyles();
 
     const changeNameInput = (event) => {
         updateInputNameValue(event.target.value);
@@ -178,7 +193,11 @@ const ProductModalDialog = ({
                         inputCategoryState={inputCategoryState}
                         updateCategoryValue={updateCategoryValue}
                     />
-                    <CheckboxList />
+                    <IconButton aria-label="delete" className={classes.margin} size="lagre" onClick={() => setOpenIngredientList(!openIngredientList)}>
+                        <ArrowDownwardIcon fontSize="inherit"  />
+                    </IconButton>
+                    Інгредієнти
+                    {openIngredientList ? <CheckboxList /> : null}
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
