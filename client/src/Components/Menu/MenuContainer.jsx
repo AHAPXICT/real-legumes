@@ -1,14 +1,20 @@
 import React from "react";
-import {PRODUCTS_URL, CATEGORIES_URL} from "../../urls";
+import {
+    PRODUCTS_URL,
+    CATEGORIES_URL,
+    INGREDIENTS_URL
+} from "../../urls";
 import Menu from "./Menu";
 import * as productActions from "../../Store/Products/actions";
 import * as categoryActions from "../../Store/Categories/actions";
+import * as ingredientActions from "../../Store/Ingredients/actions";
 import {connect} from "react-redux";
 
 class MenuContainer extends React.Component {
     componentDidMount() {
         this.fetchProducts();
         this.fetchCategories();
+        this.fetchIngredients();
     }
 
     fetchProducts = () => {
@@ -32,6 +38,17 @@ class MenuContainer extends React.Component {
                 this.props.setCategories(categories);
             });
     };
+
+    fetchIngredients = () => {
+        fetch(INGREDIENTS_URL)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                const ingredients = data.reverse()
+                this.props.setIngredients(ingredients)
+            });
+    }
 
     render() {
         return (
@@ -87,6 +104,7 @@ const mapDispatch = {
     updateInputWeigthValue: productActions.updateInputWeigthValue,
     updateIsSpecialValue: productActions.updateIsSpecialValue,
     setCategories: categoryActions.setCategories,
+    setIngredients: ingredientActions.setIngredients,
     updateCategoryValue: productActions.updateCategoryValue,
 };
 
