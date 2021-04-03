@@ -9,6 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CheckIcon from "@material-ui/icons/Check";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
+import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList"
 
 const ProductModalDialog = ({
                                 titleText,
@@ -177,6 +178,7 @@ const ProductModalDialog = ({
                         inputCategoryState={inputCategoryState}
                         updateCategoryValue={updateCategoryValue}
                     />
+                    <CheckboxList />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
