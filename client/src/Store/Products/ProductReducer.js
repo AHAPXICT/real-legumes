@@ -7,6 +7,8 @@ import { SET_PRODUCTS,
     CHANGE_INPUT_WEIGHT_VALUE,
     CHANGE_IS_SPECIAL_VALUE,
     CHANGE_CATEGORY_VALUE,
+    ADD_INGREDIENT,
+    DELETE_INGREDIENT
 } from './actions'
 
 const initState = {
@@ -71,6 +73,20 @@ const productReducer = (state = initState, action) => {
                 ...state,
                 input_category_field: action.payload
             }
+        case ADD_INGREDIENT: {
+            const new_product_ingredients = state.product_ingredients.concat(action.payload)
+            return {
+                ...state,
+                product_ingredients: new_product_ingredients
+            }
+        }
+        case DELETE_INGREDIENT: {
+            const new_product_ingredients = state.product_ingredients.filter(ingredient => ingredient.name !== action.payload)
+            return {
+                ...state,
+                product_ingredients: new_product_ingredients
+            }
+        }
         default:
             return state;
     }
