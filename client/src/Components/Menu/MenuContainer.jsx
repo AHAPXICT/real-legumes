@@ -73,6 +73,7 @@ class MenuContainer extends React.Component {
                 categories={this.props.categories}
                 inputCategoryState={this.props.inputCategoryState}
                 updateCategoryValue={this.props.updateCategoryValue}
+                ingredients={this.props.ingredients}
             />
         );
     }
@@ -90,7 +91,8 @@ const mapState = (state) => {
         inputWeigthState: state.product.input_weight_field,
         isSpecialState: state.product.product_is_special,
         inputCategoryState: state.product.input_category_field,
-        categories: state.category.categories
+        categories: state.category.categories,
+        ingredients: state.ingredient.ingredients
     };
 };
 

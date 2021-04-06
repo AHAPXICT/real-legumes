@@ -15,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CheckboxList() {
+export default function CheckboxList({
+    ingredients
+                                     })
+{
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
@@ -35,7 +38,7 @@ export default function CheckboxList() {
   return (
       <Paper style={{maxHeight: 400, overflow: 'auto'}}>
         <List className={classes.root}>
-          {[0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13].map((value) => {
+          {ingredients.map((value) => {
             const labelId = `checkbox-list-label-${value}`;
 
             return (
@@ -49,7 +52,7 @@ export default function CheckboxList() {
                     inputProps={{ 'aria-labelledby': labelId }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+                <ListItemText id={labelId} primary={value.name} />
               </ListItem>
             );
           })}

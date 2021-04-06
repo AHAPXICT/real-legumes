@@ -50,7 +50,8 @@ const ProductModalDialog = ({
                                 updateIsSpecialValue,
                                 categories,
                                 inputCategoryState,
-                                updateCategoryValue
+                                updateCategoryValue,
+                                ingredients
                             }) => {
     const [open, setOpen] = React.useState(false);
     const [openIngredientList, setOpenIngredientList] = React.useState(false)
@@ -193,11 +194,16 @@ const ProductModalDialog = ({
                         inputCategoryState={inputCategoryState}
                         updateCategoryValue={updateCategoryValue}
                     />
-                    <IconButton aria-label="delete" className={classes.margin} size="lagre" onClick={() => setOpenIngredientList(!openIngredientList)}>
+                    <IconButton
+                        aria-label="delete"
+                        className={classes.margin}
+                        size="lagre"
+                        onClick={() => setOpenIngredientList(!openIngredientList)}
+                    >
                         <ArrowDownwardIcon fontSize="inherit"  />
                     </IconButton>
                     Інгредієнти
-                    {openIngredientList ? <CheckboxList /> : null}
+                    {openIngredientList ? <CheckboxList ingredients={ingredients} /> : null}
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
