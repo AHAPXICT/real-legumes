@@ -53,7 +53,8 @@ const ProductModalDialog = ({
                                 updateCategoryValue,
                                 ingredients,
                                 addIngredient,
-                                deleteIngredient
+                                deleteIngredient,
+                                clearIngredients
                             }) => {
     const [open, setOpen] = React.useState(false);
     const [openIngredientList, setOpenIngredientList] = React.useState(false)
@@ -101,6 +102,7 @@ const ProductModalDialog = ({
         updateInputWeigthValue(0);
         updateIsSpecialValue(false);
         updateCategoryValue('');
+        clearIngredients();
         setOpen(false);
     };
 

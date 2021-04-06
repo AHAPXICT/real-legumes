@@ -29,7 +29,8 @@ const Menu = ({
                   updateCategoryValue,
                   ingredients,
                   addIngredient,
-                  deleteIngredient
+                  deleteIngredient,
+                  clearIngredients
               }) => {
     return (
         <div className="container">
@@ -71,6 +72,7 @@ const Menu = ({
                         ingredients={ingredients}
                         addIngredient={addIngredient}
                         deleteIngredient={deleteIngredient}
+                        clearIngredients={clearIngredients}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії"/>
