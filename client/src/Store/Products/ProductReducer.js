@@ -8,7 +8,8 @@ import { SET_PRODUCTS,
     CHANGE_IS_SPECIAL_VALUE,
     CHANGE_CATEGORY_VALUE,
     ADD_INGREDIENT,
-    DELETE_INGREDIENT
+    DELETE_INGREDIENT,
+    CLEAR_INGREDIENTS
 } from './actions'
 
 const initState = {
@@ -85,6 +86,12 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state,
                 product_ingredients: new_product_ingredients
+            }
+        }
+        case CLEAR_INGREDIENTS: {
+            return {
+                ...state,
+                product_ingredients: []
             }
         }
         default:
