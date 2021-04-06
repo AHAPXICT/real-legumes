@@ -7,6 +7,8 @@ export const CHANGE_INPUT_COUNT_VALUE = 'PRODUCT/CHANGE_INPUT_COUNT_VALUE'
 export const CHANGE_INPUT_WEIGHT_VALUE = 'PRODUCT/CHANGE_INPUT_WEIGHT_VALUE'
 export const CHANGE_IS_SPECIAL_VALUE = 'PRODUCT/CHANGE_IS_SPECIAL_VALUE'
 export const CHANGE_CATEGORY_VALUE = 'PRODUCT/CHANGE_CATEGORY_VALUE'
+export const ADD_INGREDIENT = 'PRODUCT/ADD_INGREDIENT'
+export const DELETE_INGREDIENT = 'PRODUCT/DELETE_INGREDIENT'
 
 export const setProducts = (products) => {
     return {
@@ -68,5 +70,19 @@ export const updateCategoryValue = (category_name) => {
     return {
         type: CHANGE_CATEGORY_VALUE,
         payload: category_name
+    }
+}
+
+export const addIngredient = (ingredient) => {
+    return {
+        type: ADD_INGREDIENT,
+        payload: ingredient
+    }
+}
+
+export const deleteIngredient = (ingredient_name) => {
+    return {
+        type: DELETE_INGREDIENT,
+        payload: ingredient_name
     }
 }
