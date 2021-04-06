@@ -213,6 +213,11 @@ const ProductModalDialog = ({
                             addIngredient={addIngredient}
                             deleteIngredient={deleteIngredient}
                         /> : null}
+                    <br/>
+                    Виберіть титульне зображення:
+                    <br/>
+                    <br/>
+                    Виберіть додаткові зображення (опціонально):
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
