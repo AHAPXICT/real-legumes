@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,55 +8,58 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {Paper} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
 }));
 
 export default function CheckboxList({
-    ingredients
-                                     })
-{
-  const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+                                         ingredients,
+                                         addIngredient,
+                                         deleteIngredient
+                                     }) {
+    const classes = useStyles();
+    const [checked, setChecked] = React.useState([0]);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+        if (currentIndex === -1) {
+            newChecked.push(value);
+            addIngredient(value)
+        } else {
+            deleteIngredient(value.name)
+            newChecked.splice(currentIndex, 1);
+        }
 
-    setChecked(newChecked);
-  };
+        setChecked(newChecked);
+    };
 
-  return (
-      <Paper style={{maxHeight: 400, overflow: 'auto'}}>
-        <List className={classes.root}>
-          {ingredients.map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
+    return (
+        <Paper style={{maxHeight: 400, overflow: 'auto'}}>
+            <List className={classes.root}>
+                {ingredients.map((value) => {
+                    const labelId = `checkbox-list-label-${value}`;
 
-            return (
-              <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={value.name} />
-              </ListItem>
-            );
-          })}
-        </List>
-      </Paper>
-  );
+                    return (
+                        <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+                            <ListItemIcon>
+                                <Checkbox
+                                    edge="start"
+                                    checked={checked.indexOf(value) !== -1}
+                                    tabIndex={-1}
+                                    disableRipple
+                                    inputProps={{'aria-labelledby': labelId}}
+                                />
+                            </ListItemIcon>
+                            <ListItemText id={labelId} primary={value.name}/>
+                        </ListItem>
+                    );
+                })}
+            </List>
+        </Paper>
+    );
 }

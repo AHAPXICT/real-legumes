@@ -12,15 +12,15 @@ import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownM
 import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList"
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import {IconButton} from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    extendedIcon: {
+        marginRight: theme.spacing(1),
+    },
 }));
 
 const ProductModalDialog = ({
@@ -51,7 +51,9 @@ const ProductModalDialog = ({
                                 categories,
                                 inputCategoryState,
                                 updateCategoryValue,
-                                ingredients
+                                ingredients,
+                                addIngredient,
+                                deleteIngredient
                             }) => {
     const [open, setOpen] = React.useState(false);
     const [openIngredientList, setOpenIngredientList] = React.useState(false)
@@ -200,10 +202,15 @@ const ProductModalDialog = ({
                         size="lagre"
                         onClick={() => setOpenIngredientList(!openIngredientList)}
                     >
-                        <ArrowDownwardIcon fontSize="inherit"  />
+                        <ArrowDownwardIcon fontSize="inherit"/>
                     </IconButton>
                     Інгредієнти
-                    {openIngredientList ? <CheckboxList ingredients={ingredients} /> : null}
+                    {openIngredientList ?
+                        <CheckboxList
+                            ingredients={ingredients}
+                            addIngredient={addIngredient}
+                            deleteIngredient={deleteIngredient}
+                        /> : null}
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>

@@ -74,6 +74,8 @@ class MenuContainer extends React.Component {
                 inputCategoryState={this.props.inputCategoryState}
                 updateCategoryValue={this.props.updateCategoryValue}
                 ingredients={this.props.ingredients}
+                addIngredient={this.props.addIngredient}
+                deleteIngredient={this.props.deleteIngredient}
             />
         );
     }
@@ -108,6 +110,8 @@ const mapDispatch = {
     setCategories: categoryActions.setCategories,
     setIngredients: ingredientActions.setIngredients,
     updateCategoryValue: productActions.updateCategoryValue,
+    addIngredient: productActions.addIngredient,
+    deleteIngredient: productActions.deleteIngredient
 };
 
 const connector = connect(mapState, mapDispatch);
