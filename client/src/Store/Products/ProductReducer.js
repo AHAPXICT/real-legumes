@@ -9,7 +9,9 @@ import { SET_PRODUCTS,
     CHANGE_CATEGORY_VALUE,
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
-    CLEAR_INGREDIENTS
+    CLEAR_INGREDIENTS,
+    SET_TITLE_IMG,
+    SET_ADDITIONAL_IMAGES
 } from './actions'
 
 const initState = {
@@ -21,7 +23,8 @@ const initState = {
     input_category_field: '',
     input_count_field: 0,
     input_description_field: '',
-    product_images: [],
+    product_title_image: {},
+    product_additional_images: [],
     product_ingredients: [],
     product_is_special: false,
     input_weight_field: 0,
@@ -93,6 +96,15 @@ const productReducer = (state = initState, action) => {
                 ...state,
                 product_ingredients: []
             }
+        }
+        case SET_TITLE_IMG: {
+            return {
+                ...state,
+                title_image: action.payload
+            }
+        }
+        case SET_ADDITIONAL_IMAGES: {
+
         }
         default:
             return state;

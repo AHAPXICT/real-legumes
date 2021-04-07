@@ -10,6 +10,8 @@ export const CHANGE_CATEGORY_VALUE = 'PRODUCT/CHANGE_CATEGORY_VALUE'
 export const ADD_INGREDIENT = 'PRODUCT/ADD_INGREDIENT'
 export const DELETE_INGREDIENT = 'PRODUCT/DELETE_INGREDIENT'
 export const CLEAR_INGREDIENTS = 'PRODUCT/CLEAR_INGREDIENTS'
+export const SET_TITLE_IMG = 'PRODUCT/SET_TITLE_IMG'
+export const SET_ADDITIONAL_IMAGES = 'PRODUCT/SET_ADDITIONAL_IMAGES'
 
 export const setProducts = (products) => {
     return {
@@ -91,5 +93,19 @@ export const deleteIngredient = (ingredient_name) => {
 export const clearIngredients = () => {
     return {
         type: CLEAR_INGREDIENTS
+    }
+}
+
+export const setTitleImg = (image) => {
+    return {
+        type: SET_TITLE_IMG,
+        payload: image
+    }
+}
+
+export const setAdditionalImages = (images) => {
+    return {
+        type: SET_ADDITIONAL_IMAGES,
+        payload: images
     }
 }
