@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ReactFileReader from "react-file-reader";
 import Button from '@material-ui/core/Button';
 import ItemBlock from "./ItemBlock/ItemBlock";
+import PropTypes from "prop-types";
 
 import s from "./style.module.css";
 
-
-
-const FileUploader = () => {
+const FileUploader = ({multipleFiles}) => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -71,26 +70,30 @@ const FileUploader = () => {
     }
 
     return (
-        <div className={s.main}>
-            <div className="container">
-                <div>
-                    <ReactFileReader
-                        base64={true}
-                        fileTypes={[".jpg"]}
-                        handleFiles={handleFiles}
-                        multipleFiles={true}
-                    >
-                        <Button variant="contained">
-                            Вибрати
-                        </Button>
-                    </ReactFileReader>
-                    {selectedFiles.map(file => {
-                        return <ItemBlock name={file.name} btnAction={onDelete} />
-                    })}
-                </div>
-            </div>
+        <div className={s.base}>
+            <ReactFileReader
+                base64={true}
+                fileTypes={[".jpg"]}
+                handleFiles={handleFiles}
+                multipleFiles={multipleFiles}
+            >
+                <Button size={"small"} variant="contained">
+                    Вибрати
+                </Button>
+            </ReactFileReader>
+            {selectedFiles.map(file => {
+                return <ItemBlock name={file.name} btnAction={onDelete}/>
+            })}
         </div>
     );
 };
+
+FileUploader.defaultProps = {
+    multipleFiles: true
+}
+
+FileUploader.propTypes = {
+    multipleFiles: PropTypes.bool.isRequired
+}
 
 export default FileUploader;

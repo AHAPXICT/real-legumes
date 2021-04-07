@@ -13,6 +13,8 @@ import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionL
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import {IconButton} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
+import FileUploader from "../FileUploader/FileUploader";
+import FileUploadSection from "../FileUploader/FileUploadSection/FileUploadSection";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -214,10 +216,8 @@ const ProductModalDialog = ({
                             deleteIngredient={deleteIngredient}
                         /> : null}
                     <br/>
-                    Виберіть титульне зображення:
-                    <br/>
-                    <br/>
-                    Виберіть додаткові зображення (опціонально):
+                    <FileUploadSection title={'Виберіть титульне зображення:'} multipleFiles={false} />
+                    <FileUploadSection title={'Виберіть додаткові зображення (опціонально):'} multipleFiles={true} />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>
