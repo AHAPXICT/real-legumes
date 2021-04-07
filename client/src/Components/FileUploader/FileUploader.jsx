@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactFileReader from "react-file-reader";
 import Button from '@material-ui/core/Button';
+import ItemBlock from "./ItemBlock/ItemBlock";
 
 import s from "./style.module.css";
 
@@ -65,6 +66,9 @@ const FileUploader = () => {
     //         );
     // };
 
+    const onDelete = () => {
+        console.log('delete')
+    }
 
     return (
         <div className={s.main}>
@@ -81,14 +85,7 @@ const FileUploader = () => {
                         </Button>
                     </ReactFileReader>
                     {selectedFiles.map(file => {
-                        return (
-                            <>
-                                <p>{file.name}</p>
-                                <Button variant="contained" color="secondary">
-                                    Видалити
-                                </Button>
-                            </>
-                        )
+                        return <ItemBlock name={file.name} btnAction={onDelete} />
                     })}
                 </div>
             </div>

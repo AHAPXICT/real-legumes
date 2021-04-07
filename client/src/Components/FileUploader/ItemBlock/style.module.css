@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item_position {
+    margin: 15px;
+}
+
+.item__text_block {
+    padding: 5px;
+
+    max-width: 100px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.item__btn_block {
+    padding: 5px;
+
+    text-align: center;
+    vertical-align: middle;
+}
