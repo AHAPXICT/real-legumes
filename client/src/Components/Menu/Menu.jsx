@@ -30,7 +30,9 @@ const Menu = ({
                   ingredients,
                   addIngredient,
                   deleteIngredient,
-                  clearIngredients
+                  clearIngredients,
+                  titleImg,
+                  setTitleImg
               }) => {
     return (
         <div className="container">
@@ -73,6 +75,8 @@ const Menu = ({
                         addIngredient={addIngredient}
                         deleteIngredient={deleteIngredient}
                         clearIngredients={clearIngredients}
+                        titleImg={titleImg}
+                        setTitleImg={setTitleImg}
                     />
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії"/>

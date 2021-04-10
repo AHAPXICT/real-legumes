@@ -77,6 +77,8 @@ class MenuContainer extends React.Component {
                 addIngredient={this.props.addIngredient}
                 deleteIngredient={this.props.deleteIngredient}
                 clearIngredients={this.props.clearIngredients}
+                titleImg={this.props.titleImg}
+                setTitleImg={this.props.setTitleImg}
             />
         );
     }
@@ -95,7 +97,8 @@ const mapState = (state) => {
         isSpecialState: state.product.product_is_special,
         inputCategoryState: state.product.input_category_field,
         categories: state.category.categories,
-        ingredients: state.ingredient.ingredients
+        ingredients: state.ingredient.ingredients,
+        titleImg: state.product.product_title_image
     };
 };
 
@@ -113,7 +116,8 @@ const mapDispatch = {
     updateCategoryValue: productActions.updateCategoryValue,
     addIngredient: productActions.addIngredient,
     deleteIngredient: productActions.deleteIngredient,
-    clearIngredients: productActions.clearIngredients
+    clearIngredients: productActions.clearIngredients,
+    setTitleImg: productActions.setTitleImg
 };
 
 const connector = connect(mapState, mapDispatch);
