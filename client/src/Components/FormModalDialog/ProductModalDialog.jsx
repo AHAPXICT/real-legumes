@@ -56,7 +56,7 @@ const ProductModalDialog = ({
                                 ingredients,
                                 addIngredient,
                                 deleteIngredient,
-                                clearIngredients
+                                clearIngredients,
                             }) => {
     const [open, setOpen] = React.useState(false);
     const [openIngredientList, setOpenIngredientList] = React.useState(false)
@@ -216,8 +216,10 @@ const ProductModalDialog = ({
                             deleteIngredient={deleteIngredient}
                         /> : null}
                     <br/>
-                    <FileUploadSection title={'Виберіть титульне зображення:'} multipleFiles={false} />
-                    <FileUploadSection title={'Виберіть додаткові зображення (опціонально):'} multipleFiles={true} />
+                    <FileUploadSection
+                        title={'Виберіть титульне зображення:'}
+                        multipleFiles={false} />
+                    {/*<FileUploadSection title={'Виберіть додаткові зображення (опціонально):'} multipleFiles={true} />*/}
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>

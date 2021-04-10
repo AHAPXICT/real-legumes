@@ -1,7 +1,7 @@
 import React from "react";
 
 import s from './style.module.css'
-import FileUploader from "../FileUploader";
+import OneFileUploaderContainer from "../OneFileUploaderContainer";
 
 const FileUploadSection = ({title, multipleFiles}) => {
     return (
@@ -9,7 +9,7 @@ const FileUploadSection = ({title, multipleFiles}) => {
             <div className={s.title}>
                 {title}
             </div>
-            <FileUploader multipleFiles={multipleFiles}/>
+            <OneFileUploaderContainer multipleFiles={multipleFiles}/>
         </div>)
 }
 

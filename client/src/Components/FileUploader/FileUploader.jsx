@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import s from "./style.module.css";
 
-const FileUploader = ({multipleFiles}) => {
+const FileUploader = ({multipleFiles, images, setImages, deleteImages }) => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -21,10 +21,11 @@ const FileUploader = ({multipleFiles}) => {
             }
         } else {
             const file64 = {
-                base64: files.base64[0],
+                base64: files.base64,
                 name: files.fileList[0].name
             }
-            setSelectedFiles(selectedFiles => [...selectedFiles, file64])
+            setImages(file64)
+            // setSelectedFiles(selectedFiles => [...selectedFiles, file64])
         }
     };
 
@@ -66,7 +67,7 @@ const FileUploader = ({multipleFiles}) => {
     // };
 
     const onDelete = () => {
-        console.log('delete')
+        deleteImages()
     }
 
     return (
@@ -81,9 +82,16 @@ const FileUploader = ({multipleFiles}) => {
                     Вибрати
                 </Button>
             </ReactFileReader>
-            {selectedFiles.map(file => {
-                return <ItemBlock name={file.name} btnAction={onDelete}/>
-            })}
+            {
+                images.map(file => {
+                    return <ItemBlock name={file.name} btnAction={onDelete}/>
+                })
+            }
+
+            {/*{*/}
+            {/*    images !== [] ? images.map(file => {*/}
+            {/*    return <ItemBlock name={file.name} btnAction={onDelete}/>*/}
+            {/*}) : null}*/}
         </div>
     );
 };

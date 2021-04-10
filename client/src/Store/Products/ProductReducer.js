@@ -11,7 +11,8 @@ import { SET_PRODUCTS,
     DELETE_INGREDIENT,
     CLEAR_INGREDIENTS,
     SET_TITLE_IMG,
-    SET_ADDITIONAL_IMAGES
+    SET_ADDITIONAL_IMAGES,
+    DELETE_TITLE_IMG
 } from './actions'
 
 const initState = {
@@ -23,7 +24,7 @@ const initState = {
     input_category_field: '',
     input_count_field: 0,
     input_description_field: '',
-    product_title_image: {},
+    product_title_image: [],
     product_additional_images: [],
     product_ingredients: [],
     product_is_special: false,
@@ -100,7 +101,13 @@ const productReducer = (state = initState, action) => {
         case SET_TITLE_IMG: {
             return {
                 ...state,
-                title_image: action.payload
+                product_title_image: [action.payload]
+            }
+        }
+        case DELETE_TITLE_IMG: {
+            return {
+                ...state,
+                product_title_image: []
             }
         }
         case SET_ADDITIONAL_IMAGES: {
