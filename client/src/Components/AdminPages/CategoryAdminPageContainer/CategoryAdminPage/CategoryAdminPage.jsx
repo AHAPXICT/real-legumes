@@ -33,9 +33,7 @@ const CategoryAdminPage = ({
                     {categories.map((category) => (
                         <CategoryItem
                             key={category.name}
-                            name={category.name}
-                            updated_at={category.updated_at}
-                            created_at={category.created_at}
+                            {...category}
                             deleteCategory={deleteCategory}
                             updateCategory={updateCategory}
                             updateInputValue={updateInputValue}

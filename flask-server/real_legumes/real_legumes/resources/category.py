@@ -14,7 +14,7 @@ class CategoryList(MethodResource, Resource):
     @marshal_with(CategoryResponseSchema(many=True))
     def get(self):
         categories = c.query.all()
-        return categories
+        return c.query.all()
 
     @doc(description="Add new category.", tags=['Category'])
     @use_kwargs(CategoryRequestSchema, location=('json'))

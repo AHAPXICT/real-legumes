@@ -49,7 +49,7 @@ class Product(BaseModel, db.Model):
     is_special = db.Column(db.Boolean, default=False, nullable=False)
 
     ingredients = db.relationship('Ingredient', secondary='product_ingredients', backref='products')
-    images = db.relationship('Image', secondary='product_images', backref='products')
+    images = db.relationship('Image', backref='image', cascade="all, delete", lazy=True)
 
     @validates('name')
     def validate_name(self, key, value):
@@ -123,22 +123,22 @@ class Image(BaseModel, db.Model):
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
-    image_url = db.Column(db.String(255), unique=True, nullable=False)
+    _image_data = db.Column(db.LargeBinary(length=(2**32)-1), name='image_data')
+    is_title = db.Column(db.Boolean, default=False, nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
 
-    @validates('image_url')
-    def validate_image_url(self, key, value):
-        if Image.query.filter(Image.image_url == value).first():
-            raise AssertionError('Image url already exist.')
-        return value
+    @property
+    def image_data(self):
+        return self._image_data.decode("utf-8")
+
+    # @validates('image_url')
+    # def validate_image_url(self, key, value):
+    #     if Image.query.filter(Image.image_url == value).first():
+    #         raise AssertionError('Image url already exist.')
+    #     return value
 
     def __repr__(self):
-        return f"<Image {self.id}: {self.image_url}>"
+        return f"<Image {self.id}: {self.image_data}>"
 
-    def __str__(self):
-        return self.image_url
-
-
-product_images = db.Table('product_images',
-                          db.Column('product_id', db.Integer, db.ForeignKey('products.id')),
-                          db.Column('image_id', db.Integer, db.ForeignKey('images.id'))
-                          )
+    # def __str__(self):
+    #     return self.image_url

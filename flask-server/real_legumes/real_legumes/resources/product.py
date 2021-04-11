@@ -3,6 +3,7 @@ from flask_apispec.views import MethodResource
 from flask import abort
 from flask_apispec import marshal_with, doc, use_kwargs
 import math
+import base64
 
 from ..models import Product as p, Category, Image, Ingredient
 from .schemas import ProductResponseSchema, ProductRequestSchema, ProductListSchema
@@ -64,27 +65,46 @@ class ProductList(MethodResource, Resource):
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))
     def post(self, **kwargs):
+
+        # product = p(name='name',
+        #             price=2,
+        #             calories=2,
+        #             description='description',
+        #             count=2,
+        #             weight=1,
+        #             category_id=1,
+        #             is_special=True
+        #             )
+        # product.save_to_db()
+
+        # try:
+        #     img = kwargs['images'][0]
+        #
+        #
+        #     image = Image(
+        #         is_title=img['is_title'],
+        #         image_data=img['img_data'].encode('utf-8'),
+        #         product_id=1
+        #     )
+        #     image.save_to_db()
+        #     print(image.image_data[0:20])
+        #     return 'done', 200
+        # except Exception:
+        #
+        #     return 'done', 500
+
+        ingredients = []
+        for ingredient in kwargs['ingredients']:
+            ingredient = Ingredient.query.filter_by(name=ingredient).first()
+            if not ingredient:
+                return {'message': "Ingredient not found."}, 404
+            ingredients.append(ingredient)
+
+        category = Category.query.filter_by(name=kwargs['category']).first()
+        if not category:
+            return {'message': "Category not found."}, 404
+
         try:
-            category = Category.query.filter_by(name=kwargs['category']).first()
-            if not category:
-                return {'message': "Category not found."}, 404
-
-            images = []
-            for image_url in kwargs['images']:
-                image = Image.query.filter_by(image_url=image_url).first()
-                if not image:
-                    return {'message': "Image not found."}, 404
-                images.append(image)
-
-            print('test')
-
-            ingredients = []
-            for ingredient in kwargs['ingredients']:
-                ingredient = Ingredient.query.filter_by(name=ingredient).first()
-                if not ingredient:
-                    return {'message': "Ingredient not found."}, 404
-                ingredients.append(ingredient)
-
             product = p(name=kwargs['name'],
                         price=kwargs['price'],
                         calories=kwargs['calories'],
@@ -92,11 +112,26 @@ class ProductList(MethodResource, Resource):
                         count=kwargs['count'],
                         weight=kwargs['weight'],
                         category=category,
-                        images=images,
                         ingredients=ingredients,
                         is_special=kwargs['is_special']
                         )
             product.save_to_db()
+
+            images = []
+            try:
+                for img in kwargs['images']:
+                    try:
+                        image = Image(
+                            is_title=img['is_title'],
+                            image_data=img['img_data'].encode('utf-8'),
+                            product_id=product.id
+                        )
+                        image.save_to_db()
+                    except Exception:
+                        return {'message': "img db exception."}, 500
+                    images.append(image)
+            except Exception:
+                return {'message': "img exception."}, 500
         except AssertionError:
             return {'message': "Product name already exist."}, 500
         except Exception:
