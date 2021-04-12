@@ -30,7 +30,7 @@ const Menu = ({
                   ingredients,
                   addIngredient,
                   deleteIngredient,
-                  clearIngredients
+                  clearIngredients,
               }) => {
     return (
         <div className="container">

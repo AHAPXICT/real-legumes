@@ -1,87 +1,107 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ReactFileReader from "react-file-reader";
+import Button from '@material-ui/core/Button';
+import ItemBlock from "./ItemBlock/ItemBlock";
+import PropTypes from "prop-types";
 
 import s from "./style.module.css";
 
-const FileUploader = () => {
-    const [selectedFile, setSelectedFile] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
-    const [file64, setFile64] = useState();
+const FileUploader = ({multipleFiles, images, setImages, deleteImages }) => {
+
+    const [selectedFiles, setSelectedFiles] = useState([]);
 
     const handleFiles = (files) => {
-        var new_file = files.base64;
-        setFile64(new_file);
-        console.log(new_file);
+        if (files.fileList.length > 1) {
+            for (let i = 0; i < files.base64.length; i++) {
+                const file64 = {
+                    base64: files.base64[i],
+                    name: files.fileList[i].name
+                }
+                setSelectedFiles(selectedFiles => [...selectedFiles, file64])
+            }
+        } else {
+            const file64 = {
+                base64: files.base64,
+                name: files.fileList[0].name
+            }
+            setImages(file64)
+            // setSelectedFiles(selectedFiles => [...selectedFiles, file64])
+        }
     };
 
-    const upload = () => {
-        const p = {
-            name: "test name",
-            price: 1,
-            calories: 2,
-            description: "descr",
-            count: 3,
-            weight: 4,
-            category: "category",
-            images: [file64],
-            ingredients: ["i1", "i2"],
-            is_special: false,
-        };
+    // const upload = () => {
+    //     const p = {
+    //         name: "test name",
+    //         price: 1,
+    //         calories: 2,
+    //         description: "descr",
+    //         count: 3,
+    //         weight: 4,
+    //         category: "category",
+    //         images: [file64],
+    //         ingredients: ["i1", "i2"],
+    //         is_special: false,
+    //     };
+    //
+    //     console.log("JSON:", JSON.stringify(p));
+    //
+    //     // debugger;
+    //
+    //     fetch("http://127.0.0.1:5000/api/products", {
+    //         // Your POST endpoint
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(p),
+    //     })
+    //         .then(
+    //             (response) => response.json() // if the response is a JSON object
+    //         )
+    //         .then(
+    //             (success) => console.log(success) // Handle the success response object
+    //         )
+    //         .catch(
+    //             (error) => console.log(error) // Handle the error response object
+    //         );
+    // };
 
-        console.log("JSON:", JSON.stringify(p));
-
-        // debugger;
-
-        fetch("http://127.0.0.1:5000/api/products", {
-            // Your POST endpoint
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(p),
-        })
-            .then(
-                (response) => response.json() // if the response is a JSON object
-            )
-            .then(
-                (success) => console.log(success) // Handle the success response object
-            )
-            .catch(
-                (error) => console.log(error) // Handle the error response object
-            );
-    };
-
-    const changeHandler = (event) => {
-        setSelectedFile(event.target.files[0]);
-
-        // upload(event.target.files[0]);
-        setIsFilePicked(true);
-    };
-
-    const handleSubmission = () => {
-        upload();
-        // console.log(selectedFile);
-    };
+    const onDelete = () => {
+        deleteImages()
+    }
 
     return (
-        <div className={s.main}>
-            <div className="container">
-                {/* <input type="file" name="file" onChange={changeHandler} />
-                <div>
-                    <button onClick={handleSubmission}>Submit</button>
-                </div> */}
-                <ReactFileReader
-                    base64={true}
-                    fileTypes={[".jpg"]}
-                    handleFiles={handleFiles}
-                >
-                    <button>Upload</button>
-                </ReactFileReader>
-                <button onClick={handleSubmission}>Submit</button>
-                <img src={file64} alt="" />
-            </div>
+        <div className={s.base}>
+            <ReactFileReader
+                base64={true}
+                fileTypes={[".jpg"]}
+                handleFiles={handleFiles}
+                multipleFiles={multipleFiles}
+            >
+                <Button size={"small"} variant="contained">
+                    Вибрати
+                </Button>
+            </ReactFileReader>
+            {
+                images.map(file => {
+                    return <ItemBlock name={file.name} btnAction={onDelete}/>
+                })
+            }
+
+            {/*{*/}
+            {/*    images !== [] ? images.map(file => {*/}
+            {/*    return <ItemBlock name={file.name} btnAction={onDelete}/>*/}
+            {/*}) : null}*/}
         </div>
     );
 };
+
+FileUploader.defaultProps = {
+    multipleFiles: true
+}
+
+FileUploader.propTypes = {
+    multipleFiles: PropTypes.bool.isRequired
+}
 
 export default FileUploader;
