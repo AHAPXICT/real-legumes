@@ -13,6 +13,9 @@ export const CLEAR_INGREDIENTS = 'PRODUCT/CLEAR_INGREDIENTS'
 export const SET_TITLE_IMG = 'PRODUCT/SET_TITLE_IMG'
 export const SET_ADDITIONAL_IMAGES = 'PRODUCT/SET_ADDITIONAL_IMAGES'
 export const DELETE_TITLE_IMG = 'PRODUCT/DELETE_TITLE_IMG'
+export const DELETE_ADDITIONAL_IMG = 'PRODUCT/DELETE_ADDITIONAL_IMG'
+export const CLEAR_ADDITIONAL_IMG = 'PRODUCT/CLEAR_ADDITIONAL_IMG'
+
 
 export const setProducts = (products) => {
     return {
@@ -114,5 +117,18 @@ export const setAdditionalImages = (images) => {
     return {
         type: SET_ADDITIONAL_IMAGES,
         payload: images
+    }
+}
+
+export const deleteAdditionalImage = (name) => {
+    return {
+        type: DELETE_ADDITIONAL_IMG,
+        payload: name
+    }
+}
+
+export const clearAdditionalImages = () => {
+    return {
+        type: CLEAR_ADDITIONAL_IMG
     }
 }

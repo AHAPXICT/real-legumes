@@ -8,24 +8,22 @@ import s from "./style.module.css";
 
 const FileUploader = ({multipleFiles, images, setImages, deleteImages }) => {
 
-    const [selectedFiles, setSelectedFiles] = useState([]);
-
     const handleFiles = (files) => {
-        if (files.fileList.length > 1) {
-            for (let i = 0; i < files.base64.length; i++) {
-                const file64 = {
-                    base64: files.base64[i],
-                    name: files.fileList[i].name
-                }
-                setSelectedFiles(selectedFiles => [...selectedFiles, file64])
-            }
-        } else {
+        if (!multipleFiles) {
             const file64 = {
                 base64: files.base64,
                 name: files.fileList[0].name
             }
             setImages(file64)
-            // setSelectedFiles(selectedFiles => [...selectedFiles, file64])
+
+        } else {
+            for (let i = 0; i < files.base64.length; i++) {
+                const file64 = {
+                    base64: files.base64[i],
+                    name: files.fileList[i].name
+                }
+                setImages(file64)
+            }
         }
     };
 
@@ -66,8 +64,8 @@ const FileUploader = ({multipleFiles, images, setImages, deleteImages }) => {
     //         );
     // };
 
-    const onDelete = () => {
-        deleteImages()
+    const onDelete = (name) => {
+        deleteImages(name)
     }
 
     return (
@@ -84,7 +82,7 @@ const FileUploader = ({multipleFiles, images, setImages, deleteImages }) => {
             </ReactFileReader>
             {
                 images.map(file => {
-                    return <ItemBlock name={file.name} btnAction={onDelete}/>
+                    return <ItemBlock name={file.name} btnAction={() => onDelete(file.name)}/>
                 })
             }
 

@@ -2,6 +2,7 @@ import React from "react";
 
 import s from './style.module.css'
 import OneFileUploaderContainer from "../OneFileUploaderContainer";
+import ManyFileUploaderContainer from '../ManyFileUploaderContainer'
 
 const FileUploadSection = ({title, multipleFiles}) => {
     return (
@@ -9,7 +10,11 @@ const FileUploadSection = ({title, multipleFiles}) => {
             <div className={s.title}>
                 {title}
             </div>
-            <OneFileUploaderContainer multipleFiles={multipleFiles}/>
+            { multipleFiles === false ?
+                <OneFileUploaderContainer multipleFiles={multipleFiles}/> :
+                <ManyFileUploaderContainer multipleFiles={multipleFiles} />
+            }
+
         </div>)
 }
 

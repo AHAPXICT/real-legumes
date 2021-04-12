@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import * as productActions from "../../Store/Products/actions";
 import FileUploader from "./FileUploader";
 
-class OneFileUploaderContainer extends React.Component {
+class ManyFileUploaderContainer extends React.Component {
 
 
     render() {
@@ -14,14 +14,15 @@ class OneFileUploaderContainer extends React.Component {
 
 const mapState = (state) => {
     return {
-        images: state.product.product_title_image
+        images: state.product.product_additional_images
     }
 }
 
 const mapDispatch = {
-    setImages: productActions.setTitleImg
+    setImages: productActions.setAdditionalImages,
+    deleteImages: productActions.deleteAdditionalImage,
 }
 
 const connector = connect(mapState, mapDispatch);
 
-export default connector(OneFileUploaderContainer)
+export default connector(ManyFileUploaderContainer)

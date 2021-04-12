@@ -1,7 +1,8 @@
-import { SET_PRODUCTS,
-    CHANGE_INPUT_NAME_VALUE, 
-    CHANGE_INPUT_DESCRIPTION_VALUE, 
-    CHANGE_INPUT_PRICE_VALUE, 
+import {
+    SET_PRODUCTS,
+    CHANGE_INPUT_NAME_VALUE,
+    CHANGE_INPUT_DESCRIPTION_VALUE,
+    CHANGE_INPUT_PRICE_VALUE,
     CHANGE_INPUT_CALORIES_VALUE,
     CHANGE_INPUT_COUNT_VALUE,
     CHANGE_INPUT_WEIGHT_VALUE,
@@ -12,7 +13,8 @@ import { SET_PRODUCTS,
     CLEAR_INGREDIENTS,
     SET_TITLE_IMG,
     SET_ADDITIONAL_IMAGES,
-    DELETE_TITLE_IMG
+    DELETE_TITLE_IMG, DELETE_ADDITIONAL_IMG,
+    CLEAR_ADDITIONAL_IMG
 } from './actions'
 
 const initState = {
@@ -111,7 +113,23 @@ const productReducer = (state = initState, action) => {
             }
         }
         case SET_ADDITIONAL_IMAGES: {
-
+            return {
+                ...state,
+                product_additional_images: [...state.product_additional_images, action.payload]
+            }
+        }
+        case DELETE_ADDITIONAL_IMG: {
+            const new_images = state.product_additional_images.filter(image => image.name !== action.payload )
+            return {
+                ...state,
+                product_additional_images: new_images
+            }
+        }
+        case CLEAR_ADDITIONAL_IMG: {
+            return {
+                ...state,
+                product_additional_images: []
+            }
         }
         default:
             return state;
