@@ -115,19 +115,22 @@ class ProductList(MethodResource, Resource):
                         ingredients=ingredients,
                         is_special=kwargs['is_special']
                         )
+
             product.save_to_db()
 
             images = []
             try:
                 for img in kwargs['images']:
                     try:
+                        print('pid: ', product.id)
                         image = Image(
                             is_title=img['is_title'],
-                            image_data=img['img_data'].encode('utf-8'),
+                            _image_data=img['image_data'].encode('utf-8'),
                             product_id=product.id
                         )
                         image.save_to_db()
                     except Exception:
+                        print('here')
                         return {'message': "img db exception."}, 500
                     images.append(image)
             except Exception:

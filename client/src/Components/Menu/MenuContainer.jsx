@@ -1,14 +1,10 @@
 import React from "react";
-import {
-    PRODUCTS_URL,
-    CATEGORIES_URL,
-    INGREDIENTS_URL
-} from "../../urls";
+import { PRODUCTS_URL, CATEGORIES_URL, INGREDIENTS_URL } from "../../urls";
 import Menu from "./Menu";
 import * as productActions from "../../Store/Products/actions";
 import * as categoryActions from "../../Store/Categories/actions";
 import * as ingredientActions from "../../Store/Ingredients/actions";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 class MenuContainer extends React.Component {
     componentDidMount() {
@@ -28,6 +24,70 @@ class MenuContainer extends React.Component {
             });
     };
 
+    addProduct = (
+        name,
+        category,
+        count,
+        description,
+        ingredients,
+        is_special,
+        price,
+        weigth,
+        calories,
+        title_image,
+        images
+    ) => {
+        const product_images = images.map((image) => {
+            return {
+                image_data: image.base64,
+                is_title: false,
+            };
+        });
+
+        product_images.push({
+            image_data: title_image[0].base64,
+            is_title: true,
+        });
+
+        const product_ingredients = ingredients.map((i) => {
+            return i.name;
+        });
+
+        const newProduct = {
+            name: name,
+            category: category.name,
+            count: count,
+            description: description,
+            images: product_images,
+            ingredients: product_ingredients,
+            is_special: is_special,
+            price: price,
+            weight: weigth,
+            calories: calories,
+        };
+
+        console.log(newProduct);
+
+        fetch(`${PRODUCTS_URL}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newProduct),
+        }).then((response) => {
+            if (response.ok) {
+                alert("ura");
+                // this.fetchProducts();
+            }
+            // else if (response.status === 500) {
+            //     return response.json().then((json) => {
+            //         const { message } = json;
+            //         alert(message);
+            //     });
+            // }
+        });
+    };
+
     fetchCategories = () => {
         fetch(CATEGORIES_URL)
             .then((response) => {
@@ -41,14 +101,14 @@ class MenuContainer extends React.Component {
 
     fetchIngredients = () => {
         fetch(INGREDIENTS_URL)
-            .then(response => {
-                return response.json()
+            .then((response) => {
+                return response.json();
             })
-            .then(data => {
-                const ingredients = data.reverse()
-                this.props.setIngredients(ingredients)
+            .then((data) => {
+                const ingredients = data.reverse();
+                this.props.setIngredients(ingredients);
             });
-    }
+    };
 
     render() {
         return (
@@ -78,6 +138,10 @@ class MenuContainer extends React.Component {
                 deleteIngredient={this.props.deleteIngredient}
                 clearIngredients={this.props.clearIngredients}
                 clearAdditionalImages={this.props.clearAdditionalImages}
+                addProduct={this.addProduct}
+                product_ingredients={this.props.product_ingredients}
+                images={this.props.images}
+                title_image={this.props.title_image}
             />
         );
     }
@@ -96,7 +160,10 @@ const mapState = (state) => {
         isSpecialState: state.product.product_is_special,
         inputCategoryState: state.product.input_category_field,
         categories: state.category.categories,
-        ingredients: state.ingredient.ingredients
+        ingredients: state.ingredient.ingredients,
+        images: state.product.product_additional_images,
+        title_image: state.product.product_title_image,
+        product_ingredients: state.product.product_ingredients,
     };
 };
 
@@ -115,7 +182,7 @@ const mapDispatch = {
     addIngredient: productActions.addIngredient,
     deleteIngredient: productActions.deleteIngredient,
     clearIngredients: productActions.clearIngredients,
-    clearAdditionalImages: productActions.clearAdditionalImages
+    clearAdditionalImages: productActions.clearAdditionalImages,
 };
 
 const connector = connect(mapState, mapDispatch);

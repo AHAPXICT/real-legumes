@@ -9,10 +9,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CheckIcon from "@material-ui/icons/Check";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
-import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList"
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import {IconButton} from "@material-ui/core";
-import {makeStyles} from '@material-ui/core/styles';
+import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import { IconButton } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import FileUploader from "../FileUploader/FileUploader";
 import FileUploadSection from "../FileUploader/FileUploadSection/FileUploadSection";
 
@@ -26,41 +26,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProductModalDialog = ({
-                                titleText,
-                                helpText,
-                                fullWidth,
-                                nameHelpText,
-                                countHelpText,
-                                descriptionHelpText,
-                                is_specialHelpText,
-                                priceHelpText,
-                                weightHelpText,
-                                inputNameState,
-                                updateInputNameValue,
-                                inputDescriptionState,
-                                updateInputDescriptionValue,
-                                inputPriceState,
-                                updateInputPriceValue,
-                                inputCaloriesState,
-                                updateInputCaloriesValue,
-                                inputCountState,
-                                updateInputCountValue,
-                                inputWeigthState,
-                                updateInputWeigthValue,
-                                caliriesHelpText,
-                                isSpecialState,
-                                updateIsSpecialValue,
-                                categories,
-                                inputCategoryState,
-                                updateCategoryValue,
-                                ingredients,
-                                addIngredient,
-                                deleteIngredient,
-                                clearIngredients,
-                                clearAdditionalImages
-                            }) => {
+    titleText,
+    helpText,
+    fullWidth,
+    nameHelpText,
+    countHelpText,
+    descriptionHelpText,
+    is_specialHelpText,
+    priceHelpText,
+    weightHelpText,
+    inputNameState,
+    updateInputNameValue,
+    inputDescriptionState,
+    updateInputDescriptionValue,
+    inputPriceState,
+    updateInputPriceValue,
+    inputCaloriesState,
+    updateInputCaloriesValue,
+    inputCountState,
+    updateInputCountValue,
+    inputWeigthState,
+    updateInputWeigthValue,
+    caliriesHelpText,
+    isSpecialState,
+    updateIsSpecialValue,
+    categories,
+    inputCategoryState,
+    updateCategoryValue,
+    ingredients,
+    addIngredient,
+    deleteIngredient,
+    clearIngredients,
+    clearAdditionalImages,
+    addProduct,
+    images,
+    title_image,
+    product_ingredients,
+}) => {
     const [open, setOpen] = React.useState(false);
-    const [openIngredientList, setOpenIngredientList] = React.useState(false)
+    const [openIngredientList, setOpenIngredientList] = React.useState(false);
 
     const classes = useStyles();
 
@@ -104,10 +108,27 @@ const ProductModalDialog = ({
         updateInputCountValue(0);
         updateInputWeigthValue(0);
         updateIsSpecialValue(false);
-        updateCategoryValue('');
+        updateCategoryValue("");
         clearIngredients();
         clearAdditionalImages();
         setOpen(false);
+    };
+
+    const handleSubmit = () => {
+        // debugger;
+        addProduct(
+            inputNameState,
+            inputCategoryState,
+            inputCountState,
+            inputDescriptionState,
+            product_ingredients,
+            isSpecialState,
+            inputPriceState,
+            inputWeigthState,
+            inputCaloriesState,
+            title_image,
+            images
+        );
     };
 
     return (
@@ -185,8 +206,8 @@ const ProductModalDialog = ({
                         value={inputCaloriesState}
                         onChange={changeCaloriesInput}
                     />
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <p>{is_specialHelpText}: </p>
                     <ToggleButton
                         value="check"
@@ -195,7 +216,7 @@ const ProductModalDialog = ({
                             changeIsSpecialInput(!isSpecialState);
                         }}
                     >
-                        <CheckIcon/>
+                        <CheckIcon />
                     </ToggleButton>
                     <CategoryDropdownMenu
                         categories={categories}
@@ -206,24 +227,27 @@ const ProductModalDialog = ({
                         aria-label="delete"
                         className={classes.margin}
                         size="lagre"
-                        onClick={() => setOpenIngredientList(!openIngredientList)}
+                        onClick={() =>
+                            setOpenIngredientList(!openIngredientList)
+                        }
                     >
-                        <ArrowDownwardIcon fontSize="inherit"/>
+                        <ArrowDownwardIcon fontSize="inherit" />
                     </IconButton>
                     Інгредієнти
-                    {openIngredientList ?
+                    {openIngredientList ? (
                         <CheckboxList
                             ingredients={ingredients}
                             addIngredient={addIngredient}
                             deleteIngredient={deleteIngredient}
-                        /> : null}
-                    <br/>
+                        />
+                    ) : null}
+                    <br />
                     <FileUploadSection
-                        title={'Виберіть титульне зображення:'}
+                        title={"Виберіть титульне зображення:"}
                         multipleFiles={false}
                     />
                     <FileUploadSection
-                        title={'Виберіть додаткові зображення (опціонально):'}
+                        title={"Виберіть додаткові зображення (опціонально):"}
                         multipleFiles={true}
                     />
                 </DialogContent>
@@ -231,8 +255,8 @@ const ProductModalDialog = ({
                     <Button color="primary" size="large" onClick={handleClose}>
                         Закрити
                     </Button>
-                    <Button color="primary" size="large">
-                        btnText
+                    <Button color="primary" size="large" onClick={handleSubmit}>
+                        Додати
                     </Button>
                 </DialogActions>
             </Dialog>

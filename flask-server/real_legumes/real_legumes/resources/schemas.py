@@ -2,7 +2,7 @@ from marshmallow import Schema, fields
 
 
 class ImageRequestSchema(Schema):
-    img_data = fields.Raw(required=True, allow_none=False)
+    img_data = fields.Raw(required=True)
     is_title = fields.Boolean(required=True)
 
 
@@ -19,7 +19,7 @@ class ProductBaseSchema:
     count = fields.Integer(required=True)
     weight = fields.Integer(required=True)
     category = fields.String(required=True)
-    images = fields.List(fields.Nested(ImageRequestSchema), required=True)
+    # images = fields.List(fields.Nested(ImageRequestSchema), required=True)
     ingredients = fields.List(fields.String(), required=True)
     is_special = fields.Boolean(default=False)
 
@@ -37,6 +37,7 @@ class ProductListSchema(Schema):
 
 
 class ProductRequestSchema(Schema, ProductBaseSchema):
+    images = fields.List(fields.Nested(ImageResponseSchema))
     pass
 
 

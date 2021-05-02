@@ -9,30 +9,34 @@ const img_url =
     "https://images-gmi-pmc.edge-generalmills.com/df109202-f5dd-45a1-99b4-f10939afd509.jpg";
 
 const Menu = ({
-                  products,
-                  inputNameState,
-                  updateInputNameValue,
-                  updateInputDescriptionValue,
-                  inputDescriptionState,
-                  inputPriceState,
-                  updateInputPriceValue,
-                  inputCaloriesState,
-                  updateInputCaloriesValue,
-                  inputCountState,
-                  updateInputCountValue,
-                  inputWeigthState,
-                  updateInputWeigthValue,
-                  isSpecialState,
-                  updateIsSpecialValue,
-                  categories,
-                  inputCategoryState,
-                  updateCategoryValue,
-                  ingredients,
-                  addIngredient,
-                  deleteIngredient,
-                  clearIngredients,
-                  clearAdditionalImages
-              }) => {
+    products,
+    inputNameState,
+    updateInputNameValue,
+    updateInputDescriptionValue,
+    inputDescriptionState,
+    inputPriceState,
+    updateInputPriceValue,
+    inputCaloriesState,
+    updateInputCaloriesValue,
+    inputCountState,
+    updateInputCountValue,
+    inputWeigthState,
+    updateInputWeigthValue,
+    isSpecialState,
+    updateIsSpecialValue,
+    categories,
+    inputCategoryState,
+    updateCategoryValue,
+    ingredients,
+    addIngredient,
+    deleteIngredient,
+    clearIngredients,
+    clearAdditionalImages,
+    addProduct,
+    images,
+    title_image,
+    product_ingredients,
+}) => {
     return (
         <div className="container">
             <div
@@ -75,10 +79,14 @@ const Menu = ({
                         deleteIngredient={deleteIngredient}
                         clearIngredients={clearIngredients}
                         clearAdditionalImages={clearAdditionalImages}
+                        addProduct={addProduct}
+                        images={images}
+                        title_image={title_image}
+                        product_ingredients={product_ingredients}
                     />
                     <div className={s.menu__dropdown_section}>
-                        <DropdownItem text="Категорії"/>
-                        <DropdownItem text="Ціни"/>
+                        <DropdownItem text="Категорії" />
+                        <DropdownItem text="Ціни" />
                     </div>
                 </div>
                 <div className={`${s.menu__items_row} ${s.menu__container}`}>
