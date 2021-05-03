@@ -10,6 +10,7 @@ import MenuContainer from './Components/Menu/MenuContainer'
 import CategoryAdminPageContainer from './Components/AdminPages/CategoryAdminPageContainer/CategoryAdminPageContainer'
 import IngredientAdminPageContainer from './Components/AdminPages/IngredientAdminPageContainer/IngredientAdminPageContainer'
 import FileUploader from './Components/FileUploader/FileUploader'
+import LoginPage from './Components/LoginPage/LoginPage'
 import store from './Store/store'
 
 
@@ -38,6 +39,9 @@ function App() {
                         <Route exact path='/file'>
                             <FileUploader />
                         </Route>
+                        <Route exact path='/login'>
+                            <LoginPage />
+                        </Route>    
                         <Route to='*'>
                             <PageNotFound/>
                         </Route>

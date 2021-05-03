@@ -2,11 +2,13 @@ import { createStore, combineReducers } from 'redux'
 import categoryReducer from './Categories/CategoryReducer'
 import ingredientReducer from './Ingredients/IngredientReducer'
 import productReducer from './Products/ProductReducer'
+import userReducer from './User/UserReducer'
 
 const appReducer = combineReducers({
     category: categoryReducer,
     ingredient: ingredientReducer,
-    product: productReducer
+    product: productReducer,
+    user: userReducer
 })
 
 const store = createStore(
