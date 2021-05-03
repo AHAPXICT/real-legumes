@@ -18,6 +18,11 @@ class BaseConfig:
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
 
+    SECRET_KEY = 'secret'
+    JWT_SECRET_KEY = 'jwtsecret'
+    JWT_BLACKLIST_ENABLED = True
+    JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
+
 
 class DevelopmentConfig(BaseConfig):
     """Development environment specific config."""
