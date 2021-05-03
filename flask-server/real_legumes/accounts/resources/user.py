@@ -6,8 +6,9 @@ from flask_apispec import marshal_with, doc, use_kwargs
 from flask import request
 
 from ..models import User as u
+from ..models import BlacklistToken
 from real_legumes import db, bcrypt
-from .schemas import UserResponseSchema, UserRequestSchema
+from .schemas import UserResponseSchema, UserRequestSchema, UserLogoutSchema
 
 
 class Register(MethodResource, Resource):
@@ -69,6 +70,7 @@ class UserAPI(MethodResource, Resource):
     def get(self):
         # get the auth token
         auth_header = request.headers.get('Authorization')
+        print(auth_header)
 
         if auth_header:
             try:
@@ -107,19 +109,49 @@ class UserAPI(MethodResource, Resource):
             return responseObject, 401
 
 
+class Logout(MethodResource, Resource):
+    """
+    Logout Resource
+    """
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @doc(description="Logout user.", tags=['User'])
+    @use_kwargs(UserLogoutSchema, location=('json'))
+    def post(self):
+        # get auth token
+        auth_header = request.headers.get('Authorization')
+        if auth_header:
+            auth_token = auth_header.split(" ")[0]
+        else:
+            auth_token = ''
+        if auth_token:
+            resp = u.decode_auth_token(auth_token)
+            if not isinstance(resp, str):
+                # mark the token as blacklisted
+                blacklist_token = BlacklistToken(token=auth_token)
+                try:
+                    # insert the token
+                    db.session.add(blacklist_token)
+                    db.session.commit()
+                    responseObject = {
+                        'status': 'success',
+                        'message': 'Successfully logged out.'
+                    }
+                    return responseObject, 200
+                except Exception as e:
+                    responseObject = {
+                        'status': 'fail',
+                        'message': e
+                    }
+                    return responseObject, 200
+            else:
+                responseObject = {
+                    'status': 'fail',
+                    'message': resp
+                }
+                return responseObject, 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return responseObject, 403

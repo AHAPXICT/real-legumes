@@ -13,3 +13,7 @@ class UserResponseSchema(UserBaseSchema):
 
 class UserRequestSchema(UserBaseSchema):
     password = fields.String(required=True)
+
+
+class UserLogoutSchema(Schema):
+    pass

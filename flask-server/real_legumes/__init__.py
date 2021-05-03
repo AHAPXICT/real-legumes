@@ -20,7 +20,7 @@ from real_legumes.accounts.models import *
 def _access_control(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'GET,HEAD,PUT,PATCH,POST,DELETE'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     return response
 
 
@@ -35,7 +35,7 @@ def register_docs(docs):
     from .real_legumes.resources.image import ImageList, Image
     from .real_legumes.resources.ingredient import IngredientList, Ingredient
     from .real_legumes.resources.product import ProductList, Product, SpecialProducts
-    from .accounts.resources.user import Register, Login, UserAPI
+    from .accounts.resources.user import Register, Login, UserAPI, Logout
 
     docs.register(CategoryList, blueprint="api_v1")
     docs.register(Category, blueprint="api_v1")
@@ -53,6 +53,7 @@ def register_docs(docs):
     docs.register(Register, blueprint="api_v1")
     docs.register(Login, blueprint="api_v1")
     docs.register(UserAPI, blueprint="api_v1")
+    docs.register(Logout, blueprint="api_v1")
 
 
 def create_app(config_name: str):
