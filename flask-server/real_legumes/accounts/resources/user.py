@@ -22,7 +22,7 @@ class Register(MethodResource, Resource):
                 user = u(email=kwargs['email'], password=kwargs['password'])
                 db.session.add(user)
                 db.session.commit()
-                auth_token = user.encode_auth_token(user.id)
+                auth_token = user.encode_auth_token(user.id, time=60)
                 responseObject = {
                     'status': 'success',
                     'message': 'Successfully registered.',
@@ -49,12 +49,13 @@ class Login(MethodResource, Resource):
             if user and bcrypt.check_password_hash(
                     user.password, kwargs['password']
             ):
-                auth_token = user.encode_auth_token(user.id)
+                auth_token = user.encode_auth_token(user.id, time=6000)
                 if auth_token:
                     responseObject = {
                         'status': 'success',
                         'message': "Successfully logged in.",
-                        'auth_token': auth_token
+                        'auth_token': auth_token,
+                        'user': {'email': user.email, 'admin': user.admin}
                     }
                     return responseObject, 200
             else:
@@ -66,15 +67,13 @@ class Login(MethodResource, Resource):
 class UserAPI(MethodResource, Resource):
 
     @doc(description="Get user.", tags=['User'])
-    @marshal_with(UserResponseSchema)
     def get(self):
-        # get the auth token
         auth_header = request.headers.get('Authorization')
-        print(auth_header)
 
         if auth_header:
             try:
-                auth_token = auth_header.split(" ")[0]
+                auth_token = auth_header.split(" ")[1]
+                print(auth_token)
             except IndexError:
                 responseObject = {
                     'status': 'fail',
@@ -84,9 +83,8 @@ class UserAPI(MethodResource, Resource):
         else:
             auth_token = ''
         if auth_token:
-            print('3')
             resp = u.decode_auth_token(auth_token)
-            print(resp)
+            # print(auth_token)
             if not isinstance(resp, str):
                 user = u.query.filter_by(id=resp).first()
                 responseObject = {
@@ -110,26 +108,20 @@ class UserAPI(MethodResource, Resource):
 
 
 class Logout(MethodResource, Resource):
-    """
-    Logout Resource
-    """
-
     @doc(description="Logout user.", tags=['User'])
     @use_kwargs(UserLogoutSchema, location=('json'))
     def post(self):
-        # get auth token
         auth_header = request.headers.get('Authorization')
         if auth_header:
-            auth_token = auth_header.split(" ")[0]
+            auth_token = auth_header.split(" ")[1]
         else:
             auth_token = ''
+        print(auth_token)
         if auth_token:
             resp = u.decode_auth_token(auth_token)
             if not isinstance(resp, str):
-                # mark the token as blacklisted
                 blacklist_token = BlacklistToken(token=auth_token)
                 try:
-                    # insert the token
                     db.session.add(blacklist_token)
                     db.session.commit()
                     responseObject = {

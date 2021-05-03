@@ -6,7 +6,6 @@ from real_legumes import db, bcrypt
 
 
 class User(db.Model):
-    """ User Model for storing user related details """
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -22,18 +21,13 @@ class User(db.Model):
         self.registered_on = datetime.datetime.now()
         self.admin = admin
 
-    def encode_auth_token(self, user_id):
-        """
-        Generates the Auth Token
-        :return: string
-        """
+    def encode_auth_token(self, user_id, time):
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=60),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=time),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
-            print('payload: ', payload)
             return jwt.encode(
                 payload,
                 config['default'].SECRET_KEY,
@@ -44,11 +38,6 @@ class User(db.Model):
 
     @staticmethod
     def decode_auth_token(auth_token):
-        """
-        Validates the auth token
-        :param auth_token:
-        :return: integer|string
-        """
         try:
             payload = jwt.decode(auth_token, config['default'].SECRET_KEY, algorithms=["HS256"])
             is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
@@ -63,9 +52,6 @@ class User(db.Model):
 
 
 class BlacklistToken(db.Model):
-    """
-    Token Model for storing JWT tokens
-    """
     __tablename__ = 'blacklist_tokens'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

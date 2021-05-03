@@ -6,6 +6,7 @@ from flask_apispec import marshal_with, doc, use_kwargs
 from ..models import Ingredient as i
 from .schemas import IngredientRequestSchema, IngredientResponseSchema
 from real_legumes import db
+from real_legumes.accounts.models import User
 
 
 class IngredientList(MethodResource, Resource):

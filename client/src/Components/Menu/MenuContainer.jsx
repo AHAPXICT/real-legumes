@@ -77,14 +77,7 @@ class MenuContainer extends React.Component {
         }).then((response) => {
             if (response.ok) {
                 alert("ura");
-                // this.fetchProducts();
             }
-            // else if (response.status === 500) {
-            //     return response.json().then((json) => {
-            //         const { message } = json;
-            //         alert(message);
-            //     });
-            // }
         });
     };
 
@@ -142,6 +135,7 @@ class MenuContainer extends React.Component {
                 product_ingredients={this.props.product_ingredients}
                 images={this.props.images}
                 title_image={this.props.title_image}
+                user={this.props.user}
             />
         );
     }
@@ -164,6 +158,7 @@ const mapState = (state) => {
         images: state.product.product_additional_images,
         title_image: state.product.product_title_image,
         product_ingredients: state.product.product_ingredients,
+        user: state.user.user,
     };
 };
 

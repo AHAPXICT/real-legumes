@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect, Route } from "react-router";
+import { Link } from "react-router-dom";
 import * as userActions from "../../Store/User/actions";
 
 import s from "./style.module.css";
@@ -11,7 +13,7 @@ class LoginPage extends React.Component {
         this.state = {
             username: "",
             password: "",
-            submitted: false,
+            redirect: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,11 +27,10 @@ class LoginPage extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
-        // this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
             this.getToken(username, password);
+            this.setState({ redirect: true });
         }
     }
 
@@ -48,42 +49,30 @@ class LoginPage extends React.Component {
             })
             .then((data) => {
                 console.log(data);
-                this.props.setToken(data.auth_token);
-                return data.auth_token;
-            })
-            .then((token) => {
-                console.log(JSON.stringify(token));
-                fetch("http://127.0.0.1:5000/api/users/status", {
-                    method: "GET",
-                    headers: {
-                        Authorization: token,
-                    },
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                    })
-                    .then((data) => {
-                        console.log("user: ", data);
-                        this.props.setUser(data);
-                    });
+                sessionStorage.setItem("authToken", data.auth_token);
+                this.props.setUser(data.user);
             });
     }
 
     render() {
-        const { username, password, submitted } = this.state;
+        const { username, password, redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to="/" />;
+        }
+
         return (
-            <div className={`container ${s.max_height}`}>
+            <div className={`container ${s.max_height} ${s.form_container}`}>
                 <div>
                     <form onSubmit={this.handleSubmit}>
-                        <fieldset>
-                            <legend>email</legend>
+                        <fieldset className={s.fieldset}>
+                            <legend>Email</legend>
 
                             <input
+                                className={s.form_input}
                                 type="text"
                                 required
-                                placeholder="Enter todo title"
+                                placeholder="Введіть emaіl"
                                 onChange={this.handleChange}
                                 value={username}
                                 name="username"
@@ -91,21 +80,26 @@ class LoginPage extends React.Component {
                         </fieldset>
 
                         <fieldset>
-                            <legend>psw</legend>
+                            <legend>Пароль</legend>
 
                             <input
-                                type="text"
+                                className={s.form_input}
+                                type="password"
                                 required
-                                placeholder="Enter todo title"
+                                placeholder="Введіть пароль"
                                 onChange={this.handleChange}
                                 value={password}
                                 name="password"
                             ></input>
                         </fieldset>
 
-                        <div>
-                            <button>Login</button>
+                        <div className={s.btn_container}>
+                            <button className={s.btn_submit}>Увійти</button>
                         </div>
+
+                        <span>
+                            <Link to="/register">Заруєструватись!</Link>
+                        </span>
                     </form>
                 </div>
             </div>
@@ -114,13 +108,10 @@ class LoginPage extends React.Component {
 }
 
 const mapState = (state) => {
-    return {
-        token: state.user.token,
-    };
+    return {};
 };
 
 const mapDispatch = {
-    setToken: userActions.setToken,
     setUser: userActions.setUser,
 };
 

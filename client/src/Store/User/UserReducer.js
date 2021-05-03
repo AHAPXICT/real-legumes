@@ -1,23 +1,20 @@
-import {SET_USER, REMOVE_USER, SET_TOKEN } from './actions'
+import {SET_USER, REMOVE_USER } from './actions'
 
 const initState = {
-    loggedIn: false,
-    user: {},
-    token: ''
+    user: {}
 }
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
-        case SET_TOKEN:
-            return {
-                ...state,
-                token: action.payload,
-                loggedIn: true
-            }
         case SET_USER:
             return {
                 ...state,
                 user: action.payload
+            }
+        case REMOVE_USER:
+            return {
+                ...state,
+                user: {}
             }
         default:
             return state

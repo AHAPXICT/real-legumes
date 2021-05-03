@@ -36,7 +36,10 @@ const Menu = ({
     images,
     title_image,
     product_ingredients,
+    user,
 }) => {
+    const is_admin = user.admin;
+
     return (
         <div className="container">
             <div
@@ -44,46 +47,48 @@ const Menu = ({
             >
                 <div className={s.menu__first_section}>
                     <h1 className={s.menu_title}>Наше меню</h1>
-                    <ProductModalDialog
-                        titleText="Додати новий продукт"
-                        helpText="Щоб додати, заповніть всі поля."
-                        fullWidth={100}
-                        nameHelpText="Назва продукту"
-                        descriptionHelpText="Опис продукту"
-                        is_specialHelpText="Чи особливий"
-                        priceHelpText="Ціна в грн"
-                        weightHelpText="Вага в грамах"
-                        countHelpText="Кількість на складі"
-                        caliriesHelpText="Кількість калорій"
-                        inputNameState={inputNameState}
-                        updateInputNameValue={updateInputNameValue}
-                        updateInputDescriptionValue={
-                            updateInputDescriptionValue
-                        }
-                        inputDescriptionState={inputDescriptionState}
-                        inputPriceState={inputPriceState}
-                        updateInputPriceValue={updateInputPriceValue}
-                        inputCaloriesState={inputCaloriesState}
-                        updateInputCaloriesValue={updateInputCaloriesValue}
-                        inputCountState={inputCountState}
-                        updateInputCountValue={updateInputCountValue}
-                        inputWeigthState={inputWeigthState}
-                        updateInputWeigthValue={updateInputWeigthValue}
-                        isSpecialState={isSpecialState}
-                        updateIsSpecialValue={updateIsSpecialValue}
-                        categories={categories}
-                        inputCategoryState={inputCategoryState}
-                        updateCategoryValue={updateCategoryValue}
-                        ingredients={ingredients}
-                        addIngredient={addIngredient}
-                        deleteIngredient={deleteIngredient}
-                        clearIngredients={clearIngredients}
-                        clearAdditionalImages={clearAdditionalImages}
-                        addProduct={addProduct}
-                        images={images}
-                        title_image={title_image}
-                        product_ingredients={product_ingredients}
-                    />
+                    {is_admin ? (
+                        <ProductModalDialog
+                            titleText="Додати новий продукт"
+                            helpText="Щоб додати, заповніть всі поля."
+                            fullWidth={100}
+                            nameHelpText="Назва продукту"
+                            descriptionHelpText="Опис продукту"
+                            is_specialHelpText="Чи особливий"
+                            priceHelpText="Ціна в грн"
+                            weightHelpText="Вага в грамах"
+                            countHelpText="Кількість на складі"
+                            caliriesHelpText="Кількість калорій"
+                            inputNameState={inputNameState}
+                            updateInputNameValue={updateInputNameValue}
+                            updateInputDescriptionValue={
+                                updateInputDescriptionValue
+                            }
+                            inputDescriptionState={inputDescriptionState}
+                            inputPriceState={inputPriceState}
+                            updateInputPriceValue={updateInputPriceValue}
+                            inputCaloriesState={inputCaloriesState}
+                            updateInputCaloriesValue={updateInputCaloriesValue}
+                            inputCountState={inputCountState}
+                            updateInputCountValue={updateInputCountValue}
+                            inputWeigthState={inputWeigthState}
+                            updateInputWeigthValue={updateInputWeigthValue}
+                            isSpecialState={isSpecialState}
+                            updateIsSpecialValue={updateIsSpecialValue}
+                            categories={categories}
+                            inputCategoryState={inputCategoryState}
+                            updateCategoryValue={updateCategoryValue}
+                            ingredients={ingredients}
+                            addIngredient={addIngredient}
+                            deleteIngredient={deleteIngredient}
+                            clearIngredients={clearIngredients}
+                            clearAdditionalImages={clearAdditionalImages}
+                            addProduct={addProduct}
+                            images={images}
+                            title_image={title_image}
+                            product_ingredients={product_ingredients}
+                        />
+                    ) : null}
                     <div className={s.menu__dropdown_section}>
                         <DropdownItem text="Категорії" />
                         <DropdownItem text="Ціни" />
