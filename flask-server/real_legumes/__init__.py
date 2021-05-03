@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_apispec.extension import FlaskApiSpec
 from flask_cors import CORS
+from flask_bcrypt import Bcrypt
 
 from config import config
 
@@ -10,8 +11,10 @@ db = SQLAlchemy()
 migrate = Migrate()
 docs = FlaskApiSpec()
 cors = CORS()
+bcrypt = Bcrypt()
 
 from real_legumes.real_legumes.models import *
+from real_legumes.accounts.models import *
 
 
 def _access_control(response):
@@ -61,5 +64,7 @@ def create_app(config_name: str):
 
     cors.init_app(app)
     app.after_request(_access_control)
+
+    bcrypt.init_app(app)
 
     return app
