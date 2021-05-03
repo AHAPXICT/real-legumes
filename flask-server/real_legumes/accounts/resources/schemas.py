@@ -3,12 +3,13 @@ from marshmallow import Schema, fields
 
 class UserBaseSchema(Schema):
     email = fields.String(required=True)
-    password = fields.String(required=True)
 
 
 class UserResponseSchema(UserBaseSchema):
-    pass
+    user_id = fields.String()
+    admin = fields.Boolean()
+    registered_on = fields.String()
 
 
 class UserRequestSchema(UserBaseSchema):
-    pass
+    password = fields.String(required=True)

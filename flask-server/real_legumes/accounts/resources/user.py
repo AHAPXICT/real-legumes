@@ -1,7 +1,9 @@
+from flask.views import MethodView
 from flask_restful import Resource
 from flask_apispec.views import MethodResource
 from flask import abort, jsonify
 from flask_apispec import marshal_with, doc, use_kwargs
+from flask import request
 
 from ..models import User as u
 from real_legumes import db, bcrypt
@@ -60,7 +62,49 @@ class Login(MethodResource, Resource):
             return {'message': "Try again."}, 500
 
 
+class UserAPI(MethodResource, Resource):
 
+    @doc(description="Get user.", tags=['User'])
+    @marshal_with(UserResponseSchema)
+    def get(self):
+        # get the auth token
+        auth_header = request.headers.get('Authorization')
+
+        if auth_header:
+            try:
+                auth_token = auth_header.split(" ")[0]
+            except IndexError:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return responseObject, 401
+        else:
+            auth_token = ''
+        if auth_token:
+            print('3')
+            resp = u.decode_auth_token(auth_token)
+            print(resp)
+            if not isinstance(resp, str):
+                user = u.query.filter_by(id=resp).first()
+                responseObject = {
+                        'user_id': user.id,
+                        'email': user.email,
+                        'admin': user.admin,
+                        'registered_on': str(user.registered_on)
+                }
+                return responseObject, 200
+            responseObject = {
+                'status': 'fail',
+                'message': resp
+            }
+            return responseObject, 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return responseObject, 401
 
 
 

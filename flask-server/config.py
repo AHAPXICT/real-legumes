@@ -18,7 +18,7 @@ class BaseConfig:
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
 
-    SECRET_KEY = b'_5#y2L"F4Q8z\n\xec]/'
+    SECRET_KEY = 'secret'
 
 
 class DevelopmentConfig(BaseConfig):
