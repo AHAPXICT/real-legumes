@@ -6,7 +6,7 @@ from ..real_legumes.resources.ingredient import IngredientList, Ingredient
 from ..real_legumes.resources.image import Image, ImageList
 from ..real_legumes.resources.product import Product, ProductList, SpecialProducts
 
-from ..accounts.resources.user import Register
+from ..accounts.resources.user import Register, Login
 
 
 api_v1 = Blueprint('api_v1', __name__)
@@ -26,3 +26,4 @@ api.add_resource(SpecialProducts, '/products/special')
 api.add_resource(Product, '/product/<product_name>')
 
 api.add_resource(Register, '/users/register')
+api.add_resource(Login, '/users/login')

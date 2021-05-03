@@ -33,4 +33,49 @@ class Register(MethodResource, Resource):
             return {'message': "User already exists. Please Log in."}, 500
 
 
+class Login(MethodResource, Resource):
+
+    @doc(description="Login user.", tags=['User'])
+    @use_kwargs(UserRequestSchema, location=('json'))
+    def post(self, **kwargs):
+        try:
+            user = u.query.filter_by(
+                email=kwargs['email']
+            ).first()
+
+            if user and bcrypt.check_password_hash(
+                    user.password, kwargs['password']
+            ):
+                auth_token = user.encode_auth_token(user.id)
+                if auth_token:
+                    responseObject = {
+                        'status': 'success',
+                        'message': "Successfully logged in.",
+                        'auth_token': auth_token
+                    }
+                    return responseObject, 200
+            else:
+                return {'message': "User does not exist."}, 500
+        except Exception:
+            return {'message': "Try again."}, 500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
