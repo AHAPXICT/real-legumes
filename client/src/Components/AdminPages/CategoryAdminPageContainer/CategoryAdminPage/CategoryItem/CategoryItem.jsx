@@ -1,18 +1,10 @@
-import React from "react";
-import OneFieldModalDialog from "../../../../FormModalDialog/OneFieldModalDialog";
-import AlertModalDialog from "../../../../AlertModalDialog/AlertModalDialog";
+import React from 'react';
+import OneFieldModalDialog from '../../../../FormModalDialog/OneFieldModalDialog';
+import AlertModalDialog from '../../../../AlertModalDialog/AlertModalDialog';
 
-import s from "./style.module.css";
+import s from './style.module.css';
 
-const CategoryItem = ({
-    name,
-    updated_at,
-    created_at,
-    deleteCategory,
-    updateCategory,
-    updateInputValue,
-    inputState,
-}) => {
+const CategoryItem = ({ name, updated_at, created_at, deleteCategory, updateCategory, updateInputValue, inputState }) => {
     const onDelete = () => {
         deleteCategory(name);
     };
@@ -25,12 +17,12 @@ const CategoryItem = ({
             <div className={s.categoryItem__btns}>
                 <div className={s.categoryItem__btn_position}>
                     <OneFieldModalDialog
-                        titleText={"Оновити категорію"}
-                        helpText={"Введіть назвку категорії."}
+                        titleText={'Оновити категорію'}
+                        helpText={'Введіть назвку категорії.'}
                         fullWidth={100}
-                        btnText={"Оновити"}
-                        fieldText={"Категорія"}
-                        mainBtnText={"Оновити"}
+                        btnText={'Оновити'}
+                        fieldText={'Категорія'}
+                        mainBtnText={'Оновити'}
                         updateInputValue={updateInputValue}
                         inputState={inputState}
                         buttonOk={updateCategory}

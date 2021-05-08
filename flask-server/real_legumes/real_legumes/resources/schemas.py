@@ -19,7 +19,6 @@ class ProductBaseSchema:
     count = fields.Integer(required=True)
     weight = fields.Integer(required=True)
     category = fields.String(required=True)
-    # images = fields.List(fields.Nested(ImageRequestSchema), required=True)
     ingredients = fields.List(fields.String(), required=True)
     is_special = fields.Boolean(default=False)
 
@@ -31,7 +30,6 @@ class ProductResponseSchema(Schema, ProductBaseSchema):
 
 
 class ProductListSchema(Schema):
-    count = fields.Integer()
     pages = fields.Integer()
     products = fields.List(fields.Nested(ProductResponseSchema))
 

@@ -131,14 +131,5 @@ class Image(BaseModel, db.Model):
     def image_data(self):
         return self._image_data.decode("utf-8")
 
-    # @validates('image_url')
-    # def validate_image_url(self, key, value):
-    #     if Image.query.filter(Image.image_url == value).first():
-    #         raise AssertionError('Image url already exist.')
-    #     return value
-
     def __repr__(self):
         return f"<Image {self.id}: {self.image_data}>"
-
-    # def __str__(self):
-    #     return self.image_url

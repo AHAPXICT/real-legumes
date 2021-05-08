@@ -3,3 +3,27 @@
     font-size: 30px;
     text-transform: uppercase;
 }
+
+.btn {
+    align-items: center;
+    font-size: 30px;
+    position: relative;
+    margin-left: 30px;
+    display: inline-block;
+
+    color: white;
+    border: 0;
+    background-color: Transparent;
+    text-decoration: none;
+    font-family: "Amatic SC", cursive;
+
+    transition: text-shadow 0.2s linear;
+}
+
+.btn:hover {
+    text-shadow: 0 0 1.2px #fff, 0 0 1.2px #fff;
+}
+
+.btn:hover:after {
+    opacity: 1;
+}

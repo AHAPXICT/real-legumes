@@ -8,7 +8,6 @@ class BaseConfig:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # register swagger
     APISPEC_SPEC = APISpec(
         title='Real Legumes',
         version='v1',
@@ -17,6 +16,8 @@ class BaseConfig:
     )
     APISPEC_SWAGGER_URL = '/swagger/'
     APISPEC_SWAGGER_UI_URL = '/swagger-ui/'
+
+    SECRET_KEY = 'secret'
 
 
 class DevelopmentConfig(BaseConfig):

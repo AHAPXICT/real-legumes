@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_apispec.extension import FlaskApiSpec
 from flask_cors import CORS
+from flask_bcrypt import Bcrypt
 
 from config import config
 
@@ -10,14 +11,16 @@ db = SQLAlchemy()
 migrate = Migrate()
 docs = FlaskApiSpec()
 cors = CORS()
+bcrypt = Bcrypt()
 
 from real_legumes.real_legumes.models import *
+from real_legumes.accounts.models import *
 
 
 def _access_control(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'GET,HEAD,PUT,PATCH,POST,DELETE'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     return response
 
 
@@ -32,6 +35,7 @@ def register_docs(docs):
     from .real_legumes.resources.image import ImageList, Image
     from .real_legumes.resources.ingredient import IngredientList, Ingredient
     from .real_legumes.resources.product import ProductList, Product, SpecialProducts
+    from .accounts.resources.user import Register, Login, UserAPI, Logout
 
     docs.register(CategoryList, blueprint="api_v1")
     docs.register(Category, blueprint="api_v1")
@@ -45,6 +49,11 @@ def register_docs(docs):
     docs.register(ProductList, blueprint="api_v1")
     docs.register(Product, blueprint="api_v1")
     docs.register(SpecialProducts, blueprint="api_v1")
+
+    docs.register(Register, blueprint="api_v1")
+    docs.register(Login, blueprint="api_v1")
+    docs.register(UserAPI, blueprint="api_v1")
+    docs.register(Logout, blueprint="api_v1")
 
 
 def create_app(config_name: str):
@@ -61,5 +70,7 @@ def create_app(config_name: str):
 
     cors.init_app(app)
     app.after_request(_access_control)
+
+    bcrypt.init_app(app)
 
     return app

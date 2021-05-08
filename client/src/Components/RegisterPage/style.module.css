@@ -1,0 +1,35 @@
+.max_height {
+    min-height: 100vh;
+    margin: auto, auto;
+    margin-top: 200px;
+}
+
+.form_container {
+    width: 600px;
+}
+
+.form_input[type="text"],
+[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn_submit {
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 595px;
+    font-family: "Amatic SC", cursive;
+    font-weight: 900;
+}

@@ -36,9 +36,11 @@ def test_new_image():
         THEN check the image_url are defined correctly.
     """
     with app.app_context():
-        image = Image(image_url='image_url')
+        image = Image(_image_data=b'3456789', is_title=False, product_id=1)
 
-        assert image.image_url == 'image_url'
+        assert image.is_title == False
+        assert image.product_id == 1
+        assert image.image_data == '3456789'
 
 
 def test_new_product():
@@ -51,7 +53,6 @@ def test_new_product():
     with app.app_context():
         category = Category(name='category')
         ingredient = Ingredient(name='ingredient')
-        image = Image(image_url='image_url')
 
         product = Product(
             name='product',
@@ -62,8 +63,7 @@ def test_new_product():
             weight=4,
             category=category,
             is_special=True,
-            ingredients=[ingredient],
-            images=[image]
+            ingredients=[ingredient]
         )
 
         assert product.name == 'product'
@@ -76,5 +76,3 @@ def test_new_product():
         assert product.is_special == True
         assert len(product.ingredients) == 1
         assert product.ingredients[0].name == 'ingredient'
-        assert len(product.images) == 1
-        assert product.images[0].image_url == 'image_url'

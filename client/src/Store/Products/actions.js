@@ -1,134 +1,133 @@
-export const SET_PRODUCTS = 'PRODUCT/SET_PRODUCTS'
-export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE'
-export const CHANGE_INPUT_DESCRIPTION_VALUE = 'PRODUCT/CHANGE_INPUT_DESCRIPTION_VALUE'
-export const CHANGE_INPUT_PRICE_VALUE = 'PRODUCT/CHANGE_INPUT_PRICE_VALUE'
-export const CHANGE_INPUT_CALORIES_VALUE = 'PRODUCT/CHANGE_INPUT_CALORIES_VALUE'
-export const CHANGE_INPUT_COUNT_VALUE = 'PRODUCT/CHANGE_INPUT_COUNT_VALUE'
-export const CHANGE_INPUT_WEIGHT_VALUE = 'PRODUCT/CHANGE_INPUT_WEIGHT_VALUE'
-export const CHANGE_IS_SPECIAL_VALUE = 'PRODUCT/CHANGE_IS_SPECIAL_VALUE'
-export const CHANGE_CATEGORY_VALUE = 'PRODUCT/CHANGE_CATEGORY_VALUE'
-export const ADD_INGREDIENT = 'PRODUCT/ADD_INGREDIENT'
-export const DELETE_INGREDIENT = 'PRODUCT/DELETE_INGREDIENT'
-export const CLEAR_INGREDIENTS = 'PRODUCT/CLEAR_INGREDIENTS'
-export const SET_TITLE_IMG = 'PRODUCT/SET_TITLE_IMG'
-export const SET_ADDITIONAL_IMAGES = 'PRODUCT/SET_ADDITIONAL_IMAGES'
-export const DELETE_TITLE_IMG = 'PRODUCT/DELETE_TITLE_IMG'
-export const DELETE_ADDITIONAL_IMG = 'PRODUCT/DELETE_ADDITIONAL_IMG'
-export const CLEAR_ADDITIONAL_IMG = 'PRODUCT/CLEAR_ADDITIONAL_IMG'
+export const SET_PRODUCTS = 'PRODUCT/SET_PRODUCTS';
+export const CHANGE_INPUT_NAME_VALUE = 'PRODUCT/CHANGE_INPUT_NAME_VALUE';
+export const CHANGE_INPUT_DESCRIPTION_VALUE = 'PRODUCT/CHANGE_INPUT_DESCRIPTION_VALUE';
+export const CHANGE_INPUT_PRICE_VALUE = 'PRODUCT/CHANGE_INPUT_PRICE_VALUE';
+export const CHANGE_INPUT_CALORIES_VALUE = 'PRODUCT/CHANGE_INPUT_CALORIES_VALUE';
+export const CHANGE_INPUT_COUNT_VALUE = 'PRODUCT/CHANGE_INPUT_COUNT_VALUE';
+export const CHANGE_INPUT_WEIGHT_VALUE = 'PRODUCT/CHANGE_INPUT_WEIGHT_VALUE';
+export const CHANGE_IS_SPECIAL_VALUE = 'PRODUCT/CHANGE_IS_SPECIAL_VALUE';
+export const CHANGE_CATEGORY_VALUE = 'PRODUCT/CHANGE_CATEGORY_VALUE';
+export const ADD_INGREDIENT = 'PRODUCT/ADD_INGREDIENT';
+export const DELETE_INGREDIENT = 'PRODUCT/DELETE_INGREDIENT';
+export const CLEAR_INGREDIENTS = 'PRODUCT/CLEAR_INGREDIENTS';
+export const SET_TITLE_IMG = 'PRODUCT/SET_TITLE_IMG';
+export const SET_ADDITIONAL_IMAGES = 'PRODUCT/SET_ADDITIONAL_IMAGES';
+export const DELETE_TITLE_IMG = 'PRODUCT/DELETE_TITLE_IMG';
+export const DELETE_ADDITIONAL_IMG = 'PRODUCT/DELETE_ADDITIONAL_IMG';
+export const CLEAR_ADDITIONAL_IMG = 'PRODUCT/CLEAR_ADDITIONAL_IMG';
 
-
-export const setProducts = (products) => {
+export const setProducts = products => {
     return {
         type: SET_PRODUCTS,
-        payload: products
-    }
-}
+        payload: products,
+    };
+};
 
-export const updateInputNameValue = (text) => {
+export const updateInputNameValue = text => {
     return {
         type: CHANGE_INPUT_NAME_VALUE,
-        payload: text
-    }
-}
+        payload: text,
+    };
+};
 
-export const updateInputDescriptionValue = (text) => {
+export const updateInputDescriptionValue = text => {
     return {
         type: CHANGE_INPUT_DESCRIPTION_VALUE,
-        payload: text
-    }
-}
+        payload: text,
+    };
+};
 
-export const updateInputCaloriesValue = (calories) => {
+export const updateInputCaloriesValue = calories => {
     return {
         type: CHANGE_INPUT_CALORIES_VALUE,
-        payload: calories
-    }
-}
+        payload: calories,
+    };
+};
 
-export const updateInputCountValue = (count) => {
+export const updateInputCountValue = count => {
     return {
         type: CHANGE_INPUT_COUNT_VALUE,
-        payload: count
-    }
-}
+        payload: count,
+    };
+};
 
-export const updateInputWeigthValue = (weigth) => {
+export const updateInputWeigthValue = weigth => {
     return {
         type: CHANGE_INPUT_WEIGHT_VALUE,
-        payload: weigth
-    }
-}
+        payload: weigth,
+    };
+};
 
-export const updateInputPriceValue = (price) => {
+export const updateInputPriceValue = price => {
     return {
         type: CHANGE_INPUT_PRICE_VALUE,
-        payload: price
-    }
-}
+        payload: price,
+    };
+};
 
-export const updateIsSpecialValue = (is_spesial) => {
+export const updateIsSpecialValue = is_spesial => {
     return {
         type: CHANGE_IS_SPECIAL_VALUE,
-        payload: is_spesial
-    }
-}
+        payload: is_spesial,
+    };
+};
 
-export const updateCategoryValue = (category_name) => {
+export const updateCategoryValue = category_name => {
     return {
         type: CHANGE_CATEGORY_VALUE,
-        payload: category_name
-    }
-}
+        payload: category_name,
+    };
+};
 
-export const addIngredient = (ingredient) => {
+export const addIngredient = ingredient => {
     return {
         type: ADD_INGREDIENT,
-        payload: ingredient
-    }
-}
+        payload: ingredient,
+    };
+};
 
-export const deleteIngredient = (ingredient_name) => {
+export const deleteIngredient = ingredient_name => {
     return {
         type: DELETE_INGREDIENT,
-        payload: ingredient_name
-    }
-}
+        payload: ingredient_name,
+    };
+};
 
 export const clearIngredients = () => {
     return {
-        type: CLEAR_INGREDIENTS
-    }
-}
+        type: CLEAR_INGREDIENTS,
+    };
+};
 
-export const setTitleImg = (image) => {
+export const setTitleImg = image => {
     return {
         type: SET_TITLE_IMG,
-        payload: image
-    }
-}
+        payload: image,
+    };
+};
 
 export const deleteTitleImg = () => {
     return {
-        type: DELETE_TITLE_IMG
-    }
-}
+        type: DELETE_TITLE_IMG,
+    };
+};
 
-export const setAdditionalImages = (images) => {
+export const setAdditionalImages = images => {
     return {
         type: SET_ADDITIONAL_IMAGES,
-        payload: images
-    }
-}
+        payload: images,
+    };
+};
 
-export const deleteAdditionalImage = (name) => {
+export const deleteAdditionalImage = name => {
     return {
         type: DELETE_ADDITIONAL_IMG,
-        payload: name
-    }
-}
+        payload: name,
+    };
+};
 
 export const clearAdditionalImages = () => {
     return {
-        type: CLEAR_ADDITIONAL_IMG
-    }
-}
+        type: CLEAR_ADDITIONAL_IMG,
+    };
+};
