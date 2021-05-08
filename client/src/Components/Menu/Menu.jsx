@@ -1,12 +1,11 @@
-import React from "react";
-import DropdownItem from "./DropdownItem/DropdownItem";
-import ProductItem from "./ProductItem/ProductItem";
-import ProductModalDialog from "../FormModalDialog/ProductModalDialog";
+import React from 'react';
+import DropdownItem from './DropdownItem/DropdownItem';
+import ProductItem from './ProductItem/ProductItem';
+import ProductModalDialog from '../FormModalDialog/ProductModalDialog';
 
-import s from "./style.module.css";
+import s from './style.module.css';
 
-const img_url =
-    "https://images-gmi-pmc.edge-generalmills.com/df109202-f5dd-45a1-99b4-f10939afd509.jpg";
+const img_url = 'https://images-gmi-pmc.edge-generalmills.com/df109202-f5dd-45a1-99b4-f10939afd509.jpg';
 
 const Menu = ({
     products,
@@ -42,9 +41,7 @@ const Menu = ({
 
     return (
         <div className="container">
-            <div
-                className={`${s.full_height} ${s.menu_content} ${s.menu__background}`}
-            >
+            <div className={`${s.full_height} ${s.menu_content} ${s.menu__background}`}>
                 <div className={s.menu__first_section}>
                     <h1 className={s.menu_title}>Наше меню</h1>
                     {is_admin ? (
@@ -61,9 +58,7 @@ const Menu = ({
                             caliriesHelpText="Кількість калорій"
                             inputNameState={inputNameState}
                             updateInputNameValue={updateInputNameValue}
-                            updateInputDescriptionValue={
-                                updateInputDescriptionValue
-                            }
+                            updateInputDescriptionValue={updateInputDescriptionValue}
                             inputDescriptionState={inputDescriptionState}
                             inputPriceState={inputPriceState}
                             updateInputPriceValue={updateInputPriceValue}
@@ -95,14 +90,13 @@ const Menu = ({
                     </div>
                 </div>
                 <div className={`${s.menu__items_row} ${s.menu__container}`}>
-                    {products.map((product) => (
+                    {products.map(product => (
                         <ProductItem
                             name={product.name}
                             ingredients={product.ingredients}
                             weight={product.weight}
                             price={product.price}
-                            img_url={product.images[0].image_data}
-                            img_url={img_url}
+                            img_url={product.name === 'Справжній пляцок' ? product.images[0].image_data : img_url}
                         />
                     ))}
                 </div>

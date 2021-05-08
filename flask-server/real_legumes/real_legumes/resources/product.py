@@ -3,7 +3,6 @@ from flask_apispec.views import MethodResource
 from flask import abort
 from flask_apispec import marshal_with, doc, use_kwargs
 import math
-import base64
 
 from ..models import Product as p, Category, Image, Ingredient
 from .schemas import ProductResponseSchema, ProductRequestSchema, ProductListSchema
@@ -39,7 +38,7 @@ class ProductList(MethodResource, Resource):
 
         args = request.args.to_dict()
         page = 0
-        count = 3
+        count = 7
 
         if 'page' in args:
             try:
@@ -65,6 +64,7 @@ class ProductList(MethodResource, Resource):
     @doc(description="Add new product.", tags=['Product'])
     @use_kwargs(ProductRequestSchema, location=('json'))
     def post(self, **kwargs):
+        print('s')
 
         # product = p(name='name',
         #             price=2,

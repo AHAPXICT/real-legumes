@@ -8,7 +8,6 @@ class BaseConfig:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # register swagger
     APISPEC_SPEC = APISpec(
         title='Real Legumes',
         version='v1',

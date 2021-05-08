@@ -1,10 +1,10 @@
-import React from "react";
-import { PRODUCTS_URL, CATEGORIES_URL, INGREDIENTS_URL } from "../../urls";
-import Menu from "./Menu";
-import * as productActions from "../../Store/Products/actions";
-import * as categoryActions from "../../Store/Categories/actions";
-import * as ingredientActions from "../../Store/Ingredients/actions";
-import { connect } from "react-redux";
+import React from 'react';
+import { PRODUCTS_URL, CATEGORIES_URL, INGREDIENTS_URL } from '../../urls';
+import Menu from './Menu';
+import * as productActions from '../../Store/Products/actions';
+import * as categoryActions from '../../Store/Categories/actions';
+import * as ingredientActions from '../../Store/Ingredients/actions';
+import { connect } from 'react-redux';
 
 class MenuContainer extends React.Component {
     componentDidMount() {
@@ -15,10 +15,10 @@ class MenuContainer extends React.Component {
 
     fetchProducts = () => {
         fetch(PRODUCTS_URL)
-            .then((response) => {
+            .then(response => {
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 const product_list = data.products.reverse();
                 this.props.setProducts(product_list);
             });
@@ -35,9 +35,9 @@ class MenuContainer extends React.Component {
         weigth,
         calories,
         title_image,
-        images
+        images,
     ) => {
-        const product_images = images.map((image) => {
+        const product_images = images.map(image => {
             return {
                 image_data: image.base64,
                 is_title: false,
@@ -49,7 +49,7 @@ class MenuContainer extends React.Component {
             is_title: true,
         });
 
-        const product_ingredients = ingredients.map((i) => {
+        const product_ingredients = ingredients.map(i => {
             return i.name;
         });
 
@@ -69,24 +69,24 @@ class MenuContainer extends React.Component {
         console.log(newProduct);
 
         fetch(`${PRODUCTS_URL}`, {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(newProduct),
-        }).then((response) => {
+        }).then(response => {
             if (response.ok) {
-                alert("ura");
+                alert('ura');
             }
         });
     };
 
     fetchCategories = () => {
         fetch(CATEGORIES_URL)
-            .then((response) => {
+            .then(response => {
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 const categories = data.reverse();
                 this.props.setCategories(categories);
             });
@@ -94,10 +94,10 @@ class MenuContainer extends React.Component {
 
     fetchIngredients = () => {
         fetch(INGREDIENTS_URL)
-            .then((response) => {
+            .then(response => {
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 const ingredients = data.reverse();
                 this.props.setIngredients(ingredients);
             });
@@ -141,7 +141,7 @@ class MenuContainer extends React.Component {
     }
 }
 
-const mapState = (state) => {
+const mapState = state => {
     return {
         product_list: state.product.products,
         category_list: state.category.categories,

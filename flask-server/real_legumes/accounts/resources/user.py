@@ -1,14 +1,13 @@
 from flask.views import MethodView
 from flask_restful import Resource
 from flask_apispec.views import MethodResource
-from flask import abort, jsonify
 from flask_apispec import marshal_with, doc, use_kwargs
 from flask import request
 
 from ..models import User as u
 from ..models import BlacklistToken
 from real_legumes import db, bcrypt
-from .schemas import UserResponseSchema, UserRequestSchema, UserLogoutSchema
+from .schemas import UserRequestSchema, UserLogoutSchema
 
 
 class Register(MethodResource, Resource):

@@ -1,21 +1,21 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CheckIcon from "@material-ui/icons/Check";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import CategoryDropdownMenu from "../Menu/CategoryDropdownMenu/CategoryDropdownMenu";
-import CheckboxList from "../Menu/IngredientsSelectionList/IngredientsSelectionList";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import { IconButton } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import FileUploader from "../FileUploader/FileUploader";
-import FileUploadSection from "../FileUploader/FileUploadSection/FileUploadSection";
-import useStyles from "./style";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import CheckIcon from '@material-ui/icons/Check';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import CategoryDropdownMenu from '../Menu/CategoryDropdownMenu/CategoryDropdownMenu';
+import CheckboxList from '../Menu/IngredientsSelectionList/IngredientsSelectionList';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import FileUploader from '../FileUploader/FileUploader';
+import FileUploadSection from '../FileUploader/FileUploadSection/FileUploadSection';
+import useStyles from './style';
 
 // const useStyles = makeStyles((theme) => ({
 //     margin: {
@@ -69,31 +69,31 @@ const ProductModalDialog = ({
 
     const classes = useStyles();
 
-    const changeNameInput = (event) => {
+    const changeNameInput = event => {
         updateInputNameValue(event.target.value);
     };
 
-    const changeDescriptionInput = (event) => {
+    const changeDescriptionInput = event => {
         updateInputDescriptionValue(event.target.value);
     };
 
-    const changePriceInput = (event) => {
+    const changePriceInput = event => {
         updateInputPriceValue(Number(event.target.value));
     };
 
-    const changeCaloriesInput = (event) => {
+    const changeCaloriesInput = event => {
         updateInputCaloriesValue(Number(event.target.value));
     };
 
-    const changeCountInput = (event) => {
+    const changeCountInput = event => {
         updateInputCountValue(Number(event.target.value));
     };
 
-    const changeWeigthInput = (event) => {
+    const changeWeigthInput = event => {
         updateInputWeigthValue(Number(event.target.value));
     };
 
-    const changeIsSpecialInput = (value) => {
+    const changeIsSpecialInput = value => {
         updateIsSpecialValue(value);
     };
 
@@ -102,14 +102,14 @@ const ProductModalDialog = ({
     };
 
     const handleClose = () => {
-        updateInputNameValue("");
-        updateInputDescriptionValue("");
+        updateInputNameValue('');
+        updateInputDescriptionValue('');
         updateInputPriceValue(0);
         updateInputCaloriesValue(0);
         updateInputCountValue(0);
         updateInputWeigthValue(0);
         updateIsSpecialValue(false);
-        updateCategoryValue("");
+        updateCategoryValue('');
         clearIngredients();
         clearAdditionalImages();
         setOpen(false);
@@ -128,7 +128,7 @@ const ProductModalDialog = ({
             inputWeigthState,
             inputCaloriesState,
             title_image,
-            images
+            images,
         );
     };
 
@@ -144,12 +144,7 @@ const ProductModalDialog = ({
             >
                 Додати продукт
             </Button>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="form-dialog-title"
-                fullWidth={fullWidth}
-            >
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth={fullWidth}>
                 <DialogTitle id="form-dialog-title">{titleText}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>{helpText}</DialogContentText>
@@ -229,9 +224,7 @@ const ProductModalDialog = ({
                         aria-label="delete"
                         className={classes.margin}
                         size="lagre"
-                        onClick={() =>
-                            setOpenIngredientList(!openIngredientList)
-                        }
+                        onClick={() => setOpenIngredientList(!openIngredientList)}
                     >
                         <ArrowDownwardIcon fontSize="inherit" />
                     </IconButton>
@@ -244,14 +237,8 @@ const ProductModalDialog = ({
                         />
                     ) : null}
                     <br />
-                    <FileUploadSection
-                        title={"Виберіть титульне зображення:"}
-                        multipleFiles={false}
-                    />
-                    <FileUploadSection
-                        title={"Виберіть додаткові зображення (опціонально):"}
-                        multipleFiles={true}
-                    />
+                    <FileUploadSection title={'Виберіть титульне зображення:'} multipleFiles={false} />
+                    <FileUploadSection title={'Виберіть додаткові зображення (опціонально):'} multipleFiles={true} />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" size="large" onClick={handleClose}>

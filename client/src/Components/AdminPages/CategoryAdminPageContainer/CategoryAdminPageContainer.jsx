@@ -1,8 +1,8 @@
-import React from "react";
-import CategoryAdminPage from "./CategoryAdminPage/CategoryAdminPage";
-import { CATEGORY_URL, CATEGORIES_URL } from "../../../urls";
-import * as categoryActions from "../../../Store/Categories/actions";
-import { connect } from "react-redux";
+import React from 'react';
+import CategoryAdminPage from './CategoryAdminPage/CategoryAdminPage';
+import { CATEGORY_URL, CATEGORIES_URL } from '../../../urls';
+import * as categoryActions from '../../../Store/Categories/actions';
+import { connect } from 'react-redux';
 
 class CategoryAdminPageContainer extends React.Component {
     componentDidMount() {
@@ -11,10 +11,10 @@ class CategoryAdminPageContainer extends React.Component {
 
     fetchCategories = () => {
         fetch(CATEGORIES_URL)
-            .then((response) => {
+            .then(response => {
                 return response.json();
             })
-            .then((data) => {
+            .then(data => {
                 const categories = data.reverse();
                 this.props.setCategories(categories);
             });
@@ -26,16 +26,16 @@ class CategoryAdminPageContainer extends React.Component {
         };
 
         fetch(CATEGORIES_URL, {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(newCategory),
-        }).then((response) => {
+        }).then(response => {
             if (response.ok) {
                 this.fetchCategories();
             } else if (response.status === 500) {
-                return response.json().then((json) => {
+                return response.json().then(json => {
                     const { message } = json;
                     alert(message);
                 });
@@ -43,10 +43,10 @@ class CategoryAdminPageContainer extends React.Component {
         });
     };
 
-    deleteCategory = (name) => {
+    deleteCategory = name => {
         fetch(`${CATEGORY_URL}/${name}`, {
-            method: "DELETE",
-        }).then((response) => {
+            method: 'DELETE',
+        }).then(response => {
             if (response.ok) {
                 this.fetchCategories();
             }
@@ -59,16 +59,16 @@ class CategoryAdminPageContainer extends React.Component {
         };
 
         fetch(`${CATEGORY_URL}/${old_name}`, {
-            method: "PUT",
+            method: 'PUT',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(newCategory),
-        }).then((response) => {
+        }).then(response => {
             if (response.ok) {
                 this.fetchCategories();
             } else if (response.status === 500) {
-                return response.json().then((json) => {
+                return response.json().then(json => {
                     const { message } = json;
                     alert(message);
                 });
@@ -90,7 +90,7 @@ class CategoryAdminPageContainer extends React.Component {
     }
 }
 
-const mapState = (state) => {
+const mapState = state => {
     return {
         category_list: state.category.categories,
         inputState: state.category.input_name_field,
